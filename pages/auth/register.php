@@ -12,11 +12,9 @@ $pages = "../../".$pages;
 
 $plugins = "../../".$plugins;
 
-
 include "../../links/css.php";
 
 ?>
-
 
 <body class="hold-transition register-page">
 <div class="register-box">
@@ -37,7 +35,6 @@ if (isset($_POST['error_r']) ){
   }
 
 };
-
 
 
 ?>
