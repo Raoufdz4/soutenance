@@ -93,11 +93,11 @@ $start = ($page - 1) * $productsPerPage;
 
 // Query to fetch products for the current page
 $query = "SELECT * FROM product LIMIT $start, $productsPerPage";
-$result = $cnx->query($query);
+$result = mysqli_query($cnx,$query);
 
-if ($result->num_rows > 0) {
+if (mysqli_num_rows($result)>0) {
     // Display products
-    while ($row = $result->fetch_assoc()) {
+    while ($row = mysqli_fetch_assoc($result)) {
 echo '
 <tr>
 <td class="col-1">
@@ -131,14 +131,14 @@ echo '
 
 // Calculate the total number of pages
 $query = "SELECT COUNT(*) as total FROM product";
-$result = $cnx->query($query);
-$row = $result->fetch_assoc();
+$result = mysqli_query($cnx,$query);
+$row = mysqli_fetch_assoc($result);
 $totalProducts = $row['total'];
 $totalPages = ceil($totalProducts / $productsPerPage);
 
 
 // Close the database connection
-$cnx->close();
+mysqli_close($cnx);
 
 
 ?>
