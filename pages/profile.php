@@ -76,11 +76,45 @@ include $partials.'header_left.php';
           <div class="card-body text-center">
             <img src="../dist/img/colivraison.png" alt="avatar"
               class="rounded-circle img-fluid" style="width: 150px;">
-            <h5 class="my-3">John Smith</h5>
-            <p class="text-muted mb-1">Full Stack Developer</p>
-            <p class="text-muted mb-4">Bay Area, San Francisco, CA</p>
+            <h5 class="my-3"><?php 
+              $req1= "SELECT * FROM user WHERE email='$useremail'";
+              $res1= mysqli_query($cnx,$req1);
+              if ($res1) {
+              // Check if any rows were returned
+              if (mysqli_num_rows($res1)>0) {
+              $row= mysqli_fetch_assoc($res1);
+              echo $row["full_name"] ;
+  } 
+}  ?></h5>
+            <p class="text-muted mb-1">Role : <?php 
+              $req1= "SELECT * FROM user_has_roles WHERE id_user='$useremail'";
+              $res1= mysqli_query($cnx,$req1);
+              if ($res1) {
+              // Check if any rows were returned
+              if (mysqli_num_rows($res1)>0) {
+              $row= mysqli_fetch_assoc($res1);
+                echo $row["roles_name"] ;
+              
+  } 
+}  ?></p>
+            <p class="text-muted mb-4"><?php 
+              $req1= "SELECT * FROM user WHERE email='$useremail'";
+              $res1= mysqli_query($cnx,$req1);
+              if ($res1) {
+              // Check if any rows were returned
+              if (mysqli_num_rows($res1)>0) {
+              $row= mysqli_fetch_assoc($res1);
+              if ($row["user_description"]==null) {
+                echo 'No Description' ;
+              }
+              else {
+                echo $row["user_description"] ;
+              }
+              
+  } 
+}  ?></p>
             <div class="d-flex justify-content-center mb-2">
-              <button type="button" class="btn btn-outline-primary ms-1">Edit</button>
+              <a type="button" href="editprofile.php" class="btn btn-outline-primary ms-1">Edit</a>
             </div>
           </div>
         </div>
@@ -89,23 +123,98 @@ include $partials.'header_left.php';
             <ul class="list-group list-group-flush rounded-3">
               <li class="list-group-item d-flex justify-content-between align-items-center p-3">
                 <i class="fas fa-globe fa-lg text-warning"></i>
-                <p class="mb-0">https://mdbootstrap.com</p>
+                <p class="mb-0"><?php 
+              $req1= "SELECT * FROM user_social WHERE id_user='$useremail'";
+              $res1= mysqli_query($cnx,$req1);
+              if ($res1) {
+              // Check if any rows were returned
+              if (mysqli_num_rows($res1)>0) {
+              $row= mysqli_fetch_assoc($res1);
+              if ($row["user_web"]==null) {
+                echo 'vide.' ;
+              }
+              else {
+                echo $row["user_web"] ;
+              }
+              
+  } 
+}  ?></p>
               </li>
               <li class="list-group-item d-flex justify-content-between align-items-center p-3">
                 <i class="fab fa-github fa-lg" style="color: #333333;"></i>
-                <p class="mb-0">mdbootstrap</p>
+                <p class="mb-0"><?php 
+              $req1= "SELECT * FROM user_social WHERE id_user='$useremail'";
+              $res1= mysqli_query($cnx,$req1);
+              if ($res1) {
+              // Check if any rows were returned
+              if (mysqli_num_rows($res1)>0) {
+              $row= mysqli_fetch_assoc($res1);
+              if ($row["user_git"]==null) {
+                echo 'vide.' ;
+              }
+              else {
+                echo $row["user_git"] ;
+              }
+              
+  } 
+}  ?></p>
               </li>
               <li class="list-group-item d-flex justify-content-between align-items-center p-3">
                 <i class="fab fa-twitter fa-lg" style="color: #55acee;"></i>
-                <p class="mb-0">@mdbootstrap</p>
+                <p class="mb-0"><?php 
+              $req1= "SELECT * FROM user_social WHERE id_user='$useremail'";
+              $res1= mysqli_query($cnx,$req1);
+              if ($res1) {
+              // Check if any rows were returned
+              if (mysqli_num_rows($res1)>0) {
+              $row= mysqli_fetch_assoc($res1);
+              if ($row["user_twitter"]==null) {
+                echo 'vide.' ;
+              }
+              else {
+                echo $row["user_twitter"] ;
+              }
+              
+  } 
+}  ?></p>
               </li>
               <li class="list-group-item d-flex justify-content-between align-items-center p-3">
                 <i class="fab fa-instagram fa-lg" style="color: #ac2bac;"></i>
-                <p class="mb-0">mdbootstrap</p>
+                <p class="mb-0"><?php 
+              $req1= "SELECT * FROM user_social WHERE id_user='$useremail'";
+              $res1= mysqli_query($cnx,$req1);
+              if ($res1) {
+              // Check if any rows were returned
+              if (mysqli_num_rows($res1)>0) {
+              $row= mysqli_fetch_assoc($res1);
+              if ($row["user_insta"]==null) {
+                echo 'vide.' ;
+              }
+              else {
+                echo $row["user_insta"] ;
+              }
+              
+  } 
+}  ?></p>
               </li>
               <li class="list-group-item d-flex justify-content-between align-items-center p-3">
                 <i class="fab fa-facebook-f fa-lg" style="color: #3b5998;"></i>
-                <p class="mb-0">mdbootstrap</p>
+                <p class="mb-0"><?php 
+              $req1= "SELECT * FROM user_social WHERE id_user='$useremail'";
+              $res1= mysqli_query($cnx,$req1);
+              if ($res1) {
+              // Check if any rows were returned
+              if (mysqli_num_rows($res1)>0) {
+              $row= mysqli_fetch_assoc($res1);
+              if ($row["user_facebook"]==null) {
+                echo 'vide.' ;
+              }
+              else {
+                echo $row["user_facebook"] ;
+              }
+              
+  } 
+}  ?></p>
               </li>
             </ul>
           </div>
