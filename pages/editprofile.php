@@ -95,6 +95,32 @@ include $partials.'header_left.php';
 <div class="col-lg-7 bg-gray-light m-2 rounded">
 <div class="text-muted mt-3 text-center">Profile Details :</div>
 <hr>
+<form action="">
+<div class="card-body">
+  <div class="row">
+  <div class="form-group col-md-6">
+                    <label for="firstname">First name</label>
+                    <input type="text" class="form-control" id="firstname" placeholder="Enter email">
+    </div>
+    <div class="form-group col-md-6">
+                    <label for="lastname">Last name</label>
+                    <input type="text" class="form-control" id="lastname" placeholder="Enter email">
+    </div>
+  </div>
+  <div class="row">
+  <div class="form-group col-md-6">
+                    <label for="country">Country</label>
+                    <select class="form-control bfh-countries" data-country="US" id="country"></select>
+    </div>
+    <div class="form-group col-md-6">
+                    <label for="state">State</label>
+                    <select class="form-control bfh-states" data-country="country" id="state"></select>
+    </div>
+  </div>
+                  
+                  
+  </div>
+</form>
 </div>
 </div>
 <div class="row d-flex justify-content-lg-center">
