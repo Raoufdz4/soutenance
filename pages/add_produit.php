@@ -77,18 +77,31 @@ include $partials.'header_left.php';
       </div>
     </div>
 
-
-<!-- make ur content here -->
-
+ <!-- make ur content here -->
 
 
+ <h1>Sample Form</h1>
+    <form action="add_check.php" method="post">
+        <!-- Text Input -->
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name"placeholder="name" required><br>
+
+        <!-- Textarea -->
+        <label for="message">Message:</label>
+        <textarea id="text" name="descr" placeholder="description" rows="4" required></textarea><br>
+
+        <!-- Submit Button -->
+        <button type="submit">Submit</button>
+
+    </form>
 
 
 
 
 
 
-    
+
+   
 
 
 
@@ -127,3 +140,5 @@ include  '../links/js.php';
 ?>
 </body>
 </html>
+
+

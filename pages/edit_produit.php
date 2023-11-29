@@ -80,15 +80,20 @@ include $partials.'header_left.php';
 
 <!-- make ur content here -->
 
-
-
-
-
-
-
-
-
+<form action="update.php" method="post">
+    <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
+    <!-- Other input fields for editing -->
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" value="<?php echo $row['name']; ?>" required>
     
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" value="<?php echo $row['email']; ?>" required>
+
+    <!-- Submit button -->
+    <button type="submit">Update</button>
+</form>
+
+
 
 
 
