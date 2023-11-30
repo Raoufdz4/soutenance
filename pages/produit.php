@@ -114,10 +114,11 @@ echo '
               />
       </td>
       <td class="col-3">
-      '. $row['name'] .'
+      '. $row['product_name'] .'
       </td>
       <td class="col-4">'. $row['descr'] .'</td>
       <td class="col-2">
+      
       <button type="button" class="btn btn-link btn-sm btn-rounded">
         Edit
       </button><br>
@@ -175,7 +176,13 @@ mysqli_close($cnx);
                         echo '<li class="paginate_button page-item next" id="example2_next"><a href="produit.php?page='.$nump.'"aria-controls="example2" data-dt-idx="7" tabindex="0" class="page-link">Next</a></li>';
                     }
                     ?> 
-                </ul></div></div></div>
+
+                </ul></div></div> 
+                   
+                  <div class="col-1 mt-1">  <button type="button" class="btn btn-primary"><a href="add_produit.php"class="text-light">add produit</a></button></div>
+                  </div>
+
+                </div>
                 <div class="row">
 <div class="col-md-12 mb-5">
           </div>

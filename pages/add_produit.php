@@ -77,6 +77,23 @@ include $partials.'header_left.php';
       </div>
     </div>
 
+ <!-- make ur content here -->
+
+
+ <h1>Sample Form</h1>
+    <form action="add_check.php" method="post">
+        <!-- Text Input -->
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name"placeholder="name" required><br>
+
+        <!-- Textarea -->
+        <label for="message">Message:</label>
+        <textarea id="text" name="descr" placeholder="description" rows="4" required></textarea><br>
+
+        <!-- Submit Button -->
+        <button type="submit">Submit</button>
+
+    </form>
 
 
 
@@ -84,33 +101,7 @@ include $partials.'header_left.php';
 
 
 
-
-
-
-
-        <div class="content-wrapper" style="min-height: 2080.12px;"> 
-    <!-- Main content -->
-    <section class="content">
-      <div class="container-fluid">
-        
-      <div class="row">
-      <div class="col-md-12 mb-5">
-          </div>
-          <div class="col-md-12 mb-4">
-          </div>
-      <div class="col">
-        <nav aria-label="breadcrumb" class="bg-light rounded-3 p-3 mb-4">
-          <ol class="breadcrumb mb-0">
-            <li class="breadcrumb-item"><a href="#">Demo</a></li>
-            <li class="breadcrumb-item"><a href="#">Demo</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Demo</li>
-          </ol>
-        </nav>
-      </div>
-    </div>
-
-
-<!-- make ur content here -->
+   
 
 
 
@@ -149,3 +140,5 @@ include  '../links/js.php';
 ?>
 </body>
 </html>
+
+
