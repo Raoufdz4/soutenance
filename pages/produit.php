@@ -114,7 +114,7 @@ echo '
               />
       </td>
       <td class="col-3">
-      '. $row['name'] .'
+      '. $row['product_name'] .'
       </td>
       <td class="col-4">'. $row['descr'] .'</td>
       <td class="col-2">
