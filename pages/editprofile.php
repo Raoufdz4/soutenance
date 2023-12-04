@@ -86,8 +86,15 @@ include $partials.'header_left.php';
 <div class="col-lg-4 bg-gray-light m-2 rounded">
 <div class="text-muted mt-3 text-center">Profile Picture :</div>
 <hr>
-<div class=" m-4 d-flex justify-content-center">
-    <div class="rounded-circle img-fluid bg-light d-flex justify-content-center" style="width: 180px;"><img src="../dist/img/colivraison.png" alt="avatar" class="rounded-circle img-fluid" style="width: 180px;"></div>
+<div class="row m-4 d-flex justify-content-center">
+    <div class="rounded-circle img-fluid bg-light d-flex justify-content-center" style="width: 180px;">
+    <img src="../dist/img/colivraison.png" alt="avatar" class="rounded-circle img-fluid" style="width: 180px;">
+  </div>
+</div>
+<div class="row m-4 d-flex justify-content-center">
+  <form action="">
+  <input class="form-control" type="file" id="formFile">
+  </form>
 </div>
 </div>
 

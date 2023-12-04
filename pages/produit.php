@@ -65,7 +65,7 @@ include $partials.'header_left.php';
         </nav>
       </div>
     </div>
-    <div class="row-10">
+    <div class="row-10 table-responsive-md">
     <table class="table align-middle mb-0 bg-white border">
   <thead class="bg-light">
     <tr>
@@ -145,7 +145,19 @@ mysqli_close($cnx);
   </tbody>
 </table>
     </div>
-    <div class="row-10 bg-white border pt-2 d-flex justify-content-center"><div class="col-md-5"><div class="dataTables_info mt-2 ml-2" id="example2_info" role="status" aria-live="polite"><?php $startProduct = ($page - 1) * $productsPerPage + 1;$endProduct = min($startProduct + $productsPerPage - 1, $totalProducts); echo "Showing ".$startProduct." to ".$endProduct." of ".$totalProducts." products."; ?></div></div><div class="col-md-5"><div class="dataTables_paginate paging_simple_numbers mt-1" id="example2_paginate"><ul class="pagination">
+    <div class="row-10 bg-white border pt-2 d-flex justify-content-center">
+      <div class="col-md-12">
+        <div class="row d-flex justify-content-center">
+        <div class="dataTables_info mt-2 ml-2" id="example2_info" role="status" aria-live="polite">
+          <?php 
+          $startProduct = ($page - 1) * $productsPerPage + 1;$endProduct = min($startProduct + $productsPerPage - 1, $totalProducts);
+           echo "Showing ".$startProduct." to ".$endProduct." of ".$totalProducts." products."; 
+          ?>
+        </div>
+        </div>
+        <div class="row d-flex justify-content-center">
+        <div class="dataTables_paginate paging_simple_numbers mt-1 table-responsive-sm" id="example2_paginate">
+          <ul class="pagination">
                     <?php
                     $nump=$page; $add=1; $nump=$nump + $add; 
                     $numm=$page; $numm=$numm - $add; 
@@ -158,16 +170,43 @@ mysqli_close($cnx);
                     }
                     ?>
                 <?php
+                    $numPagesToShow = 2;    
+                  if ($totalPages <= $numPagesToShow * 2 + 1) {
+                    // If there are fewer pages than twice the shown number of pages
                     for ($i = 1; $i <= $totalPages; $i++) {
-                        if ($page==$i) {
-                            echo '<li class="paginate_button page-item active"><a href="produit.php?page='.$i.'" aria-controls="example2" data-dt-idx="'.$i.'" tabindex="0" class="page-link">'.$i.'</a></li>';
-                        }
-                        else {
-                            echo '<li class="paginate_button page-item"><a href="produit.php?page='.$i.'" aria-controls="example2" data-dt-idx="'.$i.'" tabindex="0" class="page-link">'.$i.'</a></li>';
-                        }
+                        echo '<li class="paginate_button page-item '.($page == $i ? 'active' : '').'"><a href="produit.php?page='.$i.'" aria-controls="example2" tabindex="0" class="page-link">'.$i.'</a></li>';
                     }
-                    
-                    
+                } else {
+                    // Display first two pages
+                    for ($i = 1; $i <= 2; $i++) {
+                        echo '<li class="paginate_button page-item '.($page == $i ? 'active' : '').'"><a href="produit.php?page='.$i.'" aria-controls="example2" tabindex="0" class="page-link">'.$i.'</a></li>';
+                    }
+            
+                    // Display ellipses before the current page
+                    if ($page > 2 + $numPagesToShow) {
+                        echo '<li class="paginate_button page-item disabled"><span class="page-link">...</span></li>';
+                    }
+            
+                    // Display pages around the current page
+                    $startPage = max(3, $page - 1);
+        $endPage = min($totalPages - 2, $page + 1);
+
+        for ($i = $startPage; $i <= $endPage; $i++) {
+            echo '<li class="paginate_button page-item '.($page == $i ? 'active' : '').'"><a href="produit.php?page='.$i.'" aria-controls="example2" tabindex="0" class="page-link">'.$i.'</a></li>';
+        }
+
+            
+                    // Display ellipses after the current page
+                    if ($page < $totalPages - 2 - $numPagesToShow) {
+                        echo '<li class="paginate_button page-item disabled"><span class="page-link">...</span></li>';
+                    }
+            
+                    // Display last two pages
+                    for ($i = $totalPages - 1; $i <= $totalPages; $i++) {
+                        echo '<li class="paginate_button page-item '.($page == $i ? 'active' : '').'"><a href="produit.php?page='.$i.'" aria-controls="example2" tabindex="0" class="page-link">'.$i.'</a></li>';
+                    }
+                }
+    
                     if ($page==$totalPages) {
                         echo '<li class="paginate_button page-item next disabled" id="example2_next"><a href="produit.php?page='.$nump.'"aria-controls="example2" data-dt-idx="7" tabindex="0" class="page-link">Next</a></li>';
                     }
@@ -175,7 +214,19 @@ mysqli_close($cnx);
                         echo '<li class="paginate_button page-item next" id="example2_next"><a href="produit.php?page='.$nump.'"aria-controls="example2" data-dt-idx="7" tabindex="0" class="page-link">Next</a></li>';
                     }
                     ?> 
-                </ul></div></div></div>
+                </ul>
+                <ul class="pagination d-flex justify-content-center">
+                <li class="page-item">
+        <input type="text" id="pageInput" class="form-control" placeholder="Go to page">
+    </li>
+    <li class="page-item">
+        <button onclick="goToPage()" class="btn btn-primary">Go</button>
+    </li>
+                </ul>
+              </div>
+        </div>
+      </div>
+            </div>
                 <div class="row">
 <div class="col-md-12 mb-5">
           </div>
@@ -197,7 +248,17 @@ include $partials.'footer.php';
 ?>
 
 </div>
+<script>
+    function goToPage() {
+        var input = document.getElementById('pageInput');
+        var pageNumber = parseInt(input.value);
 
+        // Add validation if needed
+        if (!isNaN(pageNumber) && pageNumber >= 1 && pageNumber <= <?php echo $totalPages; ?>) {
+            window.location.href = 'produit.php?page=' + pageNumber;
+        }
+    }
+</script>
 
 <?php
 
