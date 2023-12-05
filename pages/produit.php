@@ -156,7 +156,7 @@ mysqli_close($cnx);
         </div>
         </div>
         <div class="row d-flex justify-content-center">
-        <div class="dataTables_paginate paging_simple_numbers mt-1 table-responsive-sm" id="example2_paginate">
+        <div class="dataTables_paginate paging_simple_numbers mt-1 table-responsive-col" id="example2_paginate">
           <ul class="pagination">
                     <?php
                     $nump=$page; $add=1; $nump=$nump + $add; 

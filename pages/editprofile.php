@@ -93,7 +93,15 @@ include $partials.'header_left.php';
 </div>
 <div class="row m-4 d-flex justify-content-center">
   <form action="">
-  <input class="form-control" type="file" id="formFile">
+  
+              
+              <div class="file-input-container">
+    <!-- Actual file input -->
+    <input type="file" class="file-input" id="fileInput" name="fileInput" style="display: none;">
+    <!-- Button to trigger file input -->
+    <label for="fileInput" class="btn btn-outline-primary file-input-label ">Add image</label>
+  </div>
+        
   </form>
 </div>
 </div>
@@ -128,27 +136,74 @@ include $partials.'header_left.php';
                     </select>
     </div>
   </div>
-                  
-                  
+  <div class="row">
+  <div class="form-group col-md-6">
+                    <label for="phone">Phone</label>
+                    <input type="text" class="form-control" id="phone" placeholder="phone">
+    </div>
+    <div class="form-group col-md-6">
+                    <label for="adresse">adresse</label>
+                    <input type="text" class="form-control" id="adresse" placeholder="adresse">
+    </div>
+  </div>              
   </div>
 </form>
 </div>
 </div>
 <div class="row d-flex justify-content-lg-center">
-<div class="col-lg-11 bg-gray-light m-2 rounded">
+<div class="col-lg-4 bg-gray-light m-2 rounded">
 <div class="text-muted mt-3 text-center">Profile Description :</div>
 <hr>
+<div class="form-group col-md-12">
+                    <label class="pl-1" for="phone">User details</label>
+                    <textarea class="form-control" aria-label="With textarea" rows="5" cols="40"></textarea>
+    </div>
 </div>
-</div>
-<div class="row d-flex justify-content-lg-center">
-<div class="col-lg-11 bg-gray-light m-2 rounded">
+<div class="col-lg-7 bg-gray-light m-2 rounded">
 <div class="text-muted mt-3 text-center">Profile Social Media :</div>
 <hr>
+<div class="row pl-2 pr-2">
+<div class="form-group col-md-12">
+                    <i class="fas fa-globe fa-lg text-warning"></i>
+                    <label class="pl-1" for="phone">web</label>
+                    <input type="text" class="form-control" id="phone" placeholder="https:\\www.example.com">
+    </div>
+</div>
+<div class="row pl-2 pr-2">
+<div class="form-group col-md-6">
+<i class="fab fa-github fa-lg" style="color: #333333;"></i>
+                    <label class="pl-1" for="phone">Github</label>
+                    <input type="text" class="form-control" id="phone" placeholder="https:\\www.example.com">
+    </div>
+    <div class="form-group col-md-6">
+    <i class="fab fa-twitter fa-lg" style="color: #55acee;"></i>
+                    <label class="pl-1" for="phone">Twetter</label>
+                    <input type="text" class="form-control" id="phone" placeholder="https:\\www.example.com">
+    </div>
+</div>
+<div class="row pl-2 pr-2">
+<div class="form-group col-md-6">
+<i class="fab fa-instagram fa-lg" style="color: #ac2bac;"></i>
+                    <label class="pl-1" for="phone">Instagram</label>
+                    <input type="text" class="form-control" id="phone" placeholder="https:\\www.example.com">
+    </div>
+    <div class="form-group col-md-6">
+    <i class="fab fa-facebook-f fa-lg" style="color: #3b5998;"></i>
+                    <label class="pl-1" for="phone">Facebook</label>
+                    <input type="text" class="form-control" id="phone" placeholder="https:\\www.example.com">
+    </div>
+</div>
+
+</div>
+<div class="col-lg-11 bg-gray-light m-2 rounded">
+  <div class="row">
+    <div class="col">
+    <button class="btn btn-outline-primary file-input-label">Save</button>
+    </div>
+  </div>
+  
 </div>
 </div>
-
-
-
 </div>
 </div>
 </div>
