@@ -197,8 +197,8 @@ include $partials.'header_left.php';
 </div>
 <div class="col-lg-11 bg-gray-light m-2 rounded">
   <div class="row">
-    <div class="col">
-    <button class="btn btn-outline-primary file-input-label">Save</button>
+    <div class="col-12 d-flex justify-content-end">
+    <button class="btn btn-outline-primary file-input-label m-3">Save</button>
     </div>
   </div>
   
