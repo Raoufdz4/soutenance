@@ -80,20 +80,121 @@ include $partials.'header_left.php';
 
 <!-- make ur content here -->
 
-<form action="update.php" method="post">
-    <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
-    <!-- Other input fields for editing -->
-    <label for="name">Name:</label>
-    <input type="text" id="name" name="name" value="<?php echo $row['name']; ?>" required>
+<?php
+if (isset($_GET['id'])) {
+    $id = htmlspecialchars($_GET['id']);
+
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $newProductName = $_POST['product_name'];
+        $newDescription = $_POST['descr'];
+        $newImageData = '';
+
+        if ($_FILES['produit_image']['size'] > 0) {
+            
+            $newImageData = file_get_contents($_FILES['produit_image']['tmp_name']);
+        }
+
+        
+        $updateQuery = "UPDATE product SET product_name = ?, descr = ?, produit_image = ? WHERE id_produit = ?";
+        $stmt = $cnx->prepare($updateQuery);
+        $stmt->bind_param('sssi', $newProductName, $newDescription, $newImageData, $id);
+
+        if ($stmt->execute()) {
+            echo 'Record updated successfully';
+        } else {
+            echo 'Error updating record: ' . $stmt->error;
+        }
+
+        $stmt->close();
+    }
+
     
-    <label for="email">Email:</label>
-    <input type="email" id="email" name="email" value="<?php echo $row['email']; ?>" required>
+    $selectQuery = "SELECT product_name, descr, produit_image FROM product WHERE id_produit = ?";
+    $stmt = $cnx->prepare($selectQuery);
+    $stmt->bind_param('i', $id);
+    $stmt->execute();
+    $stmt->bind_result($productName, $description, $imageData);
+    $stmt->fetch();
+    $stmt->close();
 
-    <!-- Submit button -->
-    <button type="submit">Update</button>
-</form>
+    
+    ?>
+    <div class="card card-default col-5">
+        <div class="card-header text-bold ">
+            <h3 class="card-title pl-2">edit</h3>
+        </div>
+        <div class="card-body">
+            <form action="" method="post" enctype="multipart/form-data">
+                <label for="name">Name:</label>
+                <input type="text" class="form-control col-12" id="name" name="product_name" placeholder="name" value="<?php echo $productName; ?>" required><br>
+
+                <div class="form-group">
+                    <label for="message">Description :</label>
+                    <textarea class="form-control col-12" id="text" name="descr" rows="3" required><?php echo $description; ?></textarea>
+                </div>
+
+                <label for="produit_image">Select an image:</label>
+                <input type="file" name="produit_image" required><br><br>
+
+                
+                <button type="submit" class="btn btn-primary">Update</button>
+            </form>
+        </div>
+    </div>
+    <?php
+} else {
+   
+    header("Location: error_page.php");
+    exit();
+}
 
 
+$cnx->close();
+?>
+
+
+
+
+<!--
+
+    <div class="card card-default col-5">
+    <div class="card-header text-bold ">
+    <h3 class="card-title pl-2">edit</h3> 
+  </div>
+    <div class="card-body">
+    <form method="post" action="" enctype="multipart/form-data">
+        <label for="product_name">Product Name:</label>
+        <input type="text" name="product_name" value="<?php //echo $productName; ?>" required>
+
+        <label for="descr">Description:</label>
+        <textarea name="descr" required><?php //echo $description; ?></textarea>
+
+        <label for="produit_image">New Image:</label>
+        <input type="file" name="produit_image">
+
+        <input type="submit" value="Update">
+    </form>
+    </div>
+
+ </div>
+
+-->
+
+
+
+
+
+
+ 
+ 
+
+
+
+
+
+
+
+    
 
 
 

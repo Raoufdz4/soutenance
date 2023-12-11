@@ -77,44 +77,23 @@ include $partials.'header_left.php';
       </div>
     </div>
 
- <!-- make ur content here -->
+
+<!-- make ur content here -->
+
+<form action="update.php" method="post">
+    <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
+    <!-- Other input fields for editing -->
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" value="<?php echo $row['name']; ?>" required>
+    
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" value="<?php echo $row['email']; ?>" required>
+
+    <!-- Submit button -->
+    <button type="submit">Update</button>
+</form>
 
 
-
- 
- <div class="card card-default col-5">
-      <div class="card-header text-bold ">
-      <h3 class="card-title pl-2">Ajouter un produit</h3> 
-    </div>
-      <div class="card-body">
-    <form action="add_check.php" method="post" >
-        <!-- Text Input -->
-        <label for="name">Name:</label>
-        <input type="text" class="form-control col-12" id="name" name="product_name"placeholder="name" required><br>
-
-        <!-- Textarea -->
-        
-
-        <div class="form-group">
-            <label for="message">Produit description :</label>
-            <textarea class="form-control col-12" id="text"  name="descr" rows="3" required></textarea>
-        </div>
-
-      <!-- <label for="image">Select an image:</label>
-       <input type="file" name="produit_image" accept="image/*" required><br><br>
-      -->
-        <!-- Submit Button -->
-        <button type="submit" class="btn btn-primary">Submit</button>
-
-    </form>
-    </div>
-   
-</div>
-
-
-
-
-   
 
 
 
@@ -153,5 +132,3 @@ include  '../links/js.php';
 ?>
 </body>
 </html>
-
-

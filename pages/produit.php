@@ -100,10 +100,8 @@ if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
 echo '
 <tr>
-<td class="col-1">
-        <div class="d-flex align-items-center">'
-        . $row['id_produit'] .'
-        </div>
+    <td class="col-1">
+        <div class="d-flex align-items-center">'. $row['id_produit'] .' </div>
       </td>
       <td class="col-2">
         <img
@@ -113,18 +111,22 @@ echo '
               class="rounded"
               />
       </td>
-      <td class="col-3">
-      '. $row['product_name'] .'
-      </td>
+      <td class="col-3">'. $row['product_name'] .' </td>
       <td class="col-4">'. $row['descr'] .'</td>
       <td class="col-2">
+      <div class="row d-flex justify-content-center">
       
-      <button type="button" class="btn btn-link btn-sm btn-rounded">
-        Edit
-      </button><br>
-      <button type="button" class="btn btn-link btn-sm btn-rounded">
-        Delete
+      <button type="button" class="btn btn-primary col-12 col-lg-6 accent-light">
+      <a href="edit_produit.php?id='. $row['id_produit'] .'"> Edit</a>
       </button>
+
+      <button type="button" class="btn btn-danger col-12 col-lg-6 accent-light">
+      <a href="delete_produit.php?id='. $row['id_produit'] .'"> Delete</a> 
+      </button>
+
+      <div class="collapsed  col-md-1"></div>
+
+      </div>
     </td>
 </tr>';
     }
@@ -143,6 +145,7 @@ $cnx->close();
 
 
 ?>
+
   </tbody>
 </table>
     </div>
