@@ -65,7 +65,8 @@ include $partials.'header_left.php';
         </nav>
       </div>
     </div>
-    <div class="row-10">
+    <div class="row">
+      <div class="col-md-12">
     <table class="table align-middle mb-0 bg-white border">
   <thead class="bg-light">
     <tr>
@@ -93,11 +94,11 @@ $start = ($page - 1) * $productsPerPage;
 
 // Query to fetch products for the current page
 $query = "SELECT * FROM product LIMIT $start, $productsPerPage";
-$result = $cnx->query($query);
+$result = mysqli_query($cnx,$query);
 
-if ($result->num_rows > 0) {
+if (mysqli_num_rows($result)>0) {
     // Display products
-    while ($row = $result->fetch_assoc()) {
+    while ($row = mysqli_fetch_assoc($result)) {
 echo '
 <tr>
     <td class="col-1">
@@ -134,22 +135,31 @@ echo '
 
 // Calculate the total number of pages
 $query = "SELECT COUNT(*) as total FROM product";
-$result = $cnx->query($query);
-$row = $result->fetch_assoc();
+$result = mysqli_query($cnx,$query);
+$row = mysqli_fetch_assoc($result);
 $totalProducts = $row['total'];
 $totalPages = ceil($totalProducts / $productsPerPage);
 
 
 // Close the database connection
-$cnx->close();
+mysqli_close($cnx);
 
 
 ?>
 
   </tbody>
 </table>
+</div>
     </div>
-    <div class="row-10 bg-white border pt-2 d-flex justify-content-center"><div class="col-md-5"><div class="dataTables_info mt-2 ml-2" id="example2_info" role="status" aria-live="polite"><?php $startProduct = ($page - 1) * $productsPerPage + 1;$endProduct = min($startProduct + $productsPerPage - 1, $totalProducts); echo "Showing ".$startProduct." to ".$endProduct." of ".$totalProducts." products."; ?></div></div><div class="col-md-5"><div class="dataTables_paginate paging_simple_numbers mt-1" id="example2_paginate"><ul class="pagination">
+    <div class="row bg-white border pt-2 d-flex justify-content-between ">      
+      <div class="col-md-3 col-sm-3 d-none d-sm-block d-flex justify-content-center">
+        <div class="dataTables_info mt-2 ml-2  " id="example2_info" role="status" aria-live="polite">
+          <?php $startProduct = ($page - 1) * $productsPerPage + 1;$endProduct = min($startProduct + $productsPerPage - 1, $totalProducts); echo "Showing ".$startProduct." to ".$endProduct." of ".$totalProducts." products."; ?>
+      </div>
+    </div>
+    <div class="col-8 col-md-6 col-sm-5 d-flex justify-content-center">
+      <div class="dataTables_paginate paging_simple_numbers mt-1" id="example2_paginate">
+        <ul class="pagination">
                     <?php
                     $nump=$page; $add=1; $nump=$nump + $add; 
                     $numm=$page; $numm=$numm - $add; 
@@ -182,9 +192,8 @@ $cnx->close();
 
                 </ul></div></div> 
                    
-                  <div class="col-1 mt-1">  <button type="button" class="btn btn-primary"><a href="add_produit.php"class="text-light">add produit</a></button></div>
+                  <div class="col-4 col-md-3 col-sm-4 d-flex justify-content-center ">  <button type="button" class="btn btn-primary mt-1" style="height: 40px ;"><a href="add_produit.php"class="text-light">add produit</a></button></div>
                   </div>
-
                 </div>
                 <div class="row">
 <div class="col-md-12 mb-5">

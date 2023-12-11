@@ -7,7 +7,11 @@ if (isset($_POST['first_name']) && isset($_POST['last_name']) && isset($_POST['e
 
     $fname = $_POST['first_name'];
 
+    $fname= ucwords(strtolower($fname));
+
     $lname = $_POST['last_name'];
+
+    $lname= ucwords(strtolower($lname));
 
     $email = $_POST['email_r'];
 
@@ -28,7 +32,11 @@ if (mysqli_num_rows($res1)>0) {
 else {
     $req2="INSERT INTO user (first_name,last_name,full_name,email,`password`,create_date) VALUES ('$fname','$lname','$fname $lname','$email','$pass',NOW())";
     $res2=mysqli_query($cnx,$req2);
-    if ($res2) {
+    $req3="INSERT INTO user_social (id_user) VALUES ('$email')";
+    $res3=mysqli_query($cnx,$req3);
+    $req4="INSERT INTO user_has_roles (id_user,roles_name) VALUES ('$email','user')";
+    $res4=mysqli_query($cnx,$req4);
+    if ($res2 && $res3 && $res4) {
         echo '<form id="myForm" action="login.php" method="post">';
         echo '<input type="text" name="error_r" value="noerror" hidden>';
         echo '</form>';
