@@ -33,54 +33,19 @@ if (isset($_POST['lastname_user']) && !empty($_POST['lastname_user'])){
 }
 if (isset($_POST['country']) && !empty($_POST['country'])){
     $country_code = $_POST['country'];
-    ?>
-    <script>
-        const country_array = country_and_states.country;
-        var user_country = country_array["<?php echo $country_code;?>"];
-        
-        document.addEventListener('DOMContentLoaded', function() {
-      // Sample data to send
-
-      // Create a new XMLHttpRequest object
-      var xhr = new XMLHttpRequest();
-
-      // Configure it: specify the type of request and the URL
-      xhr.open('POST', 'editprofile_check.php', true);
-
-      // Set the request header to indicate that we are sending JSON data
-      xhr.setRequestHeader('Content-Type', 'application/json');
-
-      // Set up the callback function to handle the response
-      xhr.onreadystatechange = function() {
-        if (xhr.readyState == 4 && xhr.status == 200) {
-          // Handle the response from the PHP file
-          console.log(xhr.responseText);
-        }
-      };
-
-      // Convert the JavaScript object to a JSON string
-      var jsonData = JSON.stringify(user_country);
-
-      // Send the JSON data to the PHP file
-      xhr.send(jsonData);
-    });
-    </script>
-    <?php
-    $country_name=$_POST['country_name'];
     $req1="SELECT * FROM user WHERE (email='$useremail')";
     $res1=mysqli_query($cnx,$req1);
     if (mysqli_num_rows($res1)>0) {
-        $req2="UPDATE user SET country_code='$country_code',country='$country_name' WHERE email='$useremail'";
+        $req2="UPDATE user SET country_code='$country_code' WHERE email='$useremail'";
         $res2=mysqli_query($cnx,$req2);
     }
 }
 if (isset($_POST['state']) && !empty($_POST['state'])){
     $state_code = $_POST['state'];
-    $state_name = $_POST['state_name'];
     $req1="SELECT * FROM user WHERE (email='$useremail')";
     $res1=mysqli_query($cnx,$req1);
     if (mysqli_num_rows($res1)>0) {
-        $req2="UPDATE user SET state_code='$state_code',`state`='$state_name' WHERE email='$useremail'";
+        $req2="UPDATE user SET state_code='$state_code', WHERE email='$useremail'";
         $res2=mysqli_query($cnx,$req2);
     }
 }
@@ -156,5 +121,5 @@ if (isset($_POST['fb_soc']) && !empty($_POST['fb_soc'])){
         $res2=mysqli_query($cnx,$req2);
     }
 }  
-
+header('location:profile.php');
 ?>
