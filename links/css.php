@@ -19,5 +19,7 @@
 
   <link rel="stylesheet" href="<?php echo  $plugins . '/select2-bootstrap4-theme/select2-bootstrap4.css'; ?>">
 
+  <link rel="stylesheet" href="<?php echo  $plugins . '/cropperjs/cropper.css'; ?>">
+
   <link rel="stylesheet" href="<?php echo  $dist . '/css/style.css';?>">
 </head>
