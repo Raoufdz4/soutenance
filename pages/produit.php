@@ -150,7 +150,7 @@ mysqli_close($cnx);
 </table>
 </div>
     </div>
-    <div class="row bg-white border pt-2 d-flex justify-content-between ">      
+     
     
     <div class="col-12 bg-white border pt-2 d-flex justify-content-center">
       <div class="col-md-12">
@@ -239,7 +239,7 @@ mysqli_close($cnx);
                    
             
                   </div>
-                </div>
+                
                 <div class="row">
 <div class="col-md-12 mb-5">
           </div>
