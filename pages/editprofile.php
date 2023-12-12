@@ -127,14 +127,12 @@ include $partials.'header_left.php';
                     <select class="form-control bfh-countries" name="country" id="country" autocomplete="off">
                     <option>select country</option>
                     </select>
-                    <input type="text" id="user_country_name" name="country_name" value="">
     </div>
     <div class="form-group col-md-6">
                     <label for="state">State</label>
                     <select class="form-control bfh-states" name="state" id="state">
                     <option>_</option>
                     </select>
-                    <input type="text" id="user_state_name" name="state_name" value="">
     </div>
   </div>
   <div class="row">
@@ -329,7 +327,6 @@ if (!empty($state_code)) {
    
     
     const createCountryNamesDropdown = () => {
-        let userCountryNameInput = document.getElementById("user_country_name");
         let option =  '';
         option += '<option value="">select country</option>';
 
@@ -338,10 +335,6 @@ if (!empty($state_code)) {
     let selected = (country_code == user_country_code) ? ' selected' : '';
     
     // Check if the current country_code is the user_country_code
-    if (country_code === user_country_code) {
-        // Set the value of the user_country_name input
-        userCountryNameInput.value = country_array[country_code];
-    }
 
     // Create the option HTML
     option += '<option value="'+country_code+'"'+selected+'>'+country_array[country_code]+'</option>';
@@ -385,7 +378,6 @@ id_country_option.innerHTML = option;
 
     // country select change event
     id_country_option.addEventListener('change', createStatesNamesDropdown);
-
 
    
 
