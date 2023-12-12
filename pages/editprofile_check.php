@@ -31,21 +31,17 @@ if (isset($_POST['lastname_user']) && !empty($_POST['lastname_user'])){
         $res2=mysqli_query($cnx,$req2);
     }
 }
-if (isset($_POST['country']) && !empty($_POST['country'])){
+if (isset($_POST['country']) && !empty($_POST['country']) && isset($_POST['state']) && !empty($_POST['state'])){
     $country_code = $_POST['country'];
+    $country_state_value =$_POST['state'];
+    $country_state_array = explode(',', $country_state_value);
+    $country_name = $country_state_array[0];
+    $state_name = $country_state_array[1];
+    $state_code = $country_state_array[2];
     $req1="SELECT * FROM user WHERE (email='$useremail')";
     $res1=mysqli_query($cnx,$req1);
     if (mysqli_num_rows($res1)>0) {
-        $req2="UPDATE user SET country_code='$country_code' WHERE email='$useremail'";
-        $res2=mysqli_query($cnx,$req2);
-    }
-}
-if (isset($_POST['state']) && !empty($_POST['state'])){
-    $state_code = $_POST['state'];
-    $req1="SELECT * FROM user WHERE (email='$useremail')";
-    $res1=mysqli_query($cnx,$req1);
-    if (mysqli_num_rows($res1)>0) {
-        $req2="UPDATE user SET state_code='$state_code', WHERE email='$useremail'";
+        $req2="UPDATE user SET country_code='$country_code',country='$country_name',`state`='$state_name',state_code='$state_code' WHERE email='$useremail'";
         $res2=mysqli_query($cnx,$req2);
     }
 }

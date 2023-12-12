@@ -75,7 +75,7 @@ include $partials.'header_left.php';
         </nav>
       </div>
     </div>
-<form action="editprofile_check.php" method="post">
+<form action="editprofile_check.php" method="post" id="user_form">
 
 <div class="row">
 <div class="col-lg-12">
@@ -124,9 +124,10 @@ include $partials.'header_left.php';
   <div class="row">
   <div class="form-group col-md-6">
                     <label for="country">Country</label>
-                    <select class="form-control bfh-countries" name="country" id="country" autocomplete="off">
+                    <select class="form-control bfh-countries" name="country" id="country" >
                     <option>select country</option>
                     </select>
+                    
     </div>
     <div class="form-group col-md-6">
                     <label for="state">State</label>
@@ -338,15 +339,17 @@ if (!empty($state_code)) {
 
     // Create the option HTML
     option += '<option value="'+country_code+'"'+selected+'>'+country_array[country_code]+'</option>';
+    
 }
-
 // Assuming you have a select element with the id "id_country_option"
 id_country_option.innerHTML = option;
     };
-
     
     const createStatesNamesDropdown = () => {
     let selectedCountryCode = id_country_option.value;
+
+    var country_name = country_array[selectedCountryCode] ;
+
     let stateNames = states_array[selectedCountryCode];
 
     // if invalid country code
@@ -361,7 +364,7 @@ id_country_option.innerHTML = option;
 
     for (let i = 0; i < stateNames.length; i++) {
         let selected = (stateNames[i].code == user_state_code) ? ' selected' : '';
-        option += '<option value="' + stateNames[i].code + '"' + selected + '>' + stateNames[i].name + '</option>';
+        option += '<option value="'+country_name+','+stateNames[i].name+','+stateNames[i].code+'"' + selected + '>' + stateNames[i].name + '</option>';
     }
     option += '</select>';
     
