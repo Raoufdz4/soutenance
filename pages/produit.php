@@ -151,12 +151,8 @@ mysqli_close($cnx);
 </div>
     </div>
     <div class="row bg-white border pt-2 d-flex justify-content-between ">      
-      <div class="col-md-3 col-sm-3 d-none d-sm-block d-flex justify-content-center">
-        <div class="dataTables_info mt-2 ml-2  " id="example2_info" role="status" aria-live="polite">
-          <?php $startProduct = ($page - 1) * $productsPerPage + 1;$endProduct = min($startProduct + $productsPerPage - 1, $totalProducts); echo "Showing ".$startProduct." to ".$endProduct." of ".$totalProducts." products."; ?>
-      </div>
-    </div>
-    <div class="row-10 bg-white border pt-2 d-flex justify-content-center">
+    
+    <div class="col-12 bg-white border pt-2 d-flex justify-content-center">
       <div class="col-md-12">
         <div class="row d-flex justify-content-center">
         <div class="dataTables_info mt-2 ml-2" id="example2_info" role="status" aria-live="polite">
@@ -236,11 +232,12 @@ mysqli_close($cnx);
     </li>
                 </ul>
               </div>
+              <button type="button" class="btn btn-primary mt-1" style="height: 40px ;"><a href="add_produit.php"class="text-light">add produit</a></button>
         </div>
       </div>
              
                    
-                  <div class="col-4 col-md-3 col-sm-4 d-flex justify-content-center ">  <button type="button" class="btn btn-primary mt-1" style="height: 40px ;"><a href="add_produit.php"class="text-light">add produit</a></button></div>
+            
                   </div>
                 </div>
                 <div class="row">
