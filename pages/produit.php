@@ -117,13 +117,12 @@ echo '
       <td class="col-2">
       <div class="row d-flex justify-content-center">
       
-      <button type="button" class="btn btn-primary col-12 col-lg-6 accent-light">
-      <a href="edit_produit.php?id='. $row['id_produit'] .'"> Edit</a>
-      </button>
+      <a type="button" href="edit_produit.php?id='. $row['id_produit'] .'" 
+      class="btn btn-primary col-12 col-lg-6 accent-light">Edit</a>
 
-      <button type="button" class="btn btn-danger col-12 col-lg-6 accent-light">
-      <a href="delete_produit.php?id='. $row['id_produit'] .'"> Delete</a> 
-      </button>
+
+      <a href="delete_produit.php?id='. $row['id_produit'] .'"
+      type="button" class="btn btn-danger col-12 col-lg-6 accent-light"> Delete</a>
 
       <div class="collapsed  col-md-1"></div>
 
