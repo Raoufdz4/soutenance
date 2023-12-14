@@ -96,39 +96,33 @@ $start = ($page - 1) * $productsPerPage;
 $query = "SELECT * FROM product LIMIT $start, $productsPerPage";
 $result = mysqli_query($cnx,$query);
 
-if (mysqli_num_rows($result)>0) {
+if (mysqli_num_rows($result) > 0) {
     // Display products
     while ($row = mysqli_fetch_assoc($result)) {
-echo '
-<tr>
-    <td class="col-1">
-        <div class="d-flex align-items-center">'. $row['id_produit'] .' </div>
-      </td>
-      <td class="col-2">
-        <img
-              src="../dist/img/no_photo.png"
-              alt=""
-              style="width: 80px; height: 80px"
-              class="rounded"
-              />
-      </td>
-      <td class="col-3">'. $row['product_name'] .' </td>
-      <td class="col-4">'. $row['descr'] .'</td>
-      <td class="col-2">
-      <div class="row d-flex justify-content-center">
+        echo '
+        <tr>
+            <td class="col-1">
+                <div class="d-flex align-items-center">' . htmlspecialchars($row['id_produit']) . ' </div>
+            </td>
+            <td class="col-2">
+
+            <img src="' . htmlspecialchars($row['image_path']) . '" alt="Product Image" 
+            style="width: 80px; height: 80px;" class="rounded">
       
-      <a type="button" href="edit_produit.php?id='. $row['id_produit'] .'" 
-      class="btn btn-primary col-12 col-lg-6 accent-light">Edit</a>
-
-
-      <a href="delete_produit.php?id='. $row['id_produit'] .'"
-      type="button" class="btn btn-danger col-12 col-lg-6 accent-light"> Delete</a>
-
-      <div class="collapsed  col-md-1"></div>
-
-      </div>
-    </td>
-</tr>';
+            </td>
+            <td class="col-3">' . htmlspecialchars($row['product_name']) . ' </td>
+            <td class="col-4">' . htmlspecialchars($row['descr']) . '</td>
+            <td class="col-2">
+                <div class="row d-flex justify-content-center">
+                    <a type="button" href="edit_produit.php?id=' . $row['id_produit'] . '"
+                        class="btn btn-primary col-12 col-lg-6 accent-light">Edit</a>
+                    <a href="delete_produit.php?id=' . $row['id_produit'] . '"
+                        type="button" class="btn btn-danger col-12 col-lg-6 accent-light" 
+                        onclick="return confirm(\'Are you sure you want to delete this product?\')">Delete</a>
+                    <div class="collapsed col-md-1"></div>
+                </div>
+            </td>
+        </tr>';
     }
 }
 

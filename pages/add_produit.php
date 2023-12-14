@@ -87,7 +87,7 @@ include $partials.'header_left.php';
       <h3 class="card-title pl-2">Ajouter un produit</h3> 
     </div>
       <div class="card-body">
-    <form action="add_check.php" method="post" >
+    <form action="add_check.php" method="post" enctype="multipart/form-data">
         <!-- Text Input -->
         <label for="name">Name:</label>
         <input type="text" class="form-control col-12" id="name" name="product_name"placeholder="name" required><br>
@@ -100,11 +100,11 @@ include $partials.'header_left.php';
             <textarea class="form-control col-12" id="text"  name="descr" rows="3" required></textarea>
         </div>
 
-      <!-- <label for="image">Select an image:</label>
-       <input type="file" name="produit_image" accept="image/*" required><br><br>
-      -->
+       <label for="image">Select an image:</label>
+       <input type="file" name="image" accept="image/*" required><br><br>
+      
         <!-- Submit Button -->
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" name="submit" class="btn btn-primary">Submit</button>
 
     </form>
     </div>
