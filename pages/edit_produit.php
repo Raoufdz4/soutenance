@@ -101,7 +101,7 @@ if (isset($_FILES["image"])) {
     
         // Insert into the database using prepared statements
         $stmt = $cnx->prepare("UPDATE product SET product_name = ?, descr = ?, image_path = ? WHERE id_produit = ?");
-        $stmt->bind_param("sss", $name, $description, $escapedImagePath);
+        $stmt->bind_param("sssi", $name, $description, $escapedImagePath,$id);
     
         if ($stmt->execute()) {
           header('location:'.$headerlocation.'');
