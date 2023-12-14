@@ -1,9 +1,8 @@
 <?php
 
 
-function addNewProductImageUpload($cnx,$name,$description,$path,$headerlocation){
+function addNewProduct($cnx,$name,$description,$path,$headerlocation){
  
-    
     // Image handling
     $uploadFolder = "images/".$path;
     $uploadPath = $uploadFolder . basename($_FILES["image"]["name"]);

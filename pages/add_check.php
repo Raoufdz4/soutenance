@@ -2,7 +2,7 @@
 
 include '../config.php';
 
-include 'fnct_upl_image.php';
+include 'function/f_add_product.php';
 if ($cnx->connect_error) {
     die("Connection failed: " . $cnx->connect_error);
 }
@@ -13,7 +13,7 @@ if (isset($_POST["submit"])) {
 
     $path = 'products/';
     $headerlocation='produit.php';
-     addNewProductImageUpload($cnx,$productName,$description,$path,$headerlocation) ;
+     addNewProduct($cnx,$productName,$description,$path,$headerlocation,) ;
 
 }
 

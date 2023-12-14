@@ -84,32 +84,39 @@ include $partials.'header_left.php';
 if (isset($_GET['id'])) {
     $id = htmlspecialchars($_GET['id']);
 
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $newProductName = $_POST['product_name'];
-        $newDescription = $_POST['descr'];
-        $newImageData = '';
+    
 
-        if ($_FILES['produit_image']['size'] > 0) {
-            
-            $newImageData = file_get_contents($_FILES['produit_image']['tmp_name']);
-        }
+    $path = 'products/';
+    $headerlocation='produit.php';
+if (isset($_FILES["image"])) {
+    $productName = $_POST["product_name"];
+    $description = $_POST["descr"];
 
-        
-        $updateQuery = "UPDATE product SET product_name = ?, descr = ?, produit_image = ? WHERE id_produit = ?";
-        $stmt = $cnx->prepare($updateQuery);
-        $stmt->bind_param('sssi', $newProductName, $newDescription, $newImageData, $id);
-
+    $uploadFolder = "images/".$path;
+    $uploadPath = $uploadFolder . basename($_FILES["image"]["name"]);
+    
+    if (move_uploaded_file($_FILES["image"]["tmp_name"], $uploadPath)) {
+        // Image moved successfully, now insert into the database
+        $escapedImagePath = $cnx->real_escape_string($uploadPath);
+    
+        // Insert into the database using prepared statements
+        $stmt = $cnx->prepare("UPDATE product SET product_name = ?, descr = ?, image_path = ? WHERE id_produit = ?");
+        $stmt->bind_param("sss", $name, $description, $escapedImagePath);
+    
         if ($stmt->execute()) {
-            echo 'Record updated successfully';
+          header('location:'.$headerlocation.'');
         } else {
-            echo 'Error updating record: ' . $stmt->error;
+          return  "Error: " . $stmt->error;
         }
-
+    
         $stmt->close();
+    } else {
+      return "Error moving the uploaded file.";
+    }
     }
 
-    
-    $selectQuery = "SELECT product_name, descr, produit_image FROM product WHERE id_produit = ?";
+}
+    $selectQuery = "SELECT product_name, descr, image_path FROM product WHERE id_produit = ?";
     $stmt = $cnx->prepare($selectQuery);
     $stmt->bind_param('i', $id);
     $stmt->execute();
@@ -133,24 +140,15 @@ if (isset($_GET['id'])) {
                     <textarea class="form-control col-12" id="text" name="descr" rows="3" required><?php echo $description; ?></textarea>
                 </div>
 
-                <label for="produit_image">Select an image:</label>
-                <input type="file" name="produit_image" required><br><br>
+                <label for="image">Select an image:</label>
+                <input type="file" name="image" required><br><br>
 
                 
                 <button type="submit" class="btn btn-primary">Update</button>
             </form>
         </div>
     </div>
-    <?php
-} else {
    
-    header("Location: error_page.php");
-    exit();
-}
-
-
-$cnx->close();
-?>
 
 
 
