@@ -106,8 +106,7 @@ if (mysqli_num_rows($result) > 0) {
             </td>
             <td class="col-2">
 
-            <img src="' . htmlspecialchars($row['image_path']) . '" alt="Product Image" 
-            style="width: 80px; height: 80px;" class="rounded">
+            <img src="' . htmlspecialchars($row['image_path']) . '" alt="Product Image" style="width: 80px; height: 80px;" class="rounded">
       
             </td>
             <td class="col-3">' . htmlspecialchars($row['product_name']) . ' </td>
