@@ -270,9 +270,6 @@ include $partials.'header_left.php';
 
 
 
-<script src="https://unpkg.com/@popperjs/core@2"></script>
-
-
 
 
     <!-- make ur content here -->
