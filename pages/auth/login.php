@@ -12,6 +12,8 @@ $pages = "../../".$pages;
 
 $plugins = "../../".$plugins;
 
+include '../../icon.php';
+
 include "../../links/css.php";
 ?>
 

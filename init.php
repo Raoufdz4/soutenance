@@ -1,3 +1,4 @@
+
 <?php
 
 $base_url = $_SERVER['SERVER_NAME'];
@@ -15,5 +16,3 @@ $plugins = "plugins/";
 ?>
 
     
-
- 

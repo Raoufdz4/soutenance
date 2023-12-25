@@ -24,6 +24,7 @@ $plugins = "../".$plugins;
 
 include '../config.php';
 
+include '../icon.php';
 
 include '../links/css.php';
 
