@@ -37,13 +37,35 @@ else {
     $req4="INSERT INTO user_has_roles (id_user,roles_name) VALUES ('$email','user')";
     $res4=mysqli_query($cnx,$req4);
     if ($res2 && $res3 && $res4) {
-        echo '<form id="myForm" action="login.php" method="post">';
-        echo '<input type="text" name="error_r" value="noerror" hidden>';
-        echo '</form>';
+        $useremail=$email;
+        $targetDirectory = "../../dist/UserData/".$useremail."/profile/";
 
-        echo '<script>';
-        echo 'document.getElementById("myForm").submit();'; 
-        echo '</script>';
+            if (!is_dir($targetDirectory)) {
+            // Create the directory if it doesn't exist
+            mkdir($targetDirectory, 0777, true); // The third parameter true enables recursive creation
+            }
+
+            $sourceFilePath = '../../dist/img/colivraison.png';
+
+            // Destination directory
+            $destinationDirectory = "../../dist/UserData/".$useremail."/profile/";
+            
+            // Destination file path (including the new filename)
+            $destinationFilePath = $destinationDirectory . 'profile_picture.png';
+
+            if (copy($sourceFilePath, $destinationFilePath)) {
+                echo "Image copied successfully to $destinationFilePath";
+            } else {
+                echo "Error copying the image.";
+            }
+
+         echo '<form id="myForm" action="login.php" method="post">';
+         echo '<input type="text" name="error_r" value="noerror" hidden>';
+         echo '</form>';
+
+         echo '<script>';
+         echo 'document.getElementById("myForm").submit();'; 
+         echo '</script>';
     }
     else {
         echo '<form id="myForm" action="register.php" method="post">';

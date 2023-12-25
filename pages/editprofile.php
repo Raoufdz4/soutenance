@@ -10,6 +10,16 @@ if (!isset($_SESSION['email'])) {
 
 $useremail=$_SESSION['email'];
 
+$targetDirectory = "../dist/UserData/".$useremail."/profile/";
+
+            $FileName = "profile_picture";
+
+            // Add the original file extension to the new file name
+            $FileName .= '.' . pathinfo("profile_picture", PATHINFO_EXTENSION);
+
+            // Create the target path with the new file name
+            $targetFile = $targetDirectory . $FileName;
+
 include '../init.php';
 
 $dist = "../".$dist;
@@ -75,7 +85,7 @@ include $partials.'header_left.php';
         </nav>
       </div>
     </div>
-<form action="editprofile_check.php" method="post" id="user_form">
+<form action="editprofile_check.php" method="post" id="user_form" enctype="multipart/form-data">
 
 <div class="row">
 <div class="col-lg-12">
@@ -87,12 +97,13 @@ include $partials.'header_left.php';
 <hr>
 <div class="row m-4 d-flex justify-content-center">
     <div class="rounded-circle img-fluid bg-light d-flex justify-content-center" style="width: 180px;">
-    <img src="../dist/img/colivraison.png" alt="avatar" class="rounded-circle img-fluid" style="width: 180px;">
+    <img src="<?php echo $targetFile; ?>" alt="avatar" class="rounded-circle img-fluid" id="image_preview" style="width: 180px;height:180px;">
   </div>
 </div>
 <div class="row m-4 d-flex justify-content-center">        
 <div class="container d-flex justify-content-center">
-            <a href="aaaa.php" class="btn btn-outline-primary file-input-label ">Edit image</a>     
+            <label class="btn btn-outline-primary file-input-label" for="user_image">Edit image</label>
+            <input type="file" name="user_image" id="user_image" accept=".jpg, .jpeg, .png" hidden>     
         </div>   
 </div>
 </div>
@@ -392,7 +403,35 @@ id_country_option.innerHTML = option;
 
 })();
 
+document.getElementById('user_image').addEventListener('change', handleFileSelect);
 
+function handleFileSelect(event) {
+  const input = event.target;
+  const files = input.files;
+
+  for (let i = 0; i < files.length; i++) {
+    const file = files[i];
+
+    // Check if the file is an image (you can modify this condition based on your criteria)
+    if (!file.type.startsWith('image/')) {
+      alert('Please select only image files.');
+      input.value = ''; // Clear the file input
+      return;
+    }
+  }
+
+  
+
+}
+
+function handleImageInputChange(evt) {
+  const [file] = user_image.files;
+  if (file) {
+    image_preview.src = URL.createObjectURL(file);
+  }
+}
+
+user_image.onchange = handleImageInputChange;
 
 
 });

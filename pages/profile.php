@@ -10,6 +10,16 @@ if (!isset($_SESSION['email'])) {
 
 $useremail=$_SESSION['email'];
 
+$targetDirectory = "../dist/UserData/".$useremail."/profile/";
+
+            $FileName = "profile_picture";
+
+            // Add the original file extension to the new file name
+            $FileName .= '.' . pathinfo("profile_picture", PATHINFO_EXTENSION);
+
+            // Create the target path with the new file name
+            $targetFile = $targetDirectory . $FileName;
+
 include '../init.php';
 
 $dist = "../".$dist;
@@ -74,8 +84,8 @@ include $partials.'header_left.php';
       <div class="col-lg-4">
         <div class="card mb-4">
           <div class="card-body text-center">
-            <img src="../dist/img/colivraison.png" alt="avatar"
-              class="rounded-circle img-fluid" style="width: 150px;">
+            <img src="<?php echo $targetFile; ?>" alt="avatar"
+              class="rounded-circle img-fluid" style="width: 180px;height:180px;">
             <h5 class="my-3"><?php 
               $req1= "SELECT * FROM user WHERE email='$useremail'";
               $res1= mysqli_query($cnx,$req1);
