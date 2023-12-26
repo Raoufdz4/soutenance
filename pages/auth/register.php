@@ -20,7 +20,10 @@ $username_email=$_SESSION['useremail'];
 ?>
 <style>
   body{
-    background-image: url("../../dist/img/bgcolivraison.png");
+    background-image: url("../../dist/ServerData/img/bgcolivraison.png");
+    background-repeat:no-repeat;
+   background-attachment:fixed;
+   background-position:center;
   }
 </style>
 <body class="hold-transition register-page">

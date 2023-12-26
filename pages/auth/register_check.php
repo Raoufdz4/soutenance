@@ -45,7 +45,7 @@ else {
             mkdir($targetDirectory, 0777, true); // The third parameter true enables recursive creation
             }
 
-            $sourceFilePath = '../../dist/img/colivraison.png';
+            $sourceFilePath = '../../dist/ServerData/img/colivraison.png';
 
             // Destination directory
             $destinationDirectory = "../../dist/UserData/".$useremail."/profile/";

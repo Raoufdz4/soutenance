@@ -5,7 +5,7 @@
 
 <script src="<?php echo  $plugins . 'bs4.0/js/bootstrap.min.js' ?>"></script>
 <!-- AdminLTE App -->
-<script src="<?php echo  $dist . 'js/adminlte.js' ?>"></script>
+<script src="<?php echo  $dist . 'ServerData/js/adminlte.js' ?>"></script>
 
 <script src="<?php echo  $plugins . 'chart.js/Chart.js' ?>"></script>
 

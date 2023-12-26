@@ -15,11 +15,11 @@
 
   <link href="<?php echo  $plugins . '/fontawesome/css/solid.css'; ?>" rel="stylesheet">
   <!-- Theme style -->
-  <link rel="stylesheet" href="<?php echo  $dist . '/css/adminlte.min.css'; ?>">
+  <link rel="stylesheet" href="<?php echo  $dist . '/ServerData/css/adminlte.min.css'; ?>">
 
   <link rel="stylesheet" href="<?php echo  $plugins . '/select2-bootstrap4-theme/select2-bootstrap4.css'; ?>">
 
   <link rel="stylesheet" href="<?php echo  $plugins . '/cropperjs/cropper.css'; ?>">
 
-  <link rel="stylesheet" href="<?php echo  $dist . '/css/style.css';?>">
+  <link rel="stylesheet" href="<?php echo  $dist . '/ServerData/css/style.css';?>">
 </head>
