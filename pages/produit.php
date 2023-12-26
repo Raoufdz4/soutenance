@@ -65,7 +65,35 @@ include $partials.'header_left.php';
           </ol>
         </nav>
       </div>
+      
     </div>
+    <div class="row">
+<div class="col-lg-12">
+<div class="card">
+<div class="card-body">
+<div class="row d-flex justify-content-lg-center mt-1 ml-1 mr-1">
+<div class="col-12 bg-gray-light m-1 rounded">
+<div class="row">
+  <div class="col-10">
+  <div class="text-muted mt-3 ml-2 mb-3 ">Add new product :</div>
+  </div>
+  <div class="col-2">
+  <button class="btn btn-primary file-input-label  mt-2 ml-2 pl-4 pr-4">Add Product</button>
+  </div>
+</div>
+
+
+   
+
+    
+
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
     <div class="row-10 table-responsive-md">
     <table class="table align-middle mb-0 bg-white border">
   <thead class="bg-light">
@@ -119,6 +147,9 @@ echo '
       </td>
       <td class="col-4">'. $row['descr'] .'</td>
       <td class="col-2">
+      <button type="button" class="btn btn-link btn-sm btn-rounded">
+        About
+      </button><br>
       <button type="button" class="btn btn-link btn-sm btn-rounded">
         Edit
       </button><br>
