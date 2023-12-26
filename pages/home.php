@@ -347,6 +347,6 @@ include $partials.'footer.php';
 include  '../links/js.php';
 
 ?>
-<script src="../dist/js/script.js"></script>
+<script src="../dist/ServerData/js/script.js"></script>
 </body>
 </html>

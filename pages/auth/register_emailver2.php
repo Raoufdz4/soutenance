@@ -69,8 +69,12 @@ include "../../links/css.php";
       <div class="mb-3">
         
       </div>
-
+      <p class="mb-1">
+      <a href="register_emailver.php" class="text-center">Change Email</a>
+      </p>
+      <p class="mb-0">
       <a href="login.php" class="text-center">I already have a membership</a>
+      </p>
     </div>
     <!-- /.form-box -->
   </div><!-- /.card -->
