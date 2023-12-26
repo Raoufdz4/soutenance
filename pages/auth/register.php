@@ -65,12 +65,9 @@ $username_email=$_SESSION['useremail'];
             </div>
           </div>
         </div>
-        <div class="input-group mb-3">
+        <div class="input-group">
           <input type="email" class="form-control" placeholder="Email" name="email_r" value="<?php echo $username_email ?>" hidden >
           <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-envelope"></span>
-            </div>
           </div>
         </div>
         <div class="input-group mb-3">

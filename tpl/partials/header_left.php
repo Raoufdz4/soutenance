@@ -81,12 +81,24 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="pages/gallery.html" class="nav-link">
-            <i class="nav-icon fa-solid fa-file-invoice-dollar"></i>
+              <?php 
+              if (basename($_SERVER['PHP_SELF'])=="pricemanage.php") {
+               echo ' <a href="pricemanage.php" class="nav-link active">
+               <i class="nav-icon fa-solid fa-file-invoice-dollar"></i>
               <p>
-                Gestion des prix
+              Gestion des prix
               </p>
-            </a>
+            </a>';
+              }
+            else {
+              echo '<a href="pricemanage.php" class="nav-link">
+              <i class="nav-icon fa-solid fa-file-invoice-dollar"></i>
+              <p>
+              Gestion des prix
+              </p>
+            </a>';
+            }
+              ?>
           </li>
           <li class="nav-item">
             <a href="widgets.html" class="nav-link">
