@@ -108,7 +108,7 @@ echo '
       </td>
       <td class="col-2">
         <img
-              src="../dist/img/no_photo.png"
+              src="../dist/ServerData/img/no_photo.png"
               alt=""
               style="width: 80px; height: 80px"
               class="rounded"
