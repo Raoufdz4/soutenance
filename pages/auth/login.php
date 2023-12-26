@@ -16,11 +16,15 @@ include '../../icon.php';
 
 include "../../links/css.php";
 ?>
-
+<style>
+  body{
+    background-image: url("../../dist/img/bgcolivraison.png");
+  }
+</style>
 <body class="hold-transition login-page">
 <div class="login-box">
   <div class="login-logo">
-    <a href="../../index2.html"><b>Admin</b>LTE</a>
+    <a href="../../index2.html"><b>Co</b>livraison</a>
   </div>
   <div class="text-danger text-center pb-3">
   <?php
@@ -75,14 +79,8 @@ if (isset($_POST['error_l']) ){
         </div>
       </form>
 
-      <div class="social-auth-links text-center mb-3">
-        <p>- OR -</p>
-        <a href="#" class="btn btn-block btn-primary">
-          <i class="fab fa-facebook mr-2"></i> Sign in using Facebook
-        </a>
-        <a href="#" class="btn btn-block btn-danger">
-          <i class="fab fa-google-plus mr-2"></i> Sign in using Google+
-        </a>
+      <div class="mb-3">
+        
       </div>
       <!-- /.social-auth-links -->
 
@@ -90,7 +88,7 @@ if (isset($_POST['error_l']) ){
         <a href="forgot-password.html">I forgot my password</a>
       </p>
       <p class="mb-0">
-        <a href="register.php" class="text-center">Register a new membership</a>
+        <a href="register_emailver.php" class="text-center">Register a new membership</a>
       </p>
     </div>
     <!-- /.login-card-body -->
