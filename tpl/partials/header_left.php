@@ -44,22 +44,26 @@
             }
               ?>
           </li>
-          <li class="nav-item menu">
-            <a href="#" class="nav-link">
-            <i class="nav-icon fa-solid fa-folder-tree  "></i>
+          <li class="nav-item">
+              <?php 
+              if (basename($_SERVER['PHP_SELF'])=="cases.php") {
+               echo ' <a href="cases.php" class="nav-link active">
+               <i class="nav-icon fa-solid fa-folder-tree  "></i>
+              <p>
+              Les Cas
+              </p>
+            </a>';
+              }
+            else {
+              echo '<a href="cases.php" class="nav-link">
+              <i class="nav-icon fa-solid fa-folder-tree  "></i>
               <p>
                 Les Cas
-                <i class="right fas fa-angle-left"></i>
               </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="./index.html" class="nav-link ">
-                <i class="nav-icon fa-solid fa-folder-plus"></i>
-                  <p>Ajoute un cas</p>
-                </a>
-              </li>
-              </ul>
+            </a>';
+            }
+              ?>
+          </li>
               <li class="nav-item">
             <a href="pages/gallery.html" class="nav-link">
             <i class="nav-icon fa-solid fa-chart-line"></i>
