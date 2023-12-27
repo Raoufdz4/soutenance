@@ -106,7 +106,8 @@ if (mysqli_num_rows($result) > 0) {
             </td>
             <td class="col-2">
 
-            <img src="' . htmlspecialchars($row['image_path']) . '" alt="Product Image" style="width: 80px; height: 80px;" class="rounded">
+            <img src="' . htmlspecialchars($row['image_path']) . '" alt="Product Image" 
+            style="width: 80px; height: 80px;" class="rounded">
       
             </td>
             <td class="col-3">' . htmlspecialchars($row['product_name']) . ' </td>
@@ -115,6 +116,7 @@ if (mysqli_num_rows($result) > 0) {
                 <div class="row d-flex justify-content-center">
                     <a type="button" href="edit_produit.php?id=' . $row['id_produit'] . '"
                         class="btn btn-primary col-12 col-lg-6 accent-light">Edit</a>
+                        
                     <a href="delete_produit.php?id=' . $row['id_produit'] . '"
                         type="button" class="btn btn-danger col-12 col-lg-6 accent-light" 
                         onclick="return confirm(\'Are you sure you want to delete this product?\')">Delete</a>

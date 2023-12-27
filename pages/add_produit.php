@@ -44,17 +44,7 @@ include $partials.'header_left.php';
 
 <body class="sidebar-mini layout-fixed">
 <div class="wrapper">
-
-<?php
-
-include $partials.'header_top.php';
-
-include $partials.'header_left.php';
-
-?>
         
-
-
 
         <div class="content-wrapper" style="min-height: 2080.12px;"> 
     <!-- Main content -->
@@ -100,8 +90,13 @@ include $partials.'header_left.php';
             <textarea class="form-control col-12" id="text"  name="descr" rows="3" required></textarea>
         </div>
 
-       <label for="image">Select an image:</label>
-       <input type="file" name="image" accept="image/*" required><br><br>
+        <div class="form-group col-9">
+      <label for="image">Select an image:</label>
+      <div class="custom-file">
+        <input type="file" class="custom-file-input" id="image" name="image" required>
+        <label class="custom-file-label" for="image">Choose file</label>
+      </div>
+    </div>
       
         <!-- Submit Button -->
         <button type="submit" name="submit" class="btn btn-primary">Submit</button>
@@ -110,13 +105,6 @@ include $partials.'header_left.php';
     </div>
    
 </div>
-
-
-
-
-   
-
-
 
 
 
@@ -132,11 +120,6 @@ include $partials.'header_left.php';
       </div>
     </section>
         </div>
-
-
-
-
-
 
 
 <?php

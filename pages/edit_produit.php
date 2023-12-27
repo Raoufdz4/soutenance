@@ -1,4 +1,7 @@
 <?php
+ob_start(); // Start output buffering
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 //init includes :::: 
 
 session_start();
@@ -45,16 +48,6 @@ include $partials.'header_left.php';
 <body class="sidebar-mini layout-fixed">
 <div class="wrapper">
 
-<?php
-
-include $partials.'header_top.php';
-
-include $partials.'header_left.php';
-
-?>
-        
-
-
 
         <div class="content-wrapper" style="min-height: 2080.12px;"> 
     <!-- Main content -->
@@ -84,10 +77,11 @@ include $partials.'header_left.php';
 if (isset($_GET['id'])) {
     $id = htmlspecialchars($_GET['id']);
 
-    
-
     $path = 'products/';
     $headerlocation='produit.php';
+
+    
+
 if (isset($_FILES["image"])) {
     $productName = $_POST["product_name"];
     $description = $_POST["descr"];
@@ -101,18 +95,21 @@ if (isset($_FILES["image"])) {
     
         // Insert into the database using prepared statements
         $stmt = $cnx->prepare("UPDATE product SET product_name = ?, descr = ?, image_path = ? WHERE id_produit = ?");
-        $stmt->bind_param("sssi", $name, $description, $escapedImagePath,$id);
-    
+        $stmt->bind_param("sssi", $productName, $description, $escapedImagePath, $id);
+        
         if ($stmt->execute()) {
-          header('location:'.$headerlocation.'');
+            echo "Update successful!";
+            header('location:' . $headerlocation . '');
+            exit();
         } else {
-          return  "Error: " . $stmt->error;
+            echo "Error: " . $stmt->error;
         }
-    
+        
         $stmt->close();
-    } else {
-      return "Error moving the uploaded file.";
-    }
+      } else {
+        echo "Error moving the uploaded file.";
+        exit(); // or die();
+      }
     }
 
 }
@@ -131,6 +128,7 @@ if (isset($_FILES["image"])) {
             <h3 class="card-title pl-2">edit</h3>
         </div>
         <div class="card-body">
+      
             <form action="" method="post" enctype="multipart/form-data">
                 <label for="name">Name:</label>
                 <input type="text" class="form-control col-12" id="name" name="product_name" placeholder="name" value="<?php echo $productName; ?>" required><br>
@@ -139,12 +137,24 @@ if (isset($_FILES["image"])) {
                     <label for="message">Description :</label>
                     <textarea class="form-control col-12" id="text" name="descr" rows="3" required><?php echo $description; ?></textarea>
                 </div>
-
-                <label for="image">Select an image:</label>
-                <input type="file" name="image" required><br><br>
-
-                
-                <button type="submit" class="btn btn-primary">Update</button>
+<div class="row">           
+  <div class="form-group col-9">
+      <label for="image">Select an image:</label>
+      <div class="custom-file">
+        <input type="file" class="custom-file-input" id="image" name="image" required>
+        <label class="custom-file-label" for="image">Choose file</label>
+      </div>
+    </div>
+<div class="col d-flex justify-content-center">
+  <?php
+  if (!empty($imageData)) {
+    echo '<img src="' . htmlspecialchars($imageData) . '" alt="Product Image" 
+          style="width: 80px; height: 80px;" class="rounded">';
+  }
+  ?>
+  </div>
+   </div>              
+        <button type="submit" class="btn btn-primary">Update</button>
             </form>
         </div>
     </div>
@@ -221,7 +231,7 @@ if (isset($_FILES["image"])) {
 
 
 include $partials.'footer.php';
-
+ob_end_flush()
 ?>
 
 </div>

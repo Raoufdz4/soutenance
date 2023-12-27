@@ -1,5 +1,5 @@
 <?php
-
+/*
 
 function EditProduct($cnx,$name,$description,$path,$headerlocation){
  

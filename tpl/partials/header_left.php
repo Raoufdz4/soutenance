@@ -25,7 +25,9 @@
         <!-- Add icons to the links using the .nav-icon class
              with font-awesome or any other icon font library -->
              <li class="nav-item">
-              <?php 
+
+              <?php
+              
               if (basename($_SERVER['PHP_SELF'])=="produit.php") {
                echo ' <a href="produit.php" class="nav-link active">
               <i class="nav-icon fas fa-box-open"></i>
