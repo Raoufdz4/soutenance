@@ -10,16 +10,6 @@ if (!isset($_SESSION['email'])) {
 
 $useremail=$_SESSION['email'];
 
-$targetDirectory = "../dist/UserData/".$useremail."/profile/";
-
-            $FileName = "profile_picture";
-
-            // Add the original file extension to the new file name
-            $FileName .= '.' . pathinfo("profile_picture", PATHINFO_EXTENSION);
-
-            // Create the target path with the new file name
-            $targetFile = $targetDirectory . $FileName;
-
 include '../init.php';
 
 $dist = "../".$dist;
@@ -42,6 +32,18 @@ include '../links/css.php';
 include $partials.'header_top.php';
 
 include $partials.'header_left.php';
+
+
+
+$targetDirectory = "../dist/UserData/".$useremail."/profile/";
+
+            $FileName = "profile_picture";
+
+            // Add the original file extension to the new file name
+            $FileName .= '.' . pathinfo("profile_picture", PATHINFO_EXTENSION);
+
+            // Create the target path with the new file name
+            $targetFile = $targetDirectory . $FileName;
 
 ?>
 
@@ -303,9 +305,10 @@ include $partials.'footer.php';
 ?>
 
 </div>
+<?php
+include  '../links/js.php';
+?>
 
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <script src="../plugins/country-states/js/country-states.js"></script>
 <script>
     $(document).ready(function() {
@@ -442,8 +445,6 @@ user_image.onchange = handleImageInputChange;
 </script>
 
 
-<?php
-include  '../links/js.php';
-?>
+
 </body>
 </html>
