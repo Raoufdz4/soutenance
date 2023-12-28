@@ -78,7 +78,7 @@ include $partials.'header_left.php';
   <div class="text-muted mt-3 ml-2 mb-3 ">Add new product :</div>
   </div>
   <div class="col-2">
-  <button class="btn btn-primary file-input-label  mt-2 ml-2 pl-4 pr-4">Add Product</button>
+  <button class="btn btn-primary file-input-label  mt-2 ml-2 pl-4 pr-4"><a href="add_produit.php"class="text-light">add produit</a></button>
   </div>
 </div>
 
@@ -255,7 +255,6 @@ mysqli_close($cnx);
     </li>
                 </ul>
               </div>
-              <button type="button" class="btn btn-primary mt-1" style="height: 40px ;"><a href="add_produit.php"class="text-light">add produit</a></button>
         </div>
       </div>
              
