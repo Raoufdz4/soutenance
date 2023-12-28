@@ -11,7 +11,7 @@ if (isset($_POST["submit"])) {
     $productName = $_POST["product_name"];
     $description = $_POST["descr"];
 
-    $path = 'products/';
+    $path = 'product_image/';
     $headerlocation='produit.php';
      addNewProduct($cnx,$productName,$description,$path,$headerlocation,) ;
 
