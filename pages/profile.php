@@ -58,7 +58,43 @@ include $partials.'header_top.php';
 include $partials.'header_left.php';
 
 ?>
+<script>
+          function shortenLinkText() {
+            var link1 = document.getElementById("userweb");
+            var link2 = document.getElementById("usergit");
+            var link3 = document.getElementById("usertwitter");
+            var link4 = document.getElementById("userinsta");
+            var link5 = document.getElementById("userfacebook");
+            var maxLength = 60; // Set your desired maximum length
 
+            if (link1.textContent.length > maxLength) {
+                var shortText = link1.textContent.substring(0, maxLength) + "...";
+                link1.textContent = shortText;
+            }
+            if (link2.textContent.length > maxLength) {
+                var shortText = link2.textContent.substring(0, maxLength) + "...";
+                link2.textContent = shortText;
+            }
+            if (link3.textContent.length > maxLength) {
+                var shortText = link3.textContent.substring(0, maxLength) + "...";
+                link3.textContent = shortText;
+            }
+            if (link4.textContent.length > maxLength) {
+                var shortText = link4.textContent.substring(0, maxLength) + "...";
+                link4.textContent = shortText;
+            }
+            if (link5.textContent.length > maxLength) {
+                var shortText = link5.textContent.substring(0, maxLength) + "...";
+                link5.textContent = shortText;
+            }
+        }
+        document.addEventListener("DOMContentLoaded", function() {
+          shortenLinkText(); // Initial call on page load
+
+            // Add an event listener for window resize
+            window.addEventListener("resize", shortenLinkText);
+      });
+    </script>
 
 <div class="content-wrapper" style="min-height: 2080.12px;"> 
     <!-- Main content -->
@@ -66,9 +102,9 @@ include $partials.'header_left.php';
       <div class="container-fluid">
         
       <div class="row">
-      <div class="col-md-12 mb-5">
+      <div class="col-12 mb-5">
           </div>
-          <div class="col-md-12 mb-4">
+          <div class="col-12 mb-4">
           </div>
       <div class="col">
         <nav aria-label="breadcrumb" class="bg-light rounded-3 p-3 mb-4">
@@ -132,9 +168,9 @@ include $partials.'header_left.php';
         <div class="card mb-4 mb-lg-0">
           <div class="card-body p-0">
             <ul class="list-group list-group-flush rounded-3">
-              <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+              <li class="list-group-item d-flex justify-content-start align-items-center p-3">
                 <i class="fas fa-globe fa-lg text-warning"></i>
-                <p class="mb-0"><?php 
+                <p class="mb-0 ml-3"><?php 
               $req1= "SELECT * FROM user_social WHERE id_user='$useremail'";
               $res1= mysqli_query($cnx,$req1);
               if ($res1) {
@@ -145,15 +181,18 @@ include $partials.'header_left.php';
                 echo 'vide.' ;
               }
               else {
-                echo $row["user_web"] ;
+                $userweb=$row["user_web"];
+                echo "<a href='$userweb' id='userweb'>";
+                echo $userweb ;
+                echo "</a>";
               }
               
   } 
 }  ?></p>
               </li>
-              <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+              <li class="list-group-item d-flex justify-content-start align-items-center p-3">
                 <i class="fab fa-github fa-lg" style="color: #333333;"></i>
-                <p class="mb-0"><?php 
+                <p class="mb-0 ml-3"><?php 
               $req1= "SELECT * FROM user_social WHERE id_user='$useremail'";
               $res1= mysqli_query($cnx,$req1);
               if ($res1) {
@@ -164,15 +203,18 @@ include $partials.'header_left.php';
                 echo 'vide.' ;
               }
               else {
-                echo $row["user_git"] ;
+                $usergit=$row["user_git"];
+                echo "<a href='$usergit' id='usergit'>";
+                echo $usergit ;
+                echo "</a>";
               }
               
   } 
 }  ?></p>
               </li>
-              <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+              <li class="list-group-item d-flex justify-content-start align-items-center p-3">
                 <i class="fab fa-twitter fa-lg" style="color: #55acee;"></i>
-                <p class="mb-0"><?php 
+                <p class="mb-0 ml-3"><?php 
               $req1= "SELECT * FROM user_social WHERE id_user='$useremail'";
               $res1= mysqli_query($cnx,$req1);
               if ($res1) {
@@ -183,15 +225,18 @@ include $partials.'header_left.php';
                 echo 'vide.' ;
               }
               else {
-                echo $row["user_twitter"] ;
+                $usertwitter=$row["user_twitter"];
+                echo "<a href='$usertwitter' id='usertwitter'>";
+                echo $usertwitter ;
+                echo "</a>";
               }
               
   } 
 }  ?></p>
               </li>
-              <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+              <li class="list-group-item d-flex justify-content-start align-items-center p-3">
                 <i class="fab fa-instagram fa-lg" style="color: #ac2bac;"></i>
-                <p class="mb-0"><?php 
+                <p class="mb-0 ml-3"><?php 
               $req1= "SELECT * FROM user_social WHERE id_user='$useremail'";
               $res1= mysqli_query($cnx,$req1);
               if ($res1) {
@@ -202,15 +247,18 @@ include $partials.'header_left.php';
                 echo 'vide.' ;
               }
               else {
-                echo $row["user_insta"] ;
+                $userinsta=$row["user_insta"];
+                echo "<a href='$userinsta' id='userinsta'>";
+                echo $userinsta ;
+                echo "</a>";
               }
               
   } 
 }  ?></p>
               </li>
-              <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+              <li class="list-group-item d-flex justify-content-start align-items-center p-3">
                 <i class="fab fa-facebook-f fa-lg" style="color: #3b5998;"></i>
-                <p class="mb-0"><?php 
+                <p class="mb-0 ml-3"><?php 
               $req1= "SELECT * FROM user_social WHERE id_user='$useremail'";
               $res1= mysqli_query($cnx,$req1);
               if ($res1) {
@@ -221,7 +269,10 @@ include $partials.'header_left.php';
                 echo 'vide.' ;
               }
               else {
-                echo $row["user_facebook"] ;
+                $userfacebook=$row["user_facebook"];
+                echo "<a href='$userfacebook' id='userfacebook'>";
+                echo $userfacebook ;
+                echo "</a>";
               }
               
   } 

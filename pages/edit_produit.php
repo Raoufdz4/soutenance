@@ -77,7 +77,7 @@ include $partials.'header_left.php';
 if (isset($_GET['id'])) {
     $id = htmlspecialchars($_GET['id']);
 
-    $path = 'products/';
+    $path = 'product_image/';
     $headerlocation='produit.php';
 
     
@@ -86,7 +86,7 @@ if (isset($_FILES["image"])) {
     $productName = $_POST["product_name"];
     $description = $_POST["descr"];
 
-    $uploadFolder = "images/".$path;
+    $uploadFolder = "../dist/ServerData/img/".$path;
     $uploadPath = $uploadFolder . basename($_FILES["image"]["name"]);
     
     if (move_uploaded_file($_FILES["image"]["tmp_name"], $uploadPath)) {

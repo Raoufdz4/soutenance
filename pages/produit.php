@@ -68,30 +68,17 @@ include $partials.'header_left.php';
       
     </div>
     <div class="row">
-<div class="col-lg-12">
-<div class="card">
+<div class="col-12 card">
 <div class="card-body">
-<div class="row d-flex justify-content-lg-center mt-1 ml-1 mr-1">
-<div class="col-12 bg-gray-light m-1 rounded">
-<div class="row">
-  <div class="col-10">
-  <div class="text-muted mt-3 ml-2 mb-3 ">Add new product :</div>
-  </div>
-  <div class="col-2">
-  <button class="btn btn-primary file-input-label  mt-2 ml-2 pl-4 pr-4"><a href="add_produit.php"class="text-light">add produit</a></button>
+<div class="row bg-gray-light m-1 rounded d-flex justify-content-center mt-1 ml-1 mr-1">
+  <div class="col-6 text-muted mt-3 mb-3 ml-1">Add new product :</div>
+  <div class="col-5 d-flex align-items-center justify-content-end">
+    <a href="add_produit.php" class="btn btn-primary text-light mr-2">add produit</a>
   </div>
 </div>
+</div>
+</div>
 
-
-   
-
-    
-
-</div>
-</div>
-</div>
-</div>
-</div>
 </div>
 
     <div class="row-10 table-responsive-md">
