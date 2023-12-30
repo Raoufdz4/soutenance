@@ -28,11 +28,6 @@ include '../icon.php';
 
 include '../links/css.php';
 
-
-include $partials.'header_top.php';
-
-include $partials.'header_left.php';
-
 ?>
 
 <!DOCTYPE html>

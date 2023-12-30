@@ -13,6 +13,16 @@
 
   <!-- Right navbar links -->
   <ul class="navbar-nav ml-auto">
+    <?php
+      $req = "SELECT * FROM user_has_roles WHERE id_user='$useremail' AND roles_name='admin'";
+      $res = mysqli_query($cnx, $req);
+
+if ($res && mysqli_num_rows($res) > 0) {
+      echo '<li class="nav-item border-right">';
+      echo '<a class="nav-link" href="admin.php" role="button"><i class="fa-solid fa-screwdriver-wrench"></i></a>';
+      echo '</li>';
+}
+    ?>
   <!-- Messages Dropdown Menu -->
   <li class="nav-item dropdown">
     <a class="nav-link" data-toggle="dropdown" href="#">
