@@ -4,29 +4,47 @@
 session_start();
 
 if (!isset($_SESSION['email'])) {
-  header('Location:auth/login.php');
+  header('Location:../auth/login.php');
   exit();
 }
 
 $useremail=$_SESSION['email'];
 
-include '../init.php';
+$webimage="../../dist/ServerData/img/colivraison.png";
 
-$dist = "../".$dist;
+$adminlink="../admin.php";
 
-$partials  = "../".$partials;
+$homelink="../../index.php";
 
-$auth  = "../".$auth;
+$caseslink="../cases.php";
 
-$pages = "../".$pages;
+$productlink="../produit.php";
 
-$plugins = "../".$plugins;
+$profilelink="../profile.php";
 
-include '../config.php';
+$pricemanagelink="../pricemanage.php";
 
-include '../icon.php';
+$settingslink="../parametre.php";
 
-include '../links/css.php';
+$logoutlink="../auth/dec.php";
+
+include '../../init.php';
+
+$dist = "../../".$dist;
+
+$partials  = "../../".$partials;
+
+$auth  = "../../".$auth;
+
+$pages = "../../".$pages;
+
+$plugins = "../../".$plugins;
+
+include '../../config.php';
+
+include '../../icon.php';
+
+include '../../links/css.php';
 
 
 include $partials.'header_top.php';
@@ -35,7 +53,7 @@ include $partials.'header_left.php';
 
 
 
-$targetDirectory = "../dist/UserData/".$useremail."/profile/";
+$targetDirectory = "../../dist/UserData/".$useremail."/profile/";
 
             $FileName = "profile_picture";
 
@@ -251,7 +269,7 @@ include $partials.'header_left.php';
 <div class="col-lg-11 bg-gray-light m-2 rounded">
   <div class="row">
     <div class="col-12 d-flex justify-content-end">
-    <a href="profile.php" class="btn btn-outline-primary file-input-label m-3 pl-4 pr-4">Back</a>
+    <a href="../profile.php" class="btn btn-outline-primary file-input-label m-3 pl-4 pr-4">Back</a>
     <input class="btn btn-primary file-input-label m-3 pl-4 pr-4" type="submit" value="Save">
     </div>
   </div>
@@ -306,10 +324,10 @@ include $partials.'footer.php';
 
 </div>
 <?php
-include  '../links/js.php';
+include  '../../links/js.php';
 ?>
 
-<script src="../plugins/country-states/js/country-states.js"></script>
+<script src="../../plugins/country-states/js/country-states.js"></script>
 <script>
     $(document).ready(function() {
 // user country code for selected option

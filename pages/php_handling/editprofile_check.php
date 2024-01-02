@@ -1,9 +1,6 @@
-<script src="../plugins/country-states/js/country-states.js"></script>
-<script>
-</script>
 <?php
 session_start();
-include '../config.php';
+include '../../config.php';
 
 $useremail=$_SESSION['email'];
 
@@ -122,7 +119,7 @@ if (isset($_POST['fb_soc']) && !empty($_POST['fb_soc'])){
     if (isset($_FILES["user_image"]) && $_FILES["user_image"]["error"] == 0) {
 
         // Define a target directory to store uploaded images
-        $targetDirectory = "../dist/UserData/".$useremail."/profile/";
+        $targetDirectory = "../../dist/UserData/".$useremail."/profile/";
 
             if (!is_dir($targetDirectory)) {
             // Create the directory if it doesn't exist
@@ -158,5 +155,5 @@ if (isset($_POST['fb_soc']) && !empty($_POST['fb_soc'])){
             }
         }
 
-header("location:profile.php");
+header("location:../profile.php");
 ?>

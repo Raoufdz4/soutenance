@@ -10,6 +10,24 @@ if (!isset($_SESSION['email'])) {
 
 $useremail=$_SESSION['email'];
 
+$webimage="../dist/ServerData/img/colivraison.png";
+
+$adminlink="admin.php";
+
+$homelink="../index.php";
+
+$caseslink="cases.php";
+
+$productlink="produit.php";
+
+$profilelink="profile.php";
+
+$pricemanagelink="pricemanage.php";
+
+$settingslink="parametre.php";
+
+$logoutlink="auth/dec.php";
+
 $targetDirectory = "../dist/UserData/".$useremail."/profile/";
 
             $FileName = "profile_picture";
@@ -161,7 +179,7 @@ include $partials.'header_left.php';
   } 
 }  ?></p>
             <div class="d-flex justify-content-center mb-2">
-              <a type="button" href="editprofile.php" class="btn btn-outline-primary ms-1"> <i class="fa-regular fa-pen-to-square"></i> Edit</a>
+              <a type="button" href="php_handling/editprofile.php" class="btn btn-outline-primary ms-1"> <i class="fa-regular fa-pen-to-square"></i> Edit</a>
             </div>
           </div>
         </div>

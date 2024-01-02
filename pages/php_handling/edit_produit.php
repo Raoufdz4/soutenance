@@ -7,28 +7,46 @@ ini_set('display_errors', 1);
 session_start();
 
 if (!isset($_SESSION['email'])) {
-  header('Location:auth/login.php');
+  header('Location:../auth/login.php');
   exit();
 }
 
 $useremail=$_SESSION['email'];
 
-include '../init.php';
+$webimage="../../dist/ServerData/img/colivraison.png";
 
-$dist = "../".$dist;
+$adminlink="../admin.php";
 
-$partials  = "../".$partials;
+$homelink="../../index.php";
 
-$auth  = "../".$auth;
+$caseslink="../cases.php";
 
-$pages = "../".$pages;
+$productlink="../produits.php";
 
-$plugins = "../".$plugins;
+$profilelink="../profile.php";
 
-include '../config.php';
+$pricemanagelink="../pricemanage.php";
+
+$settingslink="../parametre.php";
+
+$logoutlink="../auth/dec.php";
+
+include '../../init.php';
+
+$dist = "../../".$dist;
+
+$partials  = "../../".$partials;
+
+$auth  = "../../".$auth;
+
+$pages = "../../".$pages;
+
+$plugins = "../../".$plugins;
+
+include '../../config.php';
 
 
-include '../links/css.php';
+include '../../links/css.php';
 
 
 include $partials.'header_top.php';
@@ -86,7 +104,7 @@ if (isset($_FILES["image"])) {
     $productName = $_POST["product_name"];
     $description = $_POST["descr"];
 
-    $uploadFolder = "../dist/ServerData/img/".$path;
+    $uploadFolder = "../../dist/ServerData/img/".$path;
     $uploadPath = $uploadFolder . basename($_FILES["image"]["name"]);
     
     if (move_uploaded_file($_FILES["image"]["tmp_name"], $uploadPath)) {
@@ -237,7 +255,7 @@ ob_end_flush()
 </div>
 
 <?php
-include  '../links/js.php';
+include  '../../links/js.php';
 ?>
 </body>
 </html>

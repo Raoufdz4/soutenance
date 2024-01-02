@@ -10,22 +10,40 @@ if (!isset($_SESSION['email'])) {
 
 $useremail=$_SESSION['email'];
 
-include '../init.php';
+$webimage="../../dist/ServerData/img/colivraison.png";
 
-$dist = "../".$dist;
+$adminlink="../admin.php";
 
-$partials  = "../".$partials;
+$homelink="../../index.php";
 
-$auth  = "../".$auth;
+$caseslink="../cases.php";
 
-$pages = "../".$pages;
+$productlink="../produits.php";
 
-$plugins = "../".$plugins;
+$profilelink="../profile.php";
 
-include '../config.php';
+$pricemanagelink="../pricemanage.php";
+
+$settingslink="../parametre.php";
+
+$logoutlink="../auth/dec.php";
+
+include '../../init.php';
+
+$dist = "../../".$dist;
+
+$partials  = "../../".$partials;
+
+$auth  = "../../".$auth;
+
+$pages = "../../".$pages;
+
+$plugins = "../../".$plugins;
+
+include '../../config.php';
 
 
-include '../links/css.php';
+include '../../links/css.php';
 
 
 include $partials.'header_top.php';
@@ -132,7 +150,7 @@ include $partials.'footer.php';
 </div>
 
 <?php
-include  '../links/js.php';
+include  '../../links/js.php';
 ?>
 </body>
 </html>

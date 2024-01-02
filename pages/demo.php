@@ -10,6 +10,24 @@ if (!isset($_SESSION['email'])) {
 
 $useremail=$_SESSION['email'];
 
+$webimage="../dist/ServerData/img/colivraison.png";
+
+$adminlink="admin.php";
+
+$homelink="../index.php";
+
+$caseslink="cases.php";
+
+$productlink="produit.php";
+
+$profilelink="profile.php";
+
+$pricemanagelink="pricemanage.php";
+
+$settingslink="parametre.php";
+
+$logoutlink="auth/dec.php";
+
 include '../init.php';
 
 $dist = "../".$dist;

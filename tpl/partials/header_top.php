@@ -6,7 +6,7 @@
       <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
     </li>
     <li class="nav-item d-none d-sm-inline-block">
-      <a href="../index.php" class="nav-link">Home</a>
+      <a href="<?php echo $homelink;?>" class="nav-link">Home</a>
     </li>
   </ul>
 
@@ -19,7 +19,7 @@
 
 if ($res && mysqli_num_rows($res) > 0) {
       echo '<li class="nav-item border-right">';
-      echo '<a class="nav-link" href="admin.php" role="button"><i class="fa-solid fa-screwdriver-wrench"></i></a>';
+      echo '<a class="nav-link" href="'.$adminlink.'" role="button"><i class="fa-solid fa-screwdriver-wrench"></i></a>';
       echo '</li>';
 }
     ?>
@@ -43,7 +43,7 @@ if ($res && mysqli_num_rows($res) > 0) {
       </span><i class="fas fa-user-alt"></i>
     </a>
     <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-      <a href="profile.php" class="dropdown-item">
+      <a href="<?php echo $profilelink; ?>" class="dropdown-item">
         <!-- Message Start -->
         <div class="media">
           <div class="media-body">
@@ -57,7 +57,7 @@ if ($res && mysqli_num_rows($res) > 0) {
         <!-- Message End -->
       </a>
       <div class="dropdown-divider"></div>
-      <a href="auth/dec.php" class="dropdown-item dropdown-footer">
+      <a href="<?php echo $logoutlink; ?>" class="dropdown-item dropdown-footer">
         <i class="nav-icon fas fa-door-open"></i>
         <p>déconnecter</p>
       </a>

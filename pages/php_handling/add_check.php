@@ -1,8 +1,8 @@
 <?php
 
-include '../config.php';
+include '../../config.php';
 
-include 'function/f_add_product.php';
+include '../function/f_add_product.php';
 if ($cnx->connect_error) {
     die("Connection failed: " . $cnx->connect_error);
 }

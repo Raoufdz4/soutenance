@@ -45,7 +45,7 @@ $cnx->close();
 
 <?php
 
-include '../config.php';
+include '../../config.php';
 
 
 if (isset($_GET['id'])) {
@@ -66,14 +66,8 @@ if (isset($_GET['id'])) {
     $stmt->close();
     
    
-    header("Location: produit.php");
+    header("Location: ../produit.php");
     exit();
-} else {
-    
-    header("Location: error_page.php");
-    exit();
-}
-
-
+} 
 $cnx->close();
 ?>
