@@ -4,7 +4,7 @@
 function addNewProduct($cnx,$name,$description,$path,$headerlocation){
  
     // Image handling
-    $uploadFolder = "../dist/ServerData/img/".$path;
+    $uploadFolder = "../../../dist/ServerData/img/".$path;
     $uploadPath = $uploadFolder . basename($_FILES["image"]["name"]);
     
     if (move_uploaded_file($_FILES["image"]["tmp_name"], $uploadPath)) {

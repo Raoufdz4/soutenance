@@ -18,7 +18,7 @@ $homelink="../../index.php";
 
 $caseslink="../cases.php";
 
-$productlink="../produits.php";
+$productlink="../produit.php";
 
 $profilelink="../profile.php";
 

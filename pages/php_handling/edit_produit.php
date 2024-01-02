@@ -21,7 +21,7 @@ $homelink="../../index.php";
 
 $caseslink="../cases.php";
 
-$productlink="../produits.php";
+$productlink="../produit.php";
 
 $profilelink="../profile.php";
 
@@ -92,54 +92,35 @@ include $partials.'header_left.php';
 <!-- make ur content here -->
 
 <?php
-if (isset($_GET['id'])) {
-    $id = htmlspecialchars($_GET['id']);
 
-    $path = 'product_image/';
-    $headerlocation='produit.php';
+include 'function/f_edit_product.php';
+if ($cnx->connect_error) {
+    die("Connection failed: " . $cnx->connect_error);
+}
 
-    
+if (isset($_POST["submit"])) {
 
-if (isset($_FILES["image"])) {
-    $productName = $_POST["product_name"];
-    $description = $_POST["descr"];
+      $path = 'product_image/';
+      $headerlocation='produit.php';
 
-    $uploadFolder = "../../dist/ServerData/img/".$path;
-    $uploadPath = $uploadFolder . basename($_FILES["image"]["name"]);
-    
-    if (move_uploaded_file($_FILES["image"]["tmp_name"], $uploadPath)) {
-        // Image moved successfully, now insert into the database
-        $escapedImagePath = $cnx->real_escape_string($uploadPath);
-    
-        // Insert into the database using prepared statements
-        $stmt = $cnx->prepare("UPDATE product SET product_name = ?, descr = ?, image_path = ? WHERE id_produit = ?");
-        $stmt->bind_param("sssi", $productName, $description, $escapedImagePath, $id);
-        
-        if ($stmt->execute()) {
-            echo "Update successful!";
-            header('location:' . $headerlocation . '');
-            exit();
-        } else {
-            echo "Error: " . $stmt->error;
-        }
-        
-        $stmt->close();
-      } else {
-        echo "Error moving the uploaded file.";
-        exit(); // or die();
-      }
-    }
+      $productName = $_POST["product_name"];
+      $description = $_POST["descr"];
+      $productid = $_GET['id'];
+      $productfile = $_FILES["image"];
+
+     EditProduct($cnx,$productName,$description,$path,$headerlocation,$productid,$productfile) ;
 
 }
-    $selectQuery = "SELECT product_name, descr, image_path FROM product WHERE id_produit = ?";
-    $stmt = $cnx->prepare($selectQuery);
-    $stmt->bind_param('i', $id);
-    $stmt->execute();
-    $stmt->bind_result($productName, $description, $imageData);
-    $stmt->fetch();
-    $stmt->close();
 
-    
+$selectQuery = "SELECT product_name, descr, image_path FROM product WHERE id_produit = ?";
+$stmt = $cnx->prepare($selectQuery);
+$stmt->bind_param('i', $id);
+$stmt->execute();
+$stmt->bind_result($productName, $description, $imageData);
+$stmt->fetch();
+$stmt->close();
+
+
     ?>
     <div class="card card-default col-5">
         <div class="card-header text-bold ">
@@ -172,60 +153,11 @@ if (isset($_FILES["image"])) {
   ?>
   </div>
    </div>              
-        <button type="submit" class="btn btn-primary">Update</button>
+        <button type="submit" name="submit" class="btn btn-primary">Update</button>
             </form>
         </div>
     </div>
    
-
-
-
-
-<!--
-
-    <div class="card card-default col-5">
-    <div class="card-header text-bold ">
-    <h3 class="card-title pl-2">edit</h3> 
-  </div>
-    <div class="card-body">
-    <form method="post" action="" enctype="multipart/form-data">
-        <label for="product_name">Product Name:</label>
-        <input type="text" name="product_name" value="<?php //echo $productName; ?>" required>
-
-        <label for="descr">Description:</label>
-        <textarea name="descr" required><?php //echo $description; ?></textarea>
-
-        <label for="produit_image">New Image:</label>
-        <input type="file" name="produit_image">
-
-        <input type="submit" value="Update">
-    </form>
-    </div>
-
- </div>
-
--->
-
-
-
-
-
-
- 
- 
-
-
-
-
-
-
-
-    
-
-
-
-
-
 
     <div class="row">
 <div class="col-md-12 mb-5">
