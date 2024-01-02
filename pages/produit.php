@@ -127,15 +127,22 @@ if (mysqli_num_rows($result) > 0) {
             </td>
             <td class="col-3">' . htmlspecialchars($row['product_name']) . ' </td>
             <td class="col-4">' . htmlspecialchars($row['descr']) . '</td>
-            <td class="col-2">
+            <td class="col-2 ">
                 <div class="row d-flex justify-content-center">
+                <div class=" col-12 d-flex justify-content-center">
+                    <a type="button" href="#.php?id=' . $row['id_produit'] . '"
+                        class="btn btn-info btn-block m-1 accent-light">About</a>
+                        </div>
+                <div class=" col-12 d-flex justify-content-center">
                     <a type="button" href="edit_produit.php?id=' . $row['id_produit'] . '"
-                        class="btn btn-primary col-12 col-lg-6 accent-light">Edit</a>
-                        
+                        class="btn btn-primary btn-block m-1  accent-light">Edit</a>
+                        </div> 
+                        <div class=" col-12 d-flex justify-content-center">
                     <a href="delete_produit.php?id=' . $row['id_produit'] . '"
-                        type="button" class="btn btn-danger col-12 col-lg-6 accent-light" 
+                        type="button" class="btn btn-danger btn-block m-1  accent-light" 
                         onclick="return confirm(\'Are you sure you want to delete this product?\')">Delete</a>
-                    <div class="collapsed col-md-1"></div>
+                        </div>
+                        
                 </div>
             </td>
         </tr>';
