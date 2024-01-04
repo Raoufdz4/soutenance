@@ -94,6 +94,9 @@ include $partials.'header_left.php';
 <?php
 
 include 'function/f_edit_product.php';
+if (isset($_GET['id'])) {
+  $id = htmlspecialchars($_GET['id']);
+
 if ($cnx->connect_error) {
     die("Connection failed: " . $cnx->connect_error);
 }
@@ -101,11 +104,11 @@ if ($cnx->connect_error) {
 if (isset($_POST["submit"])) {
 
       $path = 'product_image/';
-      $headerlocation='produit.php';
+      $headerlocation='../produit.php';
 
       $productName = $_POST["product_name"];
       $description = $_POST["descr"];
-      $productid = $_GET['id'];
+      $productid = $id;
       $productfile = $_FILES["image"];
 
      EditProduct($cnx,$productName,$description,$path,$headerlocation,$productid,$productfile) ;
@@ -120,7 +123,7 @@ $stmt->bind_result($productName, $description, $imageData);
 $stmt->fetch();
 $stmt->close();
 
-
+}
     ?>
     <div class="card card-default col-5">
         <div class="card-header text-bold ">

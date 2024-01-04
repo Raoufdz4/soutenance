@@ -3,12 +3,10 @@
 
 function EditProduct($cnx,$productName,$description,$path,$headerlocation,$productid,$productfile){
  
-
-  $productid = htmlspecialchars($productid);
    
  
 
-    $uploadFolder = "../../../dist/ServerData/img/".$path;
+    $uploadFolder = "../../dist/ServerData/img/".$path;
     $uploadPath = $uploadFolder . basename($productfile["name"]);
     
     if (move_uploaded_file($productfile["tmp_name"], $uploadPath)) {
