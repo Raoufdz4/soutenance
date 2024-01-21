@@ -10,11 +10,11 @@ if (!isset($_SESSION['email'])) {
 
 $useremail=$_SESSION['email'];
 
-$webimage="../dist/ServerData/img/colivraison.png";
+$webimage="../../dist/ServerData/img/colivraison.png";
 
-$adminlink="admin.php";
+$adminlink="../admin/admin.php";
 
-$homelink="../index.php";
+$homelink="../../index.php";
 
 $caseslink="cases.php";
 
@@ -26,25 +26,25 @@ $pricemanagelink="pricemanage.php";
 
 $settingslink="parametre.php";
 
-$logoutlink="auth/dec.php";
+$logoutlink="../auth/dec.php";
 
-include '../init.php';
+include '../../init.php';
 
-$dist = "../".$dist;
+$dist = "../../".$dist;
 
-$partials  = "../".$partials;
+$partials  = "../../".$partials;
 
-$auth  = "../".$auth;
+$auth  = "../../".$auth;
 
-$pages = "../".$pages;
+$pages = "../../".$pages;
 
-$plugins = "../".$plugins;
+$plugins = "../../".$plugins;
 
-include '../config.php';
+include '../../config.php';
 
-include '../icon.php';
+include '../../icon.php';
 
-include '../links/css.php';
+include '../../links/css.php';
 
 
 include $partials.'header_top.php';
@@ -210,7 +210,7 @@ include $partials.'footer.php';
 </div>
 
 <?php
-include  '../links/js.php';
+include  '../../links/js.php';
 ?>
 </body>
 </html>

@@ -10,11 +10,11 @@ if (!isset($_SESSION['email'])) {
 
 $useremail=$_SESSION['email'];
 
-$webimage="../dist/ServerData/img/colivraison.png";
+$webimage="../../dist/ServerData/img/colivraison.png";
 
-$adminlink="admin.php";
+$adminlink="../admin/admin.php";
 
-$homelink="../index.php";
+$homelink="../../index.php";
 
 $caseslink="cases.php";
 
@@ -26,25 +26,25 @@ $pricemanagelink="pricemanage.php";
 
 $settingslink="parametre.php";
 
-$logoutlink="auth/dec.php";
+$logoutlink="../auth/dec.php";
 
-include '../init.php';
+include '../../init.php';
 
-$dist = "../".$dist;
+$dist = "../../".$dist;
 
-$partials  = "../".$partials;
+$partials  = "../../".$partials;
 
-$auth  = "../".$auth;
+$auth  = "../../".$auth;
 
-$pages = "../".$pages;
+$pages = "../../".$pages;
 
-$plugins = "../".$plugins;
+$plugins = "../../".$plugins;
 
-include '../config.php';
+include '../../config.php';
 
-include '../icon.php';
+include '../../icon.php';
 
-include '../links/css.php';
+include '../../links/css.php';
 
 
 ?>
@@ -252,6 +252,9 @@ mysqli_close($cnx);
                     if ($page==$totalPages) {
                         echo '<li class="paginate_button page-item next disabled" id="example2_next"><a href="produit.php?page='.$nump.'"aria-controls="example2" data-dt-idx="7" tabindex="0" class="page-link">Next</a></li>';
                     }
+                    elseif ($totalPages==0) {
+                      echo '<li class="paginate_button page-item next disabled" id="example2_next"><a href="produit.php?page='.$nump.'"aria-controls="example2" data-dt-idx="7" tabindex="0" class="page-link">Next</a></li>';
+                    }
                     else {
                         echo '<li class="paginate_button page-item next" id="example2_next"><a href="produit.php?page='.$nump.'"aria-controls="example2" data-dt-idx="7" tabindex="0" class="page-link">Next</a></li>';
                     }
@@ -309,7 +312,7 @@ include $partials.'footer.php';
 
 <?php
 
-include  '../links/js.php';
+include  '../../links/js.php';
 ?>
 </body>
 </html>
