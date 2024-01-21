@@ -16,15 +16,15 @@ $adminlink="../admin/admin.php";
 
 $homelink="../../index.php";
 
-$caseslink="cases.php";
+$caseslink="../user/cases.php";
 
-$productlink="produit.php";
+$productlink="../user/produit.php";
 
-$profilelink="profile.php";
+$profilelink="../user/profile.php";
 
-$pricemanagelink="pricemanage.php";
+$pricemanagelink="../user/pricemanage.php";
 
-$settingslink="parametre.php";
+$settingslink="../user/parametre.php";
 
 $logoutlink="../php_handling/auth/dec.php";
 

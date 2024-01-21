@@ -16,15 +16,15 @@ $adminlink="../admin/admin.php";
 
 $homelink="../../index.php";
 
-$caseslink="cases.php";
+$caseslink="../user/cases.php";
 
-$productlink="produit.php";
+$productlink="../user/produit.php";
 
-$profilelink="profile.php";
+$profilelink="../user/profile.php";
 
-$pricemanagelink="pricemanage.php";
+$pricemanagelink="../user/pricemanage.php";
 
-$settingslink="parametre.php";
+$settingslink="../user/parametre.php";
 
 $logoutlink="../php_handling/auth/dec.php";
 
@@ -89,43 +89,69 @@ include $partials.'header_left.php';
 
  <!-- make ur content here -->
 
-
-
- 
- <div class="card card-default col-5">
-      <div class="card-header text-bold ">
-      <h3 class="card-title pl-2">Ajouter un produit</h3> 
-    </div>
-      <div class="card-body">
-    <form action="add_check.php" method="post" enctype="multipart/form-data">
-        <!-- Text Input -->
-        <label for="name">Name:</label>
-        <input type="text" class="form-control col-12" id="name" name="product_name"placeholder="name" required><br>
-
-        <!-- Textarea -->
+ <form action="add_check.php" method="post" id="user_form" enctype="multipart/form-data">
+  
+<div class="row">
+<div class="col-lg-12">
+<div class="card">
+<div class="card-body">
+<div class="row d-flex justify-content-lg-center mt-3">
+<div class="col-lg-4 bg-gray-light m-2 rounded">
+<div class="text-muted mt-3 text-center">Product Picture :</div>
+<hr>
+<div class="row m-4 d-flex justify-content-center">
+    <div class="rounded-circle img-fluid bg-light d-flex justify-content-center" style="width: 180px;">
+    <img src="../../dist/ServerData/img/noimage.png" alt="avatar" class="img-fluid border border-5 border-end" id="image_preview" style="width: 180px;height:180px;">
+  </div>
+</div>
+<div class="row m-4 d-flex justify-content-center">        
+<div class="container d-flex justify-content-center">
+            <label class="btn btn-outline-primary file-input-label" for="product_image">Edit image</label>
+            <input type="file" name="user_image" id="product_image" accept=".jpg, .jpeg, .png" hidden>     
+        </div>   
+</div>
+</div>
+<div class="col-lg-7 bg-gray-light m-2 rounded">
+<div class="text-muted mt-3 text-center">Product Details :</div>
+<hr>
+<div class="card-body">
+  <div class="row">
+  <div class="form-group col-md-12">
+                    <label class="pl-1" for="firstname">Product name</label>
+                    <input type="text" class="form-control" id="firstname" name="firstname_user">
         
-
-        <div class="form-group">
-            <label for="message">Produit description :</label>
-            <textarea class="form-control col-12" id="text"  name="descr" rows="3" required></textarea>
-        </div>
-
-        <div class="form-group col-9">
-      <label for="image">Select an image:</label>
-      <div class="custom-file">
-        <input type="file" class="custom-file-input" id="image" name="image" required>
-        <label class="custom-file-label" for="image">Choose file</label>
-      </div>
     </div>
-      
-        <!-- Submit Button -->
-        <button type="submit" name="submit" class="btn btn-primary">Submit</button>
+  </div>
 
-    </form>
+  <div class="row">
+ <div class="form-group col-md-12">
+                    <label class="pl-1" for="user_des">Product details</label>
+                    <textarea class="form-control" id="user_des" name="user_des" aria-label="With textarea" rows="5" cols="40" maxlength="30"></textarea>
     </div>
-   
+  </div>
+           
+  </div>
+</div>
 </div>
 
+<div class="row d-flex justify-content-lg-center">
+<div class="col-lg-11 bg-gray-light m-2 rounded">
+  <div class="row">
+    <div class="col-12 d-flex justify-content-end">
+    <a href="../user/produit.php" class="btn btn-outline-primary file-input-label m-3 pl-4 pr-4">Back</a>
+    <input class="btn btn-primary file-input-label m-3 pl-4 pr-4" type="submit" value="Save">
+    </div>
+  </div>
+  
+</div>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</form>
 
 
 
@@ -150,7 +176,41 @@ include $partials.'footer.php';
 ?>
 
 </div>
+<script>
 
+document.getElementById('product_image').addEventListener('change', handleFileSelect);
+
+function handleFileSelect(event) {
+  const input = event.target;
+  const files = input.files;
+
+  for (let i = 0; i < files.length; i++) {
+    const file = files[i];
+
+    // Check if the file is an image (you can modify this condition based on your criteria)
+    if (!file.type.startsWith('image/')) {
+      alert('Please select only image files.');
+      input.value = ''; // Clear the file input
+      return;
+    }
+  }
+
+  
+
+}
+
+function handleImageInputChange(evt) {
+  const [file] = product_image.files;
+  if (file) {
+    image_preview.src = URL.createObjectURL(file);
+  }
+}
+
+product_image.onchange = handleImageInputChange;
+
+
+  
+</script>
 <?php
 include  '../../links/js.php';
 ?>
