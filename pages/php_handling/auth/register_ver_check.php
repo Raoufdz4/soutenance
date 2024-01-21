@@ -1,22 +1,22 @@
 <?php
 session_start();
-include "../../init.php";
+include "../../../init.php";
 
-$dist = "../../".$dist;
+$dist = "../../../".$dist;
 
-$partials  = "../../".$partials;
+$partials  = "../../../".$partials;
 
-$auth  = "../../".$auth;
+$auth  = "../../../".$auth;
 
-$pages = "../../".$pages;
+$pages = "../../../".$pages;
 
-$plugins = "../../".$plugins;
+$plugins = "../../../".$plugins;
 
-include '../../config.php';
+include '../../../config.php';
 
-include '../../icon.php';
+include '../../../icon.php';
 
-include "../../links/css.php";
+include "../../../links/css.php";
 
 $_SESSION['useremail']=$_POST['email_r'];
  $username_email=$_SESSION['useremail'];

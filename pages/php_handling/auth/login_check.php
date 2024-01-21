@@ -1,6 +1,6 @@
 <?php
 session_start();
-include '../../config.php';
+include '../../../config.php';
 
 if (isset($_POST['email_l']) && isset($_POST['pass_l'])) {
     $email = $_POST['email_l'];
@@ -12,7 +12,7 @@ if (isset($_POST['email_l']) && isset($_POST['pass_l'])) {
     if ($res1) {
         if (mysqli_num_rows($res1) > 0) {
             $_SESSION['email'] = $email;
-            header('Location: ../../index.php');
+            header('Location: ../../../index.php');
         } else {
             // Failed login
             echo '<form id="myForm" action="login.php" method="post">';

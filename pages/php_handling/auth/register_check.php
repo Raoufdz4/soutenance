@@ -1,6 +1,6 @@
 <?php
 
-include '../../config.php';
+include '../../../config.php';
 
 if (isset($_POST['first_name']) && isset($_POST['last_name']) && isset($_POST['email_r']) && isset($_POST['pass_r'])) {
 
@@ -38,17 +38,17 @@ else {
     $res4=mysqli_query($cnx,$req4);
     if ($res2 && $res3 && $res4) {
         $useremail=$email;
-        $targetDirectory = "../../dist/UserData/".$useremail."/profile/";
+        $targetDirectory = "../../../dist/UserData/".$useremail."/profile/";
 
             if (!is_dir($targetDirectory)) {
             // Create the directory if it doesn't exist
             mkdir($targetDirectory, 0777, true); // The third parameter true enables recursive creation
             }
 
-            $sourceFilePath = '../../dist/ServerData/img/colivraison.png';
+            $sourceFilePath = '../../../dist/ServerData/img/colivraison.png';
 
             // Destination directory
-            $destinationDirectory = "../../dist/UserData/".$useremail."/profile/";
+            $destinationDirectory = "../../../dist/UserData/".$useremail."/profile/";
             
             // Destination file path (including the new filename)
             $destinationFilePath = $destinationDirectory . 'profile_picture.png';

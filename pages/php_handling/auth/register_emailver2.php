@@ -1,25 +1,25 @@
 <?php
 
-include "../../init.php";
+include "../../../init.php";
 
-$dist = "../../".$dist;
+$dist = "../../../".$dist;
 
-$partials  = "../../".$partials;
+$partials  = "../../../".$partials;
 
-$auth  = "../../".$auth;
+$auth  = "../../../".$auth;
 
-$pages = "../../".$pages;
+$pages = "../../../".$pages;
 
-$plugins = "../../".$plugins;
+$plugins = "../../../".$plugins;
 
-include '../../icon.php';
+include '../../../icon.php';
 
-include "../../links/css.php";
+include "../../../links/css.php";
 
 ?>
 <style>
   body{
-    background-image: url("../../dist/ServerData/img/bgcolivraison.png");
+    background-image: url("../../../dist/ServerData/img/bgcolivraison.png");
     background-repeat:no-repeat;
    background-attachment:fixed;
    background-position:center;
@@ -28,7 +28,7 @@ include "../../links/css.php";
 <body class="hold-transition register-page">
 <div class="register-box">
   <div class="register-logo">
-    <a href="../../index2.html"><b>Co</b>livraison</a>
+    <a href="../../../index.html"><b>Co</b>livraison</a>
   </div>
   <div class="text-danger text-center pb-3">
   <?php
@@ -82,7 +82,7 @@ include "../../links/css.php";
 <!-- /.register-box -->
 <?php
 
-include "../../links/js.php";
+include "../../../links/js.php";
 
 ?>
 </body>

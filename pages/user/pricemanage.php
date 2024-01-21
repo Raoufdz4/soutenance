@@ -26,7 +26,7 @@ $pricemanagelink="pricemanage.php";
 
 $settingslink="parametre.php";
 
-$logoutlink="../auth/dec.php";
+$logoutlink="../php_handling/auth/dec.php";
 
 include '../../init.php';
 

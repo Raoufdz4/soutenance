@@ -10,41 +10,41 @@ if (!isset($_SESSION['email'])) {
 
 $useremail=$_SESSION['email'];
 
-$webimage="../dist/ServerData/img/colivraison.png";
+$webimage="../../dist/ServerData/img/colivraison.png";
 
 $adminlink="admin.php";
 
-$homelink="../index.php";
+$homelink="../../index.php";
 
-$caseslink="cases.php";
+$caseslink="../user/cases.php";
 
-$productlink="produit.php";
+$productlink="../user/produit.php";
 
-$profilelink="profile.php";
+$profilelink="../user/profile.php";
 
-$pricemanagelink="pricemanage.php";
+$pricemanagelink="../user/pricemanage.php";
 
-$settingslink="parametre.php";
+$settingslink="../user/parametre.php";
 
-$logoutlink="auth/dec.php";
+$logoutlink="../php_handling/auth/dec.php";
 
-include '../init.php';
+include '../../init.php';
 
-$dist = "../".$dist;
+$dist = "../../".$dist;
 
-$partials  = "../".$partials;
+$partials  = "../../".$partials;
 
-$auth  = "../".$auth;
+$auth  = "../../".$auth;
 
-$pages = "../".$pages;
+$pages = "../../".$pages;
 
-$plugins = "../".$plugins;
+$plugins = "../../".$plugins;
 
-include '../config.php';
+include '../../config.php';
 
-include '../icon.php';
+include '../../icon.php';
 
-include '../links/css.php';
+include '../../links/css.php';
 
 
 ?>
@@ -69,7 +69,7 @@ include '../links/css.php';
       <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
     </li>
     <li class="nav-item d-none d-sm-inline-block">
-      <a href="../index.php" class="nav-link">Home</a>
+      <a href="<?php echo $homelink; ?>" class="nav-link">Home</a>
     </li>
   </ul>
 
@@ -99,7 +99,7 @@ include '../links/css.php';
       </span><i class="fas fa-user-alt"></i>
     </a>
     <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-      <a href="profile.php" class="dropdown-item">
+      <a href="<?php echo $profilelink; ?>" class="dropdown-item">
         <!-- Message Start -->
         <div class="media">
           <div class="media-body">
@@ -113,7 +113,7 @@ include '../links/css.php';
         <!-- Message End -->
       </a>
       <div class="dropdown-divider"></div>
-      <a href="auth/dec.php" class="dropdown-item dropdown-footer">
+      <a href="<?php echo $logoutlink; ?>" class="dropdown-item dropdown-footer">
         <i class="nav-icon fas fa-door-open"></i>
         <p>déconnecter</p>
       </a>
@@ -127,7 +127,7 @@ include '../links/css.php';
    <aside class="main-sidebar sidebar-dark-primary elevation-4">
   <!-- Brand Logo -->
    <a href="../index.php" class="brand-link">
-     <img src="../dist/ServerData/img/colivraison.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+     <img src="<?php echo $webimage; ?>" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
          style="opacity: .8"> 
     <span class="brand-text font-weight-light"><b>Colivraison</b></span>
   </a> 
@@ -336,7 +336,7 @@ include $partials.'footer.php';
 </div>
 
 <?php
-include  '../links/js.php';
+include  '../../links/js.php';
 ?>
 </body>
 </html>

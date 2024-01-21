@@ -26,7 +26,7 @@ $pricemanagelink="pricemanage.php";
 
 $settingslink="parametre.php";
 
-$logoutlink="../auth/dec.php";
+$logoutlink="../php_handling/auth/dec.php";
 
 include '../../init.php';
 
@@ -91,7 +91,7 @@ include $partials.'header_left.php';
 <div class="row bg-gray-light m-1 rounded d-flex justify-content-center mt-1 ml-1 mr-1">
   <div class="col-6 text-muted mt-3 mb-3 ml-1">Add new product :</div>
   <div class="col-5 d-flex align-items-center justify-content-end">
-    <a href="php_handling/add_produit.php" class="btn btn-primary text-light mr-2">add produit</a>
+    <a href="../php_handling/add_produit.php" class="btn btn-primary text-light mr-2">add produit</a>
   </div>
 </div>
 </div>
