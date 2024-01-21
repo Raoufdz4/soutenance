@@ -126,7 +126,7 @@ if (isset($_GET['page'])) {
 $start = ($page - 1) * $productsPerPage;
 
 // Query to fetch products for the current page
-$query = "SELECT * FROM product LIMIT $start, $productsPerPage";
+$query = "SELECT * FROM product WHERE product_user_id='$useremail' LIMIT $start, $productsPerPage";
 $result = mysqli_query($cnx,$query);
 
 if (mysqli_num_rows($result) > 0) {
@@ -168,7 +168,7 @@ if (mysqli_num_rows($result) > 0) {
 }
 
 // Calculate the total number of pages
-$query = "SELECT COUNT(*) as total FROM product";
+$query = "SELECT COUNT(*) as total FROM product WHERE product_user_id='$useremail'";
 $result = mysqli_query($cnx,$query);
 $row = mysqli_fetch_assoc($result);
 $totalProducts = $row['total'];

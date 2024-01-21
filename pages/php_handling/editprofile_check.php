@@ -155,5 +155,5 @@ if (isset($_POST['fb_soc']) && !empty($_POST['fb_soc'])){
             }
         }
 
-header("location:../profile.php");
+header("location:../user/profile.php");
 ?>

@@ -179,7 +179,7 @@ include $partials.'header_left.php';
   } 
 }  ?></p>
             <div class="d-flex justify-content-center mb-2">
-              <a type="button" href="php_handling/editprofile.php" class="btn btn-outline-primary ms-1"> <i class="fa-regular fa-pen-to-square"></i> Edit</a>
+              <a type="button" href="../php_handling/editprofile.php" class="btn btn-outline-primary ms-1"> <i class="fa-regular fa-pen-to-square"></i> Edit</a>
             </div>
           </div>
         </div>

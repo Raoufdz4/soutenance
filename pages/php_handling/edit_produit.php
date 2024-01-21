@@ -15,21 +15,21 @@ $useremail=$_SESSION['email'];
 
 $webimage="../../dist/ServerData/img/colivraison.png";
 
-$adminlink="../admin.php";
+$adminlink="../admin/admin.php";
 
 $homelink="../../index.php";
 
-$caseslink="../cases.php";
+$caseslink="cases.php";
 
-$productlink="../produit.php";
+$productlink="produit.php";
 
-$profilelink="../profile.php";
+$profilelink="profile.php";
 
-$pricemanagelink="../pricemanage.php";
+$pricemanagelink="pricemanage.php";
 
-$settingslink="../parametre.php";
+$settingslink="parametre.php";
 
-$logoutlink="../auth/dec.php";
+$logoutlink="../php_handling/auth/dec.php";
 
 include '../../init.php';
 
@@ -45,6 +45,7 @@ $plugins = "../../".$plugins;
 
 include '../../config.php';
 
+include '../../icon.php';
 
 include '../../links/css.php';
 
@@ -52,6 +53,7 @@ include '../../links/css.php';
 include $partials.'header_top.php';
 
 include $partials.'header_left.php';
+
 
 ?>
 

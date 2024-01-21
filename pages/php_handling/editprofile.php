@@ -12,21 +12,21 @@ $useremail=$_SESSION['email'];
 
 $webimage="../../dist/ServerData/img/colivraison.png";
 
-$adminlink="../admin.php";
+$adminlink="../admin/admin.php";
 
 $homelink="../../index.php";
 
-$caseslink="../cases.php";
+$caseslink="cases.php";
 
-$productlink="../produit.php";
+$productlink="produit.php";
 
-$profilelink="../profile.php";
+$profilelink="profile.php";
 
-$pricemanagelink="../pricemanage.php";
+$pricemanagelink="pricemanage.php";
 
-$settingslink="../parametre.php";
+$settingslink="parametre.php";
 
-$logoutlink="../auth/dec.php";
+$logoutlink="../php_handling/auth/dec.php";
 
 include '../../init.php';
 
@@ -50,6 +50,7 @@ include '../../links/css.php';
 include $partials.'header_top.php';
 
 include $partials.'header_left.php';
+
 
 
 
@@ -269,7 +270,7 @@ include $partials.'header_left.php';
 <div class="col-lg-11 bg-gray-light m-2 rounded">
   <div class="row">
     <div class="col-12 d-flex justify-content-end">
-    <a href="../profile.php" class="btn btn-outline-primary file-input-label m-3 pl-4 pr-4">Back</a>
+    <a href="../user/profile.php" class="btn btn-outline-primary file-input-label m-3 pl-4 pr-4">Back</a>
     <input class="btn btn-primary file-input-label m-3 pl-4 pr-4" type="submit" value="Save">
     </div>
   </div>
