@@ -152,7 +152,7 @@ if (mysqli_num_rows($result) > 0) {
                         class="btn btn-info btn-block m-1 accent-light">About</a>
                         </div>
                 <div class=" col-12 d-flex justify-content-center">
-                    <a type="button" href="php_handling/edit_produit.php?id=' . $row['id_produit'] . '"
+                    <a type="button" href="../php_handling/editproduit.php?id=' . $row['id_produit'] . '"
                         class="btn btn-primary btn-block m-1  accent-light">Edit</a>
                         </div> 
                         <div class=" col-12 d-flex justify-content-center">
