@@ -91,7 +91,7 @@ include $partials.'header_left.php';
 <div class="row bg-gray-light m-1 rounded d-flex justify-content-center mt-1 ml-1 mr-1">
   <div class="col-6 text-muted mt-3 mb-3 ml-1">Add new product :</div>
   <div class="col-5 d-flex align-items-center justify-content-end">
-    <a href="../php_handling/add_produit.php" class="btn btn-primary text-light mr-2">add produit</a>
+    <a href="../php_handling/addproduit.php" class="btn btn-primary text-light mr-2">add produit</a>
   </div>
 </div>
 </div>
@@ -139,8 +139,8 @@ if (mysqli_num_rows($result) > 0) {
             </td>
             <td class="col-2">
 
-            <img src="' . htmlspecialchars($row['image_path']) . '" alt="Product Image" 
-            style="width: 80px; height: 80px;" class="rounded">
+            <img src="' . htmlspecialchars($row['product_imagepath']) . '" alt="Product Image" 
+            style="width: 160px; height: 160px;" class="rounded">
       
             </td>
             <td class="col-3">' . htmlspecialchars($row['product_name']) . ' </td>
@@ -156,7 +156,7 @@ if (mysqli_num_rows($result) > 0) {
                         class="btn btn-primary btn-block m-1  accent-light">Edit</a>
                         </div> 
                         <div class=" col-12 d-flex justify-content-center">
-                    <a href="php_handling/delete_produit.php?id=' . $row['id_produit'] . '"
+                    <a href="../php_handling/deleteproduit.php?id=' . $row['id_produit'] . '"
                         type="button" class="btn btn-danger btn-block m-1  accent-light" 
                         onclick="return confirm(\'Are you sure you want to delete this product?\')">Delete</a>
                         </div>

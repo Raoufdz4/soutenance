@@ -89,8 +89,8 @@ include $partials.'header_left.php';
 
  <!-- make ur content here -->
 
- <form action="add_check.php" method="post" id="user_form" enctype="multipart/form-data">
-  
+ <form action="addproduit_check.php" method="post" id="product_form" enctype="multipart/form-data">
+
 <div class="row">
 <div class="col-lg-12">
 <div class="card">
@@ -101,13 +101,13 @@ include $partials.'header_left.php';
 <hr>
 <div class="row m-4 d-flex justify-content-center">
     <div class="rounded-circle img-fluid bg-light d-flex justify-content-center" style="width: 180px;">
-    <img src="../../dist/ServerData/img/noimage.png" alt="avatar" class="img-fluid border border-5 border-end" id="image_preview" style="width: 180px;height:180px;">
+    <img src="../../dist/ServerData/img/noimage.png" alt="productimage" class="img-fluid border border-5 border-end" id="image_preview" style="width: 180px;height:180px;">
   </div>
 </div>
 <div class="row m-4 d-flex justify-content-center">        
 <div class="container d-flex justify-content-center">
             <label class="btn btn-outline-primary file-input-label" for="product_image">Edit image</label>
-            <input type="file" name="user_image" id="product_image" accept=".jpg, .jpeg, .png" hidden>     
+            <input type="file" name="product_image" id="product_image" accept=".jpg, .jpeg, .png" hidden>     
         </div>   
 </div>
 </div>
@@ -117,16 +117,16 @@ include $partials.'header_left.php';
 <div class="card-body">
   <div class="row">
   <div class="form-group col-md-12">
-                    <label class="pl-1" for="firstname">Product name</label>
-                    <input type="text" class="form-control" id="firstname" name="firstname_user">
+                    <label class="pl-1" for="product_name">Product name</label>
+                    <input type="text" class="form-control" id="product_name" name="product_name" required>
         
     </div>
   </div>
 
   <div class="row">
  <div class="form-group col-md-12">
-                    <label class="pl-1" for="user_des">Product details</label>
-                    <textarea class="form-control" id="user_des" name="user_des" aria-label="With textarea" rows="5" cols="40" maxlength="30"></textarea>
+                    <label class="pl-1" for="product_des">Product details</label>
+                    <textarea class="form-control" id="product_des" name="product_des" aria-label="With textarea" rows="5" cols="40" maxlength="30"></textarea>
     </div>
   </div>
            

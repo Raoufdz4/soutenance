@@ -146,9 +146,7 @@ if (isset($_POST['fb_soc']) && !empty($_POST['fb_soc'])){
 
 
             // Move the uploaded file to the target directory
-            if (move_uploaded_file($_FILES["user_image"]["tmp_name"], $targetFile)) {
-                $_SESSION['uploaded_filename'] = $newFileName;
-                
+            if (move_uploaded_file($_FILES["user_image"]["tmp_name"], $targetFile)) {                
                 echo "The file has been uploaded successfully.";
             } else {
                 echo "Sorry, there was an error uploading your file.";
