@@ -8,9 +8,7 @@ include '../../config.php';
 if (isset($_POST['product_name']) && !empty($_POST['product_name'])) {
 
     $pname = strtolower($_POST['product_name']);
-    $pfilename = str_replace(' ', '_', $pname);
 
-    
     if (isset($_POST['product_des']) && !empty($_POST['product_des'])) {
 
         $pdesc = strtolower($_POST['product_des']);
@@ -19,34 +17,49 @@ if (isset($_POST['product_name']) && !empty($_POST['product_name'])) {
 
         if ($res1) {
             if (isset($_FILES["product_image"]) && $_FILES["product_image"]["error"] == 0) {
-    
-                $targetDirectory = "../../dist/UserData/".$useremail."/product/".$pfilename."/";
+
+                $req2="SELECT * FROM product WHERE product_name='$pname' AND descr='$pdesc' AND product_user_id='$useremail'";
+                $res2=mysqli_query($cnx,$req1);
+                if ($res2) {
+                    $row=mysqli_fetch_assoc($res2);
+                    $productid=$row['id_produit'];
+
+                    $targetDirectory = "../../dist/UserData/".$useremail."/product/".$productid."/";
                 
                 if (!is_dir($targetDirectory)) {
                     // Create the directory if it doesn't exist
                     mkdir($targetDirectory, 0777, true); // The third parameter true enables recursive creation
                     }
                     
-                    $newFileName = "product_picture_".$pfilename;
+                $newFileName = "product_picture_".$productid;
 
-                    // Add the original file extension to the new file name
-                    $newFileName .= '.' . pathinfo($_FILES["product_image"]["name"], PATHINFO_EXTENSION);
+                // Add the original file extension to the new file name
+                $newFileName .= '.' . pathinfo($_FILES["product_image"]["name"], PATHINFO_EXTENSION);
         
-                    // Create the target path with the new file name
-                    $targetFile = $targetDirectory . $newFileName;
+                // Create the target path with the new file name
+                $targetFile = $targetDirectory . $newFileName;
 
                     if (move_uploaded_file($_FILES["product_image"]["tmp_name"], $targetFile)) {   
-                        $req2="UPDATE product SET product_imagepath='$targetFile' WHERE product_name='$pname' and descr='$pdesc' and product_user_id='$useremail'";
-                        $res2=mysqli_query($cnx,$req2);
-                        if ($res2) {
+                        $req3="UPDATE product SET product_imagepath='$targetFile' WHERE id_produit='$productid'";
+                        $res3=mysqli_query($cnx,$req3);
+                        if ($res3) {
                             header("location:../user/produit.php");
                             exit;
                         }
                         
                     }
+
+                }
+                
             }
             else {
-                $targetDirectory = "../../dist/UserData/".$useremail."/product/".$pfilename."/";
+                $req1="SELECT * FROM product WHERE product_name='$pname' AND descr='$pdesc' AND product_user_id='$useremail'";
+                $res1=mysqli_query($cnx,$req1);
+                if ($res1) {
+                    $row=mysqli_fetch_assoc($res1);
+                    $productid=$row['id_produit'];
+
+                    $targetDirectory = "../../dist/UserData/".$useremail."/product/".$productid."/";
 
                 if (!is_dir($targetDirectory)) {
                     // Create the directory if it doesn't exist
@@ -59,9 +72,9 @@ if (isset($_POST['product_name']) && !empty($_POST['product_name'])) {
                 $destinationDirectory = $targetDirectory;
             
                 // Destination file path (including the new filename)
-                $destinationFilePath = $destinationDirectory . 'product_picture_'.$pfilename.'.png';
+                $destinationFilePath = $destinationDirectory . 'product_picture_'.$productid.'.png';
                 if (copy($sourceFilePath, $destinationFilePath)) {
-                    $req2="UPDATE product SET product_imagepath='$destinationFilePath' WHERE product_name='$pname' and descr='$pdesc' and product_user_id='$useremail'";
+                    $req2="UPDATE product SET product_imagepath='$destinationFilePath' WHERE id_produit='$productid'";
                     $res2=mysqli_query($cnx,$req2);
                     if ($res2) {
                         header("location:../user/produit.php");
@@ -71,23 +84,30 @@ if (isset($_POST['product_name']) && !empty($_POST['product_name'])) {
                 } else {
                     echo "Error copying the image.";
                 }
+                }
             }
         }
     }
+
     else {
         $req1="INSERT INTO product (product_name,product_user_id) VALUES ('$pname','$useremail')";
         $res1=mysqli_query($cnx,$req1);
         if ($res1) {
             if (isset($_FILES["product_image"]) && $_FILES["product_image"]["error"] == 0) {
-    
-                $targetDirectory = "../../dist/UserData/".$useremail."/product/".$pfilename."/";
+                $req2="SELECT * FROM product WHERE product_name='$pname' AND product_user_id='$useremail'";
+                $res2=mysqli_query($cnx,$req1);
+                if ($res2) {
+                    $row=mysqli_fetch_assoc($res2);
+                    $productid=$row['id_produit'];
+
+                    $targetDirectory = "../../dist/UserData/".$useremail."/product/".$productid."/";
                 
                 if (!is_dir($targetDirectory)) {
                     // Create the directory if it doesn't exist
                     mkdir($targetDirectory, 0777, true); // The third parameter true enables recursive creation
-                    }
+                }
                     
-                    $newFileName = "product_picture_".$pfilename;
+                    $newFileName = "product_picture_".$productid;
 
                     // Add the original file extension to the new file name
                     $newFileName .= '.' . pathinfo($_FILES["product_image"]["name"], PATHINFO_EXTENSION);
@@ -96,16 +116,23 @@ if (isset($_POST['product_name']) && !empty($_POST['product_name'])) {
                     $targetFile = $targetDirectory . $newFileName;
 
                     if (move_uploaded_file($_FILES["product_image"]["tmp_name"], $targetFile)) {   
-                        $req2="UPDATE product SET product_imagepath='$targetFile' WHERE product_name='$pname' and product_user_id='$useremail'";
-                        $res2=mysqli_query($cnx,$req2);
-                        if ($res2) {
+                        $req3="UPDATE product SET product_imagepath='$targetFile' WHERE id_produit='$productid'";
+                        $res3=mysqli_query($cnx,$req3);
+                        if ($res3) {
                             header("location:../user/produit.php");
                             exit;
                         }
                     }
+                }
             }
             else {
-                $targetDirectory = "../../dist/UserData/".$useremail."/product/".$pfilename."/";
+                $req2="SELECT * FROM product WHERE product_name='$pname' AND product_user_id='$useremail'";
+                $res2=mysqli_query($cnx,$req1);
+                if ($res2) {
+                    $row=mysqli_fetch_assoc($res2);
+                    $productid=$row['id_produit'];
+
+                    $targetDirectory = "../../dist/UserData/".$useremail."/product/".$productid."/";
 
                 if (!is_dir($targetDirectory)) {
                     // Create the directory if it doesn't exist
@@ -118,16 +145,17 @@ if (isset($_POST['product_name']) && !empty($_POST['product_name'])) {
                 $destinationDirectory = $targetDirectory;
             
                 // Destination file path (including the new filename)
-                $destinationFilePath = $destinationDirectory . 'product_picture_'.$pfilename.'.png';
+                $destinationFilePath = $destinationDirectory . 'product_picture_'.$productid.'.png';
                 if (copy($sourceFilePath, $destinationFilePath)) {
-                    $req2="UPDATE product SET product_imagepath='$destinationFilePath' WHERE product_name='$pname' and product_user_id='$useremail'";
-                    $res2=mysqli_query($cnx,$req2);
-                    if ($res2) {
+                    $req3="UPDATE product SET product_imagepath='$destinationFilePath' WHERE id_produit='$productid'";
+                    $res3=mysqli_query($cnx,$req3);
+                    if ($res3) {
                         header("location:../user/produit.php");
                         exit;
                     }
                 } else {
                     echo "Error copying the image.";
+                }
                 }
             }
         }

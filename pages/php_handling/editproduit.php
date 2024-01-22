@@ -161,6 +161,7 @@ else {
 <div class="col-lg-11 bg-gray-light m-2 rounded">
   <div class="row">
     <div class="col-12 d-flex justify-content-end">
+      <input type="text" name="productid" value="<?php echo $productid; ?>" hidden>
     <a href="../user/produit.php" class="btn btn-outline-primary file-input-label m-3 pl-4 pr-4">Back</a>
     <input class="btn btn-primary file-input-label m-3 pl-4 pr-4" type="submit" value="Save">
     </div>
