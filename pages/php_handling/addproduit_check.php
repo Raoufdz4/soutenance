@@ -19,7 +19,7 @@ if (isset($_POST['product_name']) && !empty($_POST['product_name'])) {
             if (isset($_FILES["product_image"]) && $_FILES["product_image"]["error"] == 0) {
 
                 $req2="SELECT * FROM product WHERE product_name='$pname' AND descr='$pdesc' AND product_user_id='$useremail'";
-                $res2=mysqli_query($cnx,$req1);
+                $res2=mysqli_query($cnx,$req2);
                 if ($res2) {
                     $row=mysqli_fetch_assoc($res2);
                     $productid=$row['id_produit'];
@@ -53,10 +53,10 @@ if (isset($_POST['product_name']) && !empty($_POST['product_name'])) {
                 
             }
             else {
-                $req1="SELECT * FROM product WHERE product_name='$pname' AND descr='$pdesc' AND product_user_id='$useremail'";
-                $res1=mysqli_query($cnx,$req1);
-                if ($res1) {
-                    $row=mysqli_fetch_assoc($res1);
+                $req2="SELECT * FROM product WHERE product_name='$pname' AND descr='$pdesc' AND product_user_id='$useremail'";
+                $res2=mysqli_query($cnx,$req2);
+                if ($res2) {
+                    $row=mysqli_fetch_assoc($res2);
                     $productid=$row['id_produit'];
 
                     $targetDirectory = "../../dist/UserData/".$useremail."/product/".$productid."/";
@@ -74,9 +74,9 @@ if (isset($_POST['product_name']) && !empty($_POST['product_name'])) {
                 // Destination file path (including the new filename)
                 $destinationFilePath = $destinationDirectory . 'product_picture_'.$productid.'.png';
                 if (copy($sourceFilePath, $destinationFilePath)) {
-                    $req2="UPDATE product SET product_imagepath='$destinationFilePath' WHERE id_produit='$productid'";
-                    $res2=mysqli_query($cnx,$req2);
-                    if ($res2) {
+                    $req3="UPDATE product SET product_imagepath='$destinationFilePath' WHERE id_produit='$productid'";
+                    $res3=mysqli_query($cnx,$req3);
+                    if ($res3) {
                         header("location:../user/produit.php");
                         exit;
                     }
@@ -95,7 +95,7 @@ if (isset($_POST['product_name']) && !empty($_POST['product_name'])) {
         if ($res1) {
             if (isset($_FILES["product_image"]) && $_FILES["product_image"]["error"] == 0) {
                 $req2="SELECT * FROM product WHERE product_name='$pname' AND product_user_id='$useremail'";
-                $res2=mysqli_query($cnx,$req1);
+                $res2=mysqli_query($cnx,$req2);
                 if ($res2) {
                     $row=mysqli_fetch_assoc($res2);
                     $productid=$row['id_produit'];
@@ -127,7 +127,7 @@ if (isset($_POST['product_name']) && !empty($_POST['product_name'])) {
             }
             else {
                 $req2="SELECT * FROM product WHERE product_name='$pname' AND product_user_id='$useremail'";
-                $res2=mysqli_query($cnx,$req1);
+                $res2=mysqli_query($cnx,$req2);
                 if ($res2) {
                     $row=mysqli_fetch_assoc($res2);
                     $productid=$row['id_produit'];
