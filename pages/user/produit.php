@@ -145,7 +145,7 @@ if (mysqli_num_rows($result) > 0) {
             </td>
             <td class="col-3">' . htmlspecialchars($row['product_name']) . ' </td>
             <td class="col-4">' . htmlspecialchars($row['descr']) . '</td>
-            <td class="col-2 ">
+            <td class="col-2">
                 <div class="row d-flex justify-content-center">
                 <div class=" col-12 d-flex justify-content-center">
                     <a type="button" href="#.php?id=' . $row['id_produit'] . '"
