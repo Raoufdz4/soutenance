@@ -59,7 +59,6 @@ else {
   header("location:../user/produit.php");
   exit;
 }
-
 ?>
 
 <!DOCTYPE html>

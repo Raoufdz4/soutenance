@@ -101,16 +101,7 @@
             </a>';
             }
               ?>
-          </li>
-          <li class="nav-item">
-            <a href="widgets.html" class="nav-link">
-            <i class="nav-icon fa-solid fa-cloud"></i>
-              <p>
-                API
-              </p>
-            </a>
-          </li>
-          
+          </li>          
           <li class="nav-item">
           <?php 
               if (basename($_SERVER['PHP_SELF'])=="parametre.php") {
