@@ -148,7 +148,7 @@ if (mysqli_num_rows($result) > 0) {
             <td class="col-2">
                 <div class="row d-flex justify-content-center">
                 <div class=" col-12 d-flex justify-content-center">
-                    <a type="button" href="#.php?id=' . $row['id_produit'] . '"
+                    <a type="button" href="../php_handling/aboutproduit.php?id=' . $row['id_produit'] . '"
                         class="btn btn-info btn-block m-1 accent-light">About</a>
                         </div>
                 <div class=" col-12 d-flex justify-content-center">

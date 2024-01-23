@@ -66,16 +66,19 @@ if (isset($_POST['eproductid']) && !empty($_POST['eproductid'])) {
                 if (mysqli_num_rows($res1)>0) {
                     $req2="UPDATE product SET product_imagepath='$etargetFile' WHERE id_produit='$eproductid' and product_user_id='$useremail'";
                     $res2=mysqli_query($cnx,$req2);
+                    header("location:../user/produit.php");
         }
             } else {
                 echo "Sorry, there was an error uploading your file.";
             }
         } else {
-            echo "error";
+            if ($_FILES["eproduct_image"]["error"]=1) {
+                echo "The uploaded file exceeds the `upload_max_filesize` directive in `php.ini` .";
+            }
         }
 
 }
 
 
-header("location:../user/produit.php");
+
 ?>
