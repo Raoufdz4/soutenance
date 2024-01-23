@@ -115,9 +115,15 @@ include $partials.'header_left.php';
     <div class="row mb-4">
       <div class="col-9 ml-3">
       <select class="form-control bfh-countries" name="cases" id="cases" >
-                    <option>The best Expectations</option>
-                    <option>The usual Expectations</option>
-                    <option>The worst Expectations</option>
+        <?php 
+        $req="SELECT * FROM cases WHERE cases_user='ALL' OR cases_user='$useremail'";
+        $res=mysqli_query($cnx,$req);
+        if ($res) {
+          while ($row=mysqli_fetch_assoc($res)) {
+            echo "<option>".$row['case_name']."</option>";
+          }
+        }
+        ?>
                     </select>
       </div>  
                     <div class="col-2 ml-4 d-flex justify-content-end">
