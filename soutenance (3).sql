@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : lun. 22 jan. 2024 à 21:02
+-- Généré le : mar. 23 jan. 2024 à 01:15
 -- Version du serveur : 8.0.31
 -- Version de PHP : 8.0.26
 
@@ -56,16 +56,19 @@ CREATE TABLE IF NOT EXISTS `product` (
   `product_user_id` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id_produit`),
   KEY `productuserid` (`product_user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `product`
 --
 
 INSERT INTO `product` (`id_produit`, `product_name`, `descr`, `product_imagepath`, `product_user_id`) VALUES
-(2, 'chaussure rose', 'adidas', '../../dist/UserData/ayoubouadah.w@gmail.com/product/chaussure_rose/product_picture_chaussure_rose.jpg', 'ayoubouadah.w@gmail.com'),
-(3, 'chaussure', 'noir', '../../dist/UserData/a1@gmail.com/product/chaussure/product_picture_chaussure.jpeg', 'a1@gmail.com'),
-(4, 'chemise ', 'rouge', '../../dist/UserData/ayoubouadah.w@gmail.com/product/chemise_/product_picture_chemise_.jpg', 'ayoubouadah.w@gmail.com');
+(1, 'chaussure', 'noir', '../../dist/UserData/ayoubouadah.w@gmail.com/product/1/product_picture_1.jpg', 'ayoubouadah.w@gmail.com'),
+(2, 'chaussure', 'gris', '../../dist/UserData/ayoubouadah.w@gmail.com/product/2/product_picture_2.jpg', 'ayoubouadah.w@gmail.com'),
+(3, 'chemise ', 'vert', '../../dist/UserData/ayoubouadah.w@gmail.com/product/3/product_picture_3.jpg', 'ayoubouadah.w@gmail.com'),
+(4, 'chemise ', 'rouge', '../../dist/UserData/ayoubouadah.w@gmail.com/product/4/product_picture_4.jpg', 'ayoubouadah.w@gmail.com'),
+(5, 'chemise', 'bleu', '../../dist/UserData/ayoubouadah.w@gmail.com/product/5/product_picture_5.jpg', 'ayoubouadah.w@gmail.com'),
+(6, 'chemise ', 'noir', '../../dist/UserData/ayoubouadah.w@gmail.com/product/6/product_picture_6.jpg', 'ayoubouadah.w@gmail.com');
 
 -- --------------------------------------------------------
 
