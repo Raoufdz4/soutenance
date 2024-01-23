@@ -43,7 +43,6 @@ require $plugins.'PHPMailer/src/Exception.php';
 require $plugins.'PHPMailer/src/PHPMailer.php';
 require $plugins.'PHPMailer/src/SMTP.php';
 
-session_start();
 
 // Function to generate a verification code
 function generateVerificationCode() {
@@ -79,7 +78,7 @@ try {
     $mail->Username = $gmailUsername;
     $mail->Password = $gmailPassword;
     $mail->SMTPSecure = 'tls'; // Enable TLS encryption
-    $mail->Port = 25;
+    $mail->Port = 587;
 
     // Recipient settings
     $mail->setFrom($gmailUsername, 'Colivraison');
