@@ -52,7 +52,7 @@ include $partials.'header_left.php';
 
 if (isset($_GET['id'])) {
     
-  $productid = htmlspecialchars($_GET['id']);
+  $eproductid = htmlspecialchars($_GET['id']);
 
 }
 else {
@@ -97,7 +97,7 @@ else {
 
 <!-- make ur content here -->
 
-<form action="addproduit_check.php" method="post" id="product_form" enctype="multipart/form-data">
+<form action="editproduit_check.php" method="post" id="product_form" enctype="multipart/form-data">
 
 <div class="row">
 <div class="col-lg-12">
@@ -110,7 +110,7 @@ else {
 <div class="row m-4 d-flex justify-content-center">
     <div class="rounded-circle img-fluid bg-light d-flex justify-content-center" style="width: 180px;">
     <img src="<?php 
-          $req1="SELECT * FROM product WHERE id_produit='$productid' and product_user_id='$useremail'";
+          $req1="SELECT * FROM product WHERE id_produit='$eproductid' and product_user_id='$useremail'";
           $res1=mysqli_query($cnx,$req1);
           if (mysqli_num_rows($res1)>0) {
             $row= mysqli_fetch_assoc($res1);
@@ -119,8 +119,8 @@ else {
 </div>
 <div class="row m-4 d-flex justify-content-center">        
 <div class="container d-flex justify-content-center">
-            <label class="btn btn-outline-primary file-input-label" for="product_image">Edit image</label>
-            <input type="file" name="product_image" id="product_image" accept=".jpg, .jpeg, .png" hidden>     
+            <label class="btn btn-outline-primary file-input-label" for="eproduct_image">Edit image</label>
+            <input type="file" name="eproduct_image" id="eproduct_image" accept=".jpg, .jpeg, .png" hidden>     
         </div>   
 </div>
 </div>
@@ -130,9 +130,9 @@ else {
 <div class="card-body">
   <div class="row">
   <div class="form-group col-md-12">
-                    <label class="pl-1" for="product_name">Product name</label>
-                    <input type="text" class="form-control" id="product_name" name="product_name" value="<?php 
-          $req2="SELECT * FROM product WHERE id_produit='$productid' and product_user_id='$useremail'";
+                    <label class="pl-1" for="eproduct_name">Product name</label>
+                    <input type="text" class="form-control" id="eproduct_name" name="eproduct_name" value="<?php 
+          $req2="SELECT * FROM product WHERE id_produit='$eproductid' and product_user_id='$useremail'";
           $res2=mysqli_query($cnx,$req1);
           if (mysqli_num_rows($res2)>0) {
             $row= mysqli_fetch_assoc($res2);
@@ -143,9 +143,9 @@ else {
 
   <div class="row">
  <div class="form-group col-md-12">
-                    <label class="pl-1" for="product_des">Product details</label>
-                    <textarea class="form-control" id="product_des" name="product_des" aria-label="With textarea" rows="5" cols="40" maxlength="30" placeholder="<?php 
-          $req3="SELECT * FROM product WHERE id_produit='$productid' and product_user_id='$useremail'";
+                    <label class="pl-1" for="eproduct_des">Product details</label>
+                    <textarea class="form-control" id="eproduct_des" name="eproduct_des" aria-label="With textarea" rows="5" cols="40" maxlength="30" placeholder="<?php 
+          $req3="SELECT * FROM product WHERE id_produit='$eproductid' and product_user_id='$useremail'";
           $res3=mysqli_query($cnx,$req1);
           if (mysqli_num_rows($res3)>0) {
             $row= mysqli_fetch_assoc($res3);
@@ -161,7 +161,7 @@ else {
 <div class="col-lg-11 bg-gray-light m-2 rounded">
   <div class="row">
     <div class="col-12 d-flex justify-content-end">
-      <input type="text" name="productid" value="<?php echo $productid; ?>" hidden>
+      <input type="text" name="eproductid" value="<?php echo $eproductid; ?>" hidden>
     <a href="../user/produit.php" class="btn btn-outline-primary file-input-label m-3 pl-4 pr-4">Back</a>
     <input class="btn btn-primary file-input-label m-3 pl-4 pr-4" type="submit" value="Save">
     </div>
@@ -187,7 +187,7 @@ else {
 
 <script>
 
-document.getElementById('product_image').addEventListener('change', handleFileSelect);
+document.getElementById('eproduct_image').addEventListener('change', handleFileSelect);
 
 function handleFileSelect(event) {
   const input = event.target;
@@ -209,13 +209,13 @@ function handleFileSelect(event) {
 }
 
 function handleImageInputChange(evt) {
-  const [file] = product_image.files;
+  const [file] = eproduct_image.files;
   if (file) {
     image_preview.src = URL.createObjectURL(file);
   }
 }
 
-product_image.onchange = handleImageInputChange;
+eproduct_image.onchange = handleImageInputChange;
 
 
   

@@ -4,65 +4,74 @@ include '../../config.php';
 
 $useremail=$_SESSION['email'];
 
-if (isset($_POST['productid']) && !empty($_POST['productid'])) {
+if (isset($_POST['eproductid']) && !empty($_POST['eproductid'])) {
     
-    $productid=$_POST['productid'];
+    $eproductid=$_POST['eproductid'];
 
-    if (isset($_POST['product_name']) && !empty($_POST['product_name'])){
-        $pname = $_POST['product_name'];
-        $pname= strtolower($pname);
-        $req1="SELECT * FROM product WHERE id_produit='$productid' and product_user_id='$useremail'";
+    if (isset($_POST['eproduct_name']) && !empty($_POST['eproduct_name'])){
+        $epname = $_POST['eproduct_name'];
+        $epname= strtolower($epname);
+        $req1="SELECT * FROM product WHERE id_produit='$eproductid' and product_user_id='$useremail'";
         $res1=mysqli_query($cnx,$req1);
         if (mysqli_num_rows($res1)>0) {
-            $req2="UPDATE product SET product_name='$pname' WHERE id_produit='$productid' and product_user_id='$useremail'";
+            $req2="UPDATE product SET product_name='$epname' WHERE id_produit='$eproductid' and product_user_id='$useremail'";
             $res2=mysqli_query($cnx,$req2);
         }
     }
-    if (isset($_POST['product_des']) && !empty($_POST['product_des'])){
-        $pdescr = $_POST['product_des'];
-        $pdescr= strtolower($pdescr);
-        $req1="SELECT * FROM product WHERE id_produit='$productid' and product_user_id='$useremail'";
+
+    if (isset($_POST['eproduct_des']) && !empty($_POST['eproduct_des'])){
+        $epdescr = $_POST['eproduct_des'];
+        $epdescr= strtolower($epdescr);
+        $req1="SELECT * FROM product WHERE id_produit='$eproductid' and product_user_id='$useremail'";
         $res1=mysqli_query($cnx,$req1);
         if (mysqli_num_rows($res1)>0) {
-            $req2="UPDATE product SET descr='$pdescr' WHERE id_produit='$productid' and product_user_id='$useremail'";
+            $req2="UPDATE product SET descr='$epdescr' WHERE id_produit='$eproductid' and product_user_id='$useremail'";
             $res2=mysqli_query($cnx,$req2);
         }
     }
-    if (isset($_FILES["user_image"]) && $_FILES["user_image"]["error"] == 0) {
+    
+    if (isset($_FILES["eproduct_image"]) && $_FILES["eproduct_image"]["error"] == 0) {
     
         // Define a target directory to store uploaded images
-        $targetDirectory = "../../dist/UserData/".$useremail."/profile/";
+        $etargetDirectory = "../../dist/UserData/".$useremail."/product/".$eproductid."/";
     
-            if (!is_dir($targetDirectory)) {
+            if (!is_dir($etargetDirectory)) {
             // Create the directory if it doesn't exist
-            mkdir($targetDirectory, 0777, true); // The third parameter true enables recursive creation
+            mkdir($etargetDirectory, 0777, true); // The third parameter true enables recursive creation
             }
             
             // Set the new file name
-            $newFileName = "profile_picture";
+            $enewFileName = "product_picture_".$eproductid;
     
             // Add the original file extension to the new file name
-            $newFileName .= '.' . pathinfo($_FILES["user_image"]["name"], PATHINFO_EXTENSION);
+            $enewFileName .= '.' . pathinfo($_FILES["eproduct_image"]["name"], PATHINFO_EXTENSION);
     
             // Create the target path with the new file name
-            $targetFile = $targetDirectory . $newFileName;
+            $etargetFile = $etargetDirectory . $enewFileName;
     
     
-            $baseNameWithoutExtension = pathinfo($newFileName, PATHINFO_FILENAME);
+            $ebaseNameWithoutExtension = pathinfo($enewFileName, PATHINFO_FILENAME);
         
             // Remove any existing file with the same base name (regardless of extension)
-            $existingFiles = glob($targetDirectory . $baseNameWithoutExtension . ".*");
-            foreach ($existingFiles as $existingFile) {
-                unlink($existingFile);
+            $eexistingFiles = glob($etargetDirectory . $ebaseNameWithoutExtension . ".*");
+            foreach ($eexistingFiles as $eexistingFile) {
+                unlink($eexistingFile);
             }
     
     
             // Move the uploaded file to the target directory
-            if (move_uploaded_file($_FILES["user_image"]["tmp_name"], $targetFile)) {                
-                echo "The file has been uploaded successfully.";
+            if (move_uploaded_file($_FILES["eproduct_image"]["tmp_name"], $etargetFile)) {                
+                $req1="SELECT * FROM product WHERE id_produit='$eproductid' and product_user_id='$useremail'";
+                $res1=mysqli_query($cnx,$req1);
+                if (mysqli_num_rows($res1)>0) {
+                    $req2="UPDATE product SET product_imagepath='$etargetFile' WHERE id_produit='$eproductid' and product_user_id='$useremail'";
+                    $res2=mysqli_query($cnx,$req2);
+        }
             } else {
                 echo "Sorry, there was an error uploading your file.";
             }
+        } else {
+            echo "error";
         }
 
 }
