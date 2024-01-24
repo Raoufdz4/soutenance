@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : mar. 23 jan. 2024 à 01:15
--- Version du serveur : 8.0.31
--- Version de PHP : 8.0.26
+-- Généré le : mer. 24 jan. 2024 à 16:34
+-- Version du serveur : 5.7.36
+-- Version de PHP : 7.4.26
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -31,15 +31,42 @@ USE `soutenance`;
 
 DROP TABLE IF EXISTS `calc`;
 CREATE TABLE IF NOT EXISTS `calc` (
-  `id` int NOT NULL,
-  `cpc` int NOT NULL,
-  `cpd` int NOT NULL,
-  `ad_cost` int NOT NULL,
-  `returnn` int NOT NULL,
-  `delivery` int NOT NULL,
-  `storage_other` int NOT NULL,
-  `total_price` int NOT NULL
+  `id` int(11) NOT NULL,
+  `cpc` int(11) NOT NULL,
+  `cpd` int(11) NOT NULL,
+  `ad_cost` int(11) NOT NULL,
+  `returnn` int(11) NOT NULL,
+  `delivery` int(11) NOT NULL,
+  `storage_other` int(11) NOT NULL,
+  `total_price` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `cases`
+--
+
+DROP TABLE IF EXISTS `cases`;
+CREATE TABLE IF NOT EXISTS `cases` (
+  `id_case` int(11) NOT NULL AUTO_INCREMENT,
+  `case_name` varchar(200) NOT NULL,
+  `cpc` decimal(10,2) NOT NULL,
+  `cpd` decimal(10,2) NOT NULL,
+  `ads_euro` int(11) NOT NULL,
+  `exchange_rate` int(11) NOT NULL,
+  `cases_user` varchar(200) NOT NULL,
+  PRIMARY KEY (`id_case`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `cases`
+--
+
+INSERT INTO `cases` (`id_case`, `case_name`, `cpc`, `cpd`, `ads_euro`, `exchange_rate`, `cases_user`) VALUES
+(1, 'The Best Expectation', '0.70', '0.70', 1, 230, 'ALL'),
+(2, 'The Usual Expectation', '0.60', '0.60', 2, 230, 'ALL'),
+(3, 'The Worst Expectation', '0.50', '0.50', 3, 230, 'ALL');
 
 -- --------------------------------------------------------
 
@@ -49,10 +76,10 @@ CREATE TABLE IF NOT EXISTS `calc` (
 
 DROP TABLE IF EXISTS `product`;
 CREATE TABLE IF NOT EXISTS `product` (
-  `id_produit` int NOT NULL AUTO_INCREMENT,
+  `id_produit` int(11) NOT NULL AUTO_INCREMENT,
   `product_name` varchar(30) NOT NULL,
   `descr` varchar(200) DEFAULT NULL,
-  `product_imagepath` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL,
+  `product_imagepath` varchar(255) DEFAULT NULL,
   `product_user_id` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id_produit`),
   KEY `productuserid` (`product_user_id`)
@@ -78,10 +105,10 @@ INSERT INTO `product` (`id_produit`, `product_name`, `descr`, `product_imagepath
 
 DROP TABLE IF EXISTS `product_pricing`;
 CREATE TABLE IF NOT EXISTS `product_pricing` (
-  `id_pricing` int NOT NULL,
-  `id_product` int NOT NULL,
-  `id_calc` int NOT NULL,
-  `template` int NOT NULL,
+  `id_pricing` int(11) NOT NULL,
+  `id_product` int(11) NOT NULL,
+  `id_calc` int(11) NOT NULL,
+  `template` int(11) NOT NULL,
   `date` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -93,7 +120,7 @@ CREATE TABLE IF NOT EXISTS `product_pricing` (
 
 DROP TABLE IF EXISTS `roles`;
 CREATE TABLE IF NOT EXISTS `roles` (
-  `id_roles` int NOT NULL AUTO_INCREMENT,
+  `id_roles` int(11) NOT NULL AUTO_INCREMENT,
   `roles_name` varchar(20) NOT NULL,
   PRIMARY KEY (`id_roles`),
   UNIQUE KEY `roles_name` (`roles_name`)
@@ -115,7 +142,7 @@ INSERT INTO `roles` (`id_roles`, `roles_name`) VALUES
 
 DROP TABLE IF EXISTS `settings`;
 CREATE TABLE IF NOT EXISTS `settings` (
-  `id` int NOT NULL,
+  `id` int(11) NOT NULL,
   `site_name` varchar(20) NOT NULL,
   `site_des` varchar(50) NOT NULL,
   `site_logo` blob NOT NULL,
@@ -131,8 +158,8 @@ CREATE TABLE IF NOT EXISTS `settings` (
 
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE IF NOT EXISTS `user` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `email` varchar(100) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `email` varchar(100) NOT NULL,
   `password` varchar(20) NOT NULL,
   `full_name` varchar(50) NOT NULL,
   `first_name` varchar(50) NOT NULL,
@@ -165,7 +192,7 @@ INSERT INTO `user` (`id`, `email`, `password`, `full_name`, `first_name`, `last_
 
 DROP TABLE IF EXISTS `user_has_roles`;
 CREATE TABLE IF NOT EXISTS `user_has_roles` (
-  `id` int NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_user` varchar(50) NOT NULL,
   `roles_name` varchar(20) NOT NULL,
   PRIMARY KEY (`id`),
@@ -190,11 +217,11 @@ INSERT INTO `user_has_roles` (`id`, `id_user`, `roles_name`) VALUES
 DROP TABLE IF EXISTS `user_social`;
 CREATE TABLE IF NOT EXISTS `user_social` (
   `id_user` varchar(50) NOT NULL,
-  `user_web` mediumtext CHARACTER SET latin1 COLLATE latin1_swedish_ci,
-  `user_git` mediumtext CHARACTER SET latin1 COLLATE latin1_swedish_ci,
-  `user_twitter` mediumtext CHARACTER SET latin1 COLLATE latin1_swedish_ci,
-  `user_insta` mediumtext CHARACTER SET latin1 COLLATE latin1_swedish_ci,
-  `user_facebook` mediumtext CHARACTER SET latin1 COLLATE latin1_swedish_ci,
+  `user_web` mediumtext,
+  `user_git` mediumtext,
+  `user_twitter` mediumtext,
+  `user_insta` mediumtext,
+  `user_facebook` mediumtext,
   PRIMARY KEY (`id_user`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -214,7 +241,7 @@ INSERT INTO `user_social` (`id_user`, `user_web`, `user_git`, `user_twitter`, `u
 -- Contraintes pour la table `product`
 --
 ALTER TABLE `product`
-  ADD CONSTRAINT `productuserid` FOREIGN KEY (`product_user_id`) REFERENCES `user` (`email`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+  ADD CONSTRAINT `productuserid` FOREIGN KEY (`product_user_id`) REFERENCES `user` (`email`);
 
 --
 -- Contraintes pour la table `user_has_roles`
