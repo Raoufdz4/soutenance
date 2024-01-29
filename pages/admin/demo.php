@@ -61,9 +61,9 @@ include '../../links/css.php';
 
 <?php
 
-include $partials.'header_top.php';
+ include '../../tpl/partials/admin_headertop.php';
 
-include $partials.'header_left.php';
+ include '../../tpl/partials/admin_headerleft.php';
 
 ?>
         
