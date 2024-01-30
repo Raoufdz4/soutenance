@@ -129,7 +129,7 @@ include $partials.'header_left.php';
 
       </div>  
                     <div class="col-2 ml-4 d-flex justify-content-end">
-    <button class="btn btn-primary file-input-label pl-4 pr-4">Add case</button>
+    <a href="../php_handling/addcases.php" class="btn btn-primary file-input-label pl-4 pr-4">Add case</a>
     </div>
     </div>
     
