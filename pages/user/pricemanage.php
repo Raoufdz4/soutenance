@@ -58,6 +58,7 @@ include $partials.'header_left.php';
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
   <title>Document</title>
 </head>
 
@@ -162,6 +163,7 @@ include $partials.'header_left.php';
         <div class="col-4">
         <label for="price_adseuro">Ads euro :</label>
         <input type="number" id="price_adseuro"  onkeyup="calculate()">
+        <input type="number" id="exchange_rate" hidden>
         </div>
         </div>
 
@@ -236,9 +238,7 @@ include $partials.'header_left.php';
     </section>
         </div>
 
-
-
-<script>
+        <script>
     var price_presale = 0;
     var price_adsdz = 0;
     var price_adseuro = 0;
@@ -276,6 +276,56 @@ if (!isNaN(price_presale) && !isNaN(price_adseuro) && !isNaN(cpc) && !isNaN(cpd)
             }
 }
 </script>
+        <script>
+    $(document).ready(function() {
+    // Attach an event listener to the select element
+    $('#cases').change(function() {
+        // Get the selected option value
+        var selectedCaseId = $(this).val();
+
+        // Use AJAX to fetch data from the server
+        $.ajax({
+            type: 'POST',
+            url: '../php_handling/casesoption.php',
+            data: { cases: selectedCaseId },
+            dataType: 'json', // Specify that the expected response is JSON
+            success: function(response) {
+                // Check if the response contains an error
+                if (response.error) {
+                    console.error('Error fetching data: ' + response.error);
+                } else {
+                    // Process the response data
+                    if (response.length > 0) {
+                        var firstDataItem = response[0];
+                        console.log('Ads Euro:', firstDataItem.ads_euro);
+                        console.log('Exchange Rate:', firstDataItem.exchange_rate);
+                        console.log('CPC:', firstDataItem.cpc);
+                        console.log('CPD:', firstDataItem.cpd);
+                        // ... process other properties
+
+                        // Update the content of the caseDetails div with the fetched data
+                        // Modify this part according to your HTML structure
+                        $('#price_adseuro').val(firstDataItem.ads_euro);
+                        $('#exchange_rate').val(firstDataItem.exchange_rate);
+                        $('#cpc').val(firstDataItem.cpc);
+                        $('#cpd').val(firstDataItem.cpd);
+                        // ... append other properties
+                        calculate();
+                    } else {
+                        console.log('No data returned from the server.');
+                    }
+                }
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                console.error('AJAX error: ' + textStatus, errorThrown);
+            }
+        });
+    });
+});
+
+  </script>
+
+
 
 
 
