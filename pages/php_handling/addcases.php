@@ -104,32 +104,33 @@ include $partials.'header_left.php';
     <div class="row mb-4">
       <div class="col-12 ml-3">
         <div class="row">
-        <div class="col-4">
-        <label for="">Case name :</label>
+        <div class="col-12">
+        <label for="case_name">Case name :</label>
         <input type="text" id="case_name" name="case_name" size="40" required>
         </div>    
         </div>
         <div class="row">
-        <div class="col-4">
-        <label for="">Ads euro :</label>
+        <div class="col-12">
+        <label for="price_adseuro">Ads euro :</label>
         <input type="number" id="price_adseuro" name="price_adseuro" required>
         </div>
         </div>
       <div class="row">
-        <div class="col-4">
-        <label for="">CPC% :</label>
+        <div class="col-12">
+        <label for="cpc">CPC% :</label>
       <input type="number"  id="cpc" name="cpc" required>
         </div>
       </div>
       <div class="row">
-      <div class="col-4">
-        <label for="">CPD% :</label>
+      <div class="col-12">
+        <label for="cpd">CPD% :</label>
         <input type="number" id="cpd" name="cpd" required>
         </div>
         </div>
         <div class="row d-flex justify-content-center">
       <div class="col-11 d-flex justify-content-end">
-      <input class="btn btn-primary file-input-label  pl-4 pr-4" type="submit" value="Save">
+      <a class="btn btn-outline-primary file-input-label mr-3 pl-4 pr-4" href="../user/cases.php">Back</a>
+      <input class="btn btn-primary file-input-label pl-4 pr-4" type="submit" value="Save">
         </div>
       </div>  
       
