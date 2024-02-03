@@ -345,7 +345,56 @@ $totalPages = ceil($totalProducts / $productsPerPage);
             }
         }
     </script>
+<script>
+    $(document).ready(function() {
+    // Attach an event listener to the select element
+    $('#dropdown').change(function() {
+        // Get the selected option value
+        var selectedCaseId = $(this).val();
 
+        // Use AJAX to fetch data from the server
+        $.ajax({
+            type: 'POST',
+            url: '../php_handling/admin_manageproduct.php',
+            data: { cases: selectedCaseId },
+            dataType: 'json', // Specify that the expected response is JSON
+            success: function(response) {
+                // Check if the response contains an error
+                if (response.error) {
+                    console.error('Error fetching data: ' + response.error);
+                } else {
+                    // Process the response data
+                    if (response.length > 0) {
+                        var firstDataItem = response[0];
+                        console.log('Ads Euro:', firstDataItem.ads_euro);
+                        console.log('Exchange Rate:', firstDataItem.exchange_rate);
+                        console.log('CPC:', firstDataItem.cpc);
+                        console.log('CPD:', firstDataItem.cpd);
+                        // ... process other properties
+
+                        // Update the content of the caseDetails div with the fetched data
+                        // Modify this part according to your HTML structure
+                        $('#caseDetails').html('<td class="col-1">'+'<div class="d-flex align-items-center">' + firstDataItem.ads_euro + ' </div>'+'</td>');
+                        $('#caseDetails').html('<td class="col-2">'+'<img src="'+ firstDataItem.ads_euro +'" alt="Product Image" style="width: 160px; height: 160px;" class="rounded">' + '</td>');
+                        $('#caseDetails').html('<td class="col-3">' + firstDataItem.ads_euro + ' </td>');
+                        $('#caseDetails').html('<td class="col-4">' + firstDataItem.ads_euro +'</td>');
+                        $('#caseDetails').html('<td class="col-2"><!-- Actions as needed --></td>');
+                        // ... append other properties
+                    } else {
+                        console.log('No data returned from the server.');
+                        // You might want to clear the content of #caseDetails in this case
+                        $('#caseDetails').html('');
+                    }
+                }
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                console.error('AJAX error: ' + textStatus, errorThrown);
+            }
+        });
+    });
+});
+
+  </script>
     <?php
     include  '../../links/js.php';
     ?>
