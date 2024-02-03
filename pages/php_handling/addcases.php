@@ -98,38 +98,44 @@ include $partials.'header_left.php';
 
   <div class="col-12 bg-gray-light m-1 rounded">
 
-<div class="text-muted mt-3 ml-2  ">Calcule :</div>
+<div class="text-muted mt-3 ml-2">Add case :</div>
 <hr>
-
+<form action="addcases_check.php" method="post">
     <div class="row mb-4">
-      <div class="col-11 ml-3">
+      <div class="col-12 ml-3">
         <div class="row">
         <div class="col-4">
-        <label for="">Ads da</label>
-        <input type="number" id="price_adsdz"  >
+        <label for="">Case name :</label>
+        <input type="text" id="case_name" name="case_name" size="40" required>
+        </div>    
         </div>
-      
+        <div class="row">
+        <div class="col-4">
+        <label for="">Ads euro :</label>
+        <input type="number" id="price_adseuro" name="price_adseuro" required>
+        </div>
         </div>
       <div class="row">
         <div class="col-4">
-        <label for="">CPC%</label>
-      <input type="number"  id="cpc"  >
+        <label for="">CPC% :</label>
+      <input type="number"  id="cpc" name="cpc" required>
         </div>
-        <div class="col-4">
-        <label for="">CPD%</label>
-        <input type="number" id="cpd"  >
-        </div>
-      
       </div>
+      <div class="row">
+      <div class="col-4">
+        <label for="">CPD% :</label>
+        <input type="number" id="cpd" name="cpd" required>
+        </div>
+        </div>
+        <div class="row d-flex justify-content-center">
+      <div class="col-11 d-flex justify-content-end">
+      <input class="btn btn-primary file-input-label  pl-4 pr-4" type="submit" value="Save">
+        </div>
       </div>  
       
     </div>
-    <div class="row mb-4">
-        <div class="col-10">
-
-        </div>
-    </div>
   </div>  
+  </form>
 </div>
 </div>
 </div>
