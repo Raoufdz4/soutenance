@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : mer. 24 jan. 2024 à 16:34
+-- Généré le : sam. 03 fév. 2024 à 04:58
 -- Version du serveur : 5.7.36
 -- Version de PHP : 7.4.26
 
@@ -51,8 +51,8 @@ DROP TABLE IF EXISTS `cases`;
 CREATE TABLE IF NOT EXISTS `cases` (
   `id_case` int(11) NOT NULL AUTO_INCREMENT,
   `case_name` varchar(200) NOT NULL,
-  `cpc` decimal(10,2) NOT NULL,
-  `cpd` decimal(10,2) NOT NULL,
+  `cpc` int(11) NOT NULL,
+  `cpd` int(11) NOT NULL,
   `ads_euro` int(11) NOT NULL,
   `exchange_rate` int(11) NOT NULL,
   `cases_user` varchar(200) NOT NULL,
@@ -64,9 +64,9 @@ CREATE TABLE IF NOT EXISTS `cases` (
 --
 
 INSERT INTO `cases` (`id_case`, `case_name`, `cpc`, `cpd`, `ads_euro`, `exchange_rate`, `cases_user`) VALUES
-(1, 'The Best Expectation', '0.70', '0.70', 1, 230, 'ALL'),
-(2, 'The Usual Expectation', '0.60', '0.60', 2, 230, 'ALL'),
-(3, 'The Worst Expectation', '0.50', '0.50', 3, 230, 'ALL');
+(1, 'The Best Expectation', 70, 70, 1, 230, 'ALL'),
+(2, 'The Usual Expectation', 60, 60, 2, 230, 'ALL'),
+(3, 'The Worst Expectation', 50, 50, 3, 230, 'ALL');
 
 -- --------------------------------------------------------
 
