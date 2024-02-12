@@ -79,8 +79,9 @@ include '../../links/css.php';
                             </nav>
 
 
-                            <form action="manageproduct.php" method="post">
+                          
     <label for="dropdown">Select an option:</label>
+
     <select name="dropdown" id="dropdown">
         <option value="all">All</option>
         <?php
@@ -96,9 +97,8 @@ include '../../links/css.php';
         ?>
     </select>
 
-    <!-- Other form elements or buttons can be added here -->
-    <input type="submit" value="Submit">
-</form>
+    
+
 
 
 
@@ -365,6 +365,10 @@ $totalPages = ceil($totalProducts / $productsPerPage);
                 } else {
                     // Process the response data
                     if (response.length > 0) {
+                        
+                    while (condition) {
+                        
+                    }
                         var firstDataItem = response[0];
                         console.log('Ads Euro:', firstDataItem.ads_euro);
                         console.log('Exchange Rate:', firstDataItem.exchange_rate);
