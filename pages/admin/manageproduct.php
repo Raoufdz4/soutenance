@@ -47,6 +47,7 @@ include '../../config.php';
 include '../../icon.php';
 
 include '../../links/css.php';
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -55,6 +56,7 @@ include '../../links/css.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    
 </head>
 
 <body class="sidebar-mini layout-fixed">
@@ -140,7 +142,7 @@ include '../../links/css.php';
 
                                 <?php
                                 // Number of products to display per page
-$productsPerPage = 2;
+$productsPerPage = 5;
 
 // Get the current page number from the query string
 if (isset($_GET['page'])) {
@@ -334,6 +336,7 @@ $totalPages = ceil($totalProducts / $productsPerPage);
         ?>
 
     </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
         function goToPage() {
             var input = document.getElementById('pageInput');
@@ -356,44 +359,35 @@ $totalPages = ceil($totalProducts / $productsPerPage);
         $.ajax({
             type: 'POST',
             url: '../php_handling/admin_manageproduct.php',
-            data: { cases: selectedCaseId },
+            data: { dropdown: selectedCaseId },
             dataType: 'json', // Specify that the expected response is JSON
             success: function(response) {
-                // Check if the response contains an error
-                if (response.error) {
-                    console.error('Error fetching data: ' + response.error);
-                } else {
-                    // Process the response data
-                    if (response.length > 0) {
-                        
-                    while (condition) {
-                        
-                    }
-                        var firstDataItem = response[0];
-                        console.log('Ads Euro:', firstDataItem.ads_euro);
-                        console.log('Exchange Rate:', firstDataItem.exchange_rate);
-                        console.log('CPC:', firstDataItem.cpc);
-                        console.log('CPD:', firstDataItem.cpd);
-                        // ... process other properties
+    // Check if the response contains an error
+    if (response.error) {
+        console.error('Error fetching data: ' + response.error);
+    } else {
+        // Process the response data
+        var htmlContent = ''; // Initialize HTML content variable
 
-                        // Update the content of the caseDetails div with the fetched data
-                        // Modify this part according to your HTML structure
-                        $('#caseDetails').html('<td class="col-1">'+'<div class="d-flex align-items-center">' + firstDataItem.ads_euro + ' </div>'+'</td>');
-                        $('#caseDetails').html('<td class="col-2">'+'<img src="'+ firstDataItem.ads_euro +'" alt="Product Image" style="width: 160px; height: 160px;" class="rounded">' + '</td>');
-                        $('#caseDetails').html('<td class="col-3">' + firstDataItem.ads_euro + ' </td>');
-                        $('#caseDetails').html('<td class="col-4">' + firstDataItem.ads_euro +'</td>');
-                        $('#caseDetails').html('<td class="col-2"><!-- Actions as needed --></td>');
-                        // ... append other properties
-                    } else {
-                        console.log('No data returned from the server.');
-                        // You might want to clear the content of #caseDetails in this case
-                        $('#caseDetails').html('');
-                    }
-                }
-            },
-            error: function(jqXHR, textStatus, errorThrown) {
-                console.error('AJAX error: ' + textStatus, errorThrown);
-            }
+        if (response.length > 0) {
+            var firstDataItem = response[0];
+
+            // Concatenate HTML content for each property
+            htmlContent += '<td class="col-1"><div class="d-flex align-items-center">' + firstDataItem.id_produit + '</div></td>';
+            htmlContent += '<td class="col-2"><img src="' + firstDataItem.product_imagepath + '" alt="Product Image" style="width: 160px; height: 160px;" class="rounded"></td>';
+            htmlContent += '<td class="col-3">' + firstDataItem.product_name + '</td>';
+            htmlContent += '<td class="col-4">' + firstDataItem.descr + '</td>';
+            htmlContent += '<td class="col-2"><!-- Actions as needed --></td>';
+        } else {
+            console.log('No data returned from the server.');
+            // You might want to clear the content of #caseDetails in this case
+            // $('#caseDetails').html('');
+        }
+
+        // Set the HTML content of #caseDetails
+        $('#caseDetails').html(htmlContent);
+    }
+},
         });
     });
 });

@@ -13,10 +13,6 @@ if (isset($_POST['dropdown']) && !empty($_POST['dropdown'])) {
     $query = "SELECT COUNT(*) as total FROM product WHERE product_user_id='$userid'";
     $result = mysqli_query($cnx, $query);
 
-    $query2 = "SELECT * FROM product WHERE 	product_user_id='$userid'";
-    $result2 = mysqli_query($cnx, $query2);
-
-    
 
 
     if ($result) {
@@ -37,16 +33,24 @@ if (isset($_POST['dropdown']) && !empty($_POST['dropdown'])) {
         $productnum['error'] = 'Error executing database query: ' . mysqli_error($cnx);
     }
 
+
+
+    //second one
+    $query2 = "SELECT * FROM product WHERE 	product_user_id='$userid'";
+    $result2 = mysqli_query($cnx, $query2);
+
+
     if ($result2) {
         // Check if any rows were returned
         if (mysqli_num_rows($result2) > 0) {
             // Fetch and store data in responseData array
-            $i=0;
-            while ($i<=$productnum['productnum']) {
+            while ($row2 = mysqli_fetch_assoc($result2)) {
                 $responseData[] = array(
-                    'id_produit ' => $row['id_produit ']
+                    'id_produit' => $row2['id_produit'],
+                    'product_imagepath' => $row2['product_imagepath'],
+                    'product_name' => $row2['product_name'],
+                    'descr' => $row2['descr']
                 );
-                
             }
         } else {
             // Handle case where no rows were returned
@@ -61,9 +65,9 @@ if (isset($_POST['dropdown']) && !empty($_POST['dropdown'])) {
     mysqli_close($cnx);
 } else {
     // Handle invalid or missing cases parameter
+    http_response_code(400); // Set HTTP response code to 400 Bad Request
     $responseData['error'] = 'Invalid or missing cases parameter in the request.';
-}
-
+} 
 // Send the response as JSON
 header('Content-Type: application/json');
 echo json_encode($responseData);
