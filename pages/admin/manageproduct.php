@@ -1,6 +1,5 @@
 <?php
 // init includes
-
 session_start();
 
 if (!isset($_SESSION['email'])) {
@@ -56,7 +55,7 @@ include '../../links/css.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    
+  
 </head>
 
 <body class="sidebar-mini layout-fixed">
@@ -79,321 +78,244 @@ include '../../links/css.php';
                                     <li class="breadcrumb-item active" aria-current="page">Produits</li>
                                 </ol>
                             </nav>
-
-
-                          
-    <label for="dropdown">Select an option:</label>
-
-    <select name="dropdown" id="dropdown">
-        <option value="all">All</option>
-        <?php
-       // Fetch all emails from the database table
-            $sql = "SELECT id, email FROM user";
-            $result = $cnx->query($sql);
-        
-        // Create options using a loop
-        while ($row = $result->fetch_assoc()) {
-            $email = $row["email"];
-            echo "<option value='" . $email . "'>" . $email . "</option>";
-        }
-        ?>
-    </select>
-
-    
-
-
-
-
-                        </div>
-                    </div>
-                    <div class="row">
+                            <div class="row">
                         <div class="col-12 card">
                             <div class="card-body">
                                 <div class="row bg-gray-light m-1 rounded d-flex justify-content-center mt-1 ml-1 mr-1">
                                     <div class="col-6 text-muted mt-3 mb-3 ml-1">Add new product :</div>
                                     <div class="col-5 d-flex align-items-center justify-content-end">
-                                    
-
-
-
-
-                                   
-
-                                <a href="../php_handling/addproduit.php" class="btn btn-primary text-light mr-2">add produit</a>
+                                        <a href="../php_handling/addproduit.php" class="btn btn-primary text-light mr-2">add produit</a>
+                                        
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row-10 table-responsive-md">
-                        <table class="table align-middle mb-0 bg-white border">
-                            <thead class="bg-light">
-                                <tr>
-                                    <th class="col-1">Id</th>
-                                    <th class="col-2">Image</th>
-                                    <th class="col-3">Name</th>
-                                    <th class="col-4">Description</th>
-                                    <th class="col-2">Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-
-
-                                <?php
-                                // Number of products to display per page
-$productsPerPage = 5;
-
-// Get the current page number from the query string
-if (isset($_GET['page'])) {
-    $page = $_GET['page'];
-} else {
-    $page = 1;
-}
-
-// Calculate the starting point for the query
-$start = ($page - 1) * $productsPerPage;
-
-// Initialize $totalProducts
-$totalProducts = 0;
-
-// Calculate the total number of products
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Get the selected value from the dropdown
-    $selectedOption = $_POST["dropdown"];
-
-    // Adjust the SQL query and total count based on the selected option
-    if ($selectedOption == "all") {
-        // Fetch all products
-        $query = "SELECT * FROM product LIMIT $start, $productsPerPage";
-        $queryTotalProducts = "SELECT COUNT(*) as total FROM product";
-    } else {
-        // Fetch products for the selected user
-        $query = "SELECT * FROM product WHERE product_user_id = '$selectedOption' LIMIT $start, $productsPerPage";
-        $queryTotalProducts = "SELECT COUNT(*) as total FROM product WHERE product_user_id = '$selectedOption'";
-    }
-} else {
-    // If the form is not submitted, fetch all products
-    $query = "SELECT * FROM product LIMIT $start, $productsPerPage";
-    $queryTotalProducts = "SELECT COUNT(*) as total FROM product";
-}
-
-// Execute the query to fetch products
-$result = mysqli_query($cnx, $query);
-
-// Check for errors in the query
-if (!$result) {
-    die("Query failed: " . $cnx->error);
-}
-
-if (mysqli_num_rows($result) > 0) {
-    // Display products
-    while ($row = mysqli_fetch_assoc($result)) {
-        // Display product details as needed
-        // ...
-
-        echo '<tr>
-            <td class="col-1">
-                <div class="d-flex align-items-center">' . htmlspecialchars($row['id_produit']) . ' </div>
-            </td>
-            <td class="col-2">
-                <img src="' . htmlspecialchars($row['product_imagepath']) . '" alt="Product Image" style="width: 160px; height: 160px;" class="rounded">
-            </td>
-            <td class="col-3">' . htmlspecialchars($row['product_name']) . ' </td>
-            <td class="col-4">' . htmlspecialchars($row['descr']) . '</td>
-            <td class="col-2">
-                <div class="row d-flex justify-content-center">
-                    <!-- Actions as needed -->
-                </div>
-            </td>
-        </tr>';
-    }
-}
-
-//Execute the query to get the total number of products for the selected user or all users
-$resultTotalProducts = mysqli_query($cnx, $queryTotalProducts);
-
-if ($resultTotalProducts) {
-    $rowTotalProducts = mysqli_fetch_assoc($resultTotalProducts);
-    $totalProducts = $rowTotalProducts['total'];
-    mysqli_free_result($resultTotalProducts);
-} else {
-    die("Query for total products failed: " . $cnx->error);
-}
-
-echo "Total products: " . $totalProducts; // Debugging line, remove in production
-
-// Calculate the total number of pages for the selected user or all users
-$totalPages = ceil($totalProducts / $productsPerPage);
-
-?>                     
-
-                               
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-
-                <div class="col-12 bg-white border pt-2 d-flex justify-content-center">
-                    <div class="col-md-12">
-                        <div class="row d-flex justify-content-center">
-                            <div class="dataTables_info mt-2 ml-2" id="example2_info" role="status" aria-live="polite">
-                                <?php
-                                $startProduct = ($page - 1) * $productsPerPage + 1;
-                                $endProduct = min($startProduct + $productsPerPage - 1, $totalProducts);
-                                echo "Showing " . $startProduct . " to " . $endProduct . " of " . $totalProducts . " products";
-                                ?>
-                            </div>
-                        </div>
-                        <div class="row d-flex justify-content-center">
-                            <div class="dataTables_paginate paging_simple_numbers mt-1 table-responsive-col" id="example2_paginate">
-                                <ul class="pagination">
-                                    <?php
-                                    $nump = $page;
-                                    $add = 1;
-                                    $nump = $nump + $add;
-                                    $numm = $page;
-                                    $numm = $numm - $add;
-
-                                    if ($page == 1) {
-                                        echo '<li class="paginate_button page-item previous disabled" id="example2_previous"><a href="manageproduct.php?page=' . $numm . '" aria-controls="example2" data-dt-idx="0" tabindex="0" class="page-link">Previous</a></li>';
-                                    } else {
-                                        echo '<li class="paginate_button page-item previous" id="example2_previous"><a href="manageproduct.php?page=' . $numm . '" aria-controls="example2" data-dt-idx="0" tabindex="0" class="page-link">Previous</a></li>';
-                                    }
-                                    ?>
-                                    <?php
-                                    $numPagesToShow = 2;
-                                    if ($totalPages <= $numPagesToShow * 2 + 1) {
-                                        // If there are fewer pages than twice the shown number of pages
-                                        for ($i = 1; $i <= $totalPages; $i++) {
-                                            echo '<li class="paginate_button page-item ' . ($page == $i ? 'active' : '') . '"><a href="manageproduct.php?page=' . $i . '" aria-controls="example2" tabindex="0" class="page-link">' . $i . '</a></li>';
-                                        }
-                                    } else {
-                                        // Display first two pages
-                                        for ($i = 1; $i <= 2; $i++) {
-                                            echo '<li class="paginate_button page-item ' . ($page == $i ? 'active' : '') . '"><a href="manageproduct.php?page=' . $i . '" aria-controls="example2" tabindex="0" class="page-link">' . $i . '</a></li>';
-                                        }
-
-                                        // Display ellipses before the current page
-                                        if ($page > 2 + $numPagesToShow) {
-                                            echo '<li class="paginate_button page-item disabled"><span class="page-link">...</span></li>';
-                                        }
-
-                                        // Display pages around the current page
-                                        $startPage = max(3, $page - 1);
-                                        $endPage = min($totalPages - 2, $page + 1);
-
-                                        for ($i = $startPage; $i <= $endPage; $i++) {
-                                            echo '<li class="paginate_button page-item ' . ($page == $i ? 'active' : '') . '"><a href="manageproduct.php?page=' . $i . '" aria-controls="example2" tabindex="0" class="page-link">' . $i . '</a></li>';
-                                        }
-
-                                        // Display ellipses after the current page
-                                        if ($page < $totalPages - 2 - $numPagesToShow) {
-                                            echo '<li class="paginate_button page-item disabled"><span class="page-link">...</span></li>';
-                                        }
-
-                                        // Display last two pages
-                                        for ($i = $totalPages - 1; $i <= $totalPages; $i++) {
-                                            echo '<li class="paginate_button page-item ' . ($page == $i ? 'active' : '') . '"><a href="manageproduct.php?page=' . $i . '" aria-controls="example2" tabindex="0" class="page-link">' . $i . '</a></li>';
-                                        }
-                                    }
-
-                                    if ($page == $totalPages) {
-                                        echo '<li class="paginate_button page-item next disabled" id="example2_next"><a href="manageproduct.php?page=' . $nump . '"aria-controls="example2" data-dt-idx="7" tabindex="0" class="page-link">Next</a></li>';
-                                    } elseif ($totalPages == 0) {
-                                        echo '<li class="paginate_button page-item next disabled" id="example2_next"><a href="manageproduct.php?page=' . $nump . '"aria-controls="example2" data-dt-idx="7" tabindex="0" class="page-link">Next</a></li>';
-                                    } else {
-                                        echo '<li class="paginate_button page-item next" id="example2_next"><a href="manageproduct.php?page=' . $nump . '"aria-controls="example2" data-dt-idx="7" tabindex="0" class="page-link">Next</a></li>';
-                                    }
-                                    ?>
-
-                                </ul>
-                                <ul class="pagination d-flex justify-content-center">
-                                    <li class="page-item">
-                                        <input type="text" id="pageInput" class="form-control" placeholder="Go to page">
-                                    </li>
-                                    <li class="page-item">
-                                        <button onclick="goToPage()" class="btn btn-primary">Go</button>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-
-                <div class="row">
-                    <div class="col-md-12 mb-5">
-                    </div>
-                    <div class="col-md-12 mb-4">
-                    </div>
-                </div>
-            </section>
-        </div>
-
-        <?php
-        include $partials . 'footer.php';
-        ?>
-
-    </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script>
-        function goToPage() {
-            var input = document.getElementById('pageInput');
-            var pageNumber = parseInt(input.value);
-
-            // Add validation if needed
-            if (!isNaN(pageNumber) && pageNumber >= 1 && pageNumber <= <?php echo $totalPages; ?>) {
-                window.location.href = 'manageproduct.php?page=' + pageNumber;
-            }
-        }
-    </script>
-<script>
-    $(document).ready(function() {
-    // Attach an event listener to the select element
-    $('#dropdown').change(function() {
-        // Get the selected option value
-        var selectedCaseId = $(this).val();
-
-        // Use AJAX to fetch data from the server
-        $.ajax({
-            type: 'POST',
-            url: '../php_handling/admin_manageproduct.php',
-            data: { dropdown: selectedCaseId },
-            dataType: 'json', // Specify that the expected response is JSON
-            success: function(response) {
-    // Check if the response contains an error
-    if (response.error) {
-        console.error('Error fetching data: ' + response.error);
-    } else {
-        // Process the response data
-        var htmlContent = ''; // Initialize HTML content variable
-
-        if (response.length > 0) {
-            var firstDataItem = response[0];
-
-            // Concatenate HTML content for each property
-            htmlContent += '<td class="col-1"><div class="d-flex align-items-center">' + firstDataItem.id_produit + '</div></td>';
-            htmlContent += '<td class="col-2"><img src="' + firstDataItem.product_imagepath + '" alt="Product Image" style="width: 160px; height: 160px;" class="rounded"></td>';
-            htmlContent += '<td class="col-3">' + firstDataItem.product_name + '</td>';
-            htmlContent += '<td class="col-4">' + firstDataItem.descr + '</td>';
-            htmlContent += '<td class="col-2"><!-- Actions as needed --></td>';
-        } else {
-            console.log('No data returned from the server.');
-            // You might want to clear the content of #caseDetails in this case
-            // $('#caseDetails').html('');
-        }
-
-        // Set the HTML content of #caseDetails
-        $('#caseDetails').html(htmlContent);
-    }
-},
-        });
-    });
-});
-
-  </script>
+                                <label for="myUser">Select any user:</label>
+<select name="myUser" class="form-control col-3" id="myUser" onchange="changeTable()">
+    <option value="all">All</option>
     <?php
+    // Fetch all emails from the database table
+    $sql = "SELECT id, email, full_name FROM user";
+    $result = $cnx->query($sql);
+
+    // Create options using a loop
+    while ($row = $result->fetch_assoc()) {
+        $email = $row["email"];
+        $name = $row['full_name'];
+        echo "<option value='" . $email . "'>" . $name . "</option>";
+    }
+    ?>
+</select>
+                            </div>
+                            
+                        </div>
+                    </div>
+                           
+                            <div class="row-10 table-responsive-md">
+                                <table class="table align-middle mb-0 bg-white border">
+                                    <thead class="bg-light">
+                                        <tr>
+                                            <th class="col-1">Id</th>
+                                            <th class="col-2">Image</th>
+                                            <th class="col-3">Name</th>
+                                            <th class="col-4">Description</th>
+                                            <th class="col-2">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="productTableBody">
+
+                                    </tbody>
+                                </table>
+                                <div class="card pb-5">
+                                <div class="col-12" style="padding:10px;">
+                             
+<div class="justify-content-center">
+<div id="paginationInfo" class="pagination justify-content-around">Page 1 of 1</div>
+<div id="paginationContainer" class="pagination justify-content-center"></div>
+</div>
+                                </div>
+                            </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                  
+                </div>
+                </section>
+        </div>
+    
+    <script>
+    let currentPage = 1; // Initialize current page
+
+    function changeTable(page = 1) {
+        var emailId = document.getElementById('myUser').value;
+
+        const formData = new FormData();
+        formData.append('myUser', emailId);
+        formData.append('page', page); // Include page number in the request
+
+        fetch('../php_handling/admin_manageproduct.php', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            const tbody = document.getElementById('productTableBody');
+            // Clear existing rows
+            while (tbody.firstChild) {
+                tbody.removeChild(tbody.firstChild);
+            }
+
+            // Check if product_count is provided
+            if (data.products.length > 0) {
+                // Iterate over data.products and append rows
+                data.products.forEach(row => {
+                    const tr = document.createElement('tr');
+
+                    // Create table cells for each product property
+                    Object.entries(row).forEach(([key, value]) => {
+                        const td = document.createElement('td');
+                        if (key === 'product_imagepath') {
+                            // Create an img element for the product image
+                            const img = document.createElement('img');
+                            img.src = value; // Set the image source to the image path
+                            img.alt = 'Product Image';
+                            img.style.maxWidth = '140px'; // Adjust image max-width as needed
+                            img.style.maxHeight = '140px'; // Adjust image max-height as needed
+                            td.appendChild(img);
+                        } else {
+                            // For other properties, just set the text content
+                            td.textContent = value;
+                        }
+                        tr.appendChild(td);
+                    });
+
+                    tbody.appendChild(tr);
+                });
+            } else {
+                // Handle case where no products are returned
+                const tr = document.createElement('tr');
+                const td = document.createElement('td');
+                td.textContent = 'No products found.';
+                td.colSpan = 5; // Set the colspan based on the number of columns in your table
+                tr.appendChild(td);
+                tbody.appendChild(tr);
+            }
+
+            // Update pagination information
+            document.getElementById('paginationInfo').textContent = `Page ${data.current_page} of ${data.total_pages}`;
+            currentPage = data.current_page;
+
+            // Generate pagination links
+            generatePaginationLinks(data.total_pages, currentPage);
+        })
+        .catch(error => {
+            console.error('There was a problem with the fetch operation:', error);
+        });
+    }
+
+
+
+
+    // Function to generate pagination links
+    function generatePaginationLinks(totalPages, currentPage) {
+        const paginationContainer = document.getElementById('paginationContainer');
+        paginationContainer.innerHTML = ''; // Clear existing pagination links
+        
+        // Previous Page Button
+        const previousButton = document.createElement('li');
+        previousButton.classList.add('page-item');
+        if (currentPage === 1) {
+            previousButton.classList.add('disabled');
+        }
+        const previousLink = document.createElement('a');
+        previousLink.classList.add('page-link');
+        previousLink.href = '#';
+        previousLink.textContent = 'Previous';
+        previousLink.onclick = () => {
+            if (currentPage > 1) {
+                changeTable(currentPage - 1);
+            }
+        };
+        previousButton.appendChild(previousLink);
+        paginationContainer.appendChild(previousButton);
+        
+        // Page Number Buttons
+        let startPage = Math.max(1, currentPage - 2);
+        let endPage = Math.min(totalPages, currentPage + 2);
+
+        if (currentPage - 2 <= 1) {
+            endPage = Math.min(5, totalPages);
+        }
+
+        if (currentPage + 2 >= totalPages) {
+            startPage = Math.max(totalPages - 4, 1);
+        }
+
+        if (startPage > 1) {
+            const ellipsisStart = document.createElement('li');
+            ellipsisStart.classList.add('page-item', 'disabled');
+            ellipsisStart.innerHTML = '<span class="page-link">...</span>';
+            paginationContainer.appendChild(ellipsisStart);
+        }
+
+        for (let i = startPage; i <= endPage; i++) {
+            const pageButton = document.createElement('li');
+            pageButton.classList.add('page-item');
+            if (i === currentPage) {
+                pageButton.classList.add('active');
+            }
+            const pageLink = document.createElement('a');
+            pageLink.classList.add('page-link');
+            pageLink.href = '#';
+            pageLink.textContent = i;
+            pageLink.onclick = () => {
+                changeTable(i);
+            };
+            pageButton.appendChild(pageLink);
+            paginationContainer.appendChild(pageButton);
+        }
+
+        if (endPage < totalPages) {
+            const ellipsisEnd = document.createElement('li');
+            ellipsisEnd.classList.add('page-item', 'disabled');
+            ellipsisEnd.innerHTML = '<span class="page-link">...</span>';
+            paginationContainer.appendChild(ellipsisEnd);
+        }
+        
+        // Next Page Button
+        const nextButton = document.createElement('li');
+        nextButton.classList.add('page-item');
+        if (currentPage === totalPages) {
+            nextButton.classList.add('disabled');
+        }
+        const nextLink = document.createElement('a');
+        nextLink.classList.add('page-link');
+        nextLink.href = '#';
+        nextLink.textContent = 'Next';
+        nextLink.onclick = () => {
+            if (currentPage < totalPages) {
+                changeTable(currentPage + 1);
+            }
+        };
+        nextButton.appendChild(nextLink);
+        paginationContainer.appendChild(nextButton);
+    }
+
+    // Trigger the change event when the page is loaded
+    window.addEventListener('DOMContentLoaded', function() {
+        var selectElement = document.getElementById('myUser');
+        var event = new Event('change');
+        selectElement.dispatchEvent(event);
+    });
+</script>
+    <?php
+     
+     include $partials . 'footer.php';
+    
     include  '../../links/js.php';
     ?>
 </body>
